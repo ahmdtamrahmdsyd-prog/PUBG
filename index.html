@@ -797,7 +797,7 @@ footer{
             </button>
 
             <div class="answer">
-                اضغط على زر «طلب الملف» ثم انتقل إلى تيليجرام للتواصل.
+                اضغط على زر «طلب الملف» ثم انتقل إلى وتساب للتواصل.
             </div>
 
         </div>
@@ -836,23 +836,24 @@ footer{
             تأكيد الطلب
         </h3>
 
-        <p>
-            سيتم فتح تيليجرام للتواصل وطلب الملف.
-            هل تريد المتابعة؟
+        <p>سيتم فتح واتساب للتواصل
+        
+         وطلب الملف.
+هل تريد المتابعة؟
         </p>
 
-        <div class="modal-buttons">
+   <div class="modal-buttons">
 
-            <button onclick="goTelegram()">
-                متابعة
-            </button>
+    <button onclick="goWhatsApp()">
+        متابعة
+    </button>
 
-            <button class="cancel" onclick="closeModal()">
-                إلغاء
-            </button>
+    <button class="cancel" onclick="closeModal()">
+        إلغاء
+    </button>
 
-        </div>
-
+</div>
+   
     </div>
 
 </div>
@@ -907,10 +908,10 @@ function closeModal(){
 }
 
 
-function goTelegram(){
+function goWhatsApp(){
 
     window.open(
-        "https://t.me/MidoZoneBot",
+        "https://wa.me/201038684515?text=السلام عليكم، أريد طلب الملف",
         "_blank"
     );
 
