@@ -465,7 +465,30 @@ button:hover{
     font-weight:bold;
     color:#ff4545;
     text-shadow:0 0 22px rgba(255,0,0,.5);
-    margin-bottom:20px;
+    margin-bottom:28px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    height:55px;
+}
+
+.price-number{
+    font-family:Arial,sans-serif;
+    display:flex;
+    align-items:center;
+    height:70px;
+    line-height:55px;
+}
+
+.price-currency{
+    font-family:Tahoma,Arial,sans-serif;
+    font-size:30px;
+    display:flex;
+    align-items:center;
+    height:55px;
+    line-height:55px;
 }
 
 .buy{
@@ -735,10 +758,11 @@ style="width:100%;height:100%;object-fit:cover;">
             <div class="price-small">
                 سعر طلب الملف
             </div>
-
-            <div class="price">
-                50 جنيه
-            </div>
+            
+ <div class="price">
+    <span class="price-number">50</span>
+    <span class="price-currency">جنيه</span>
+</div>
 
             <button class="buy" onclick="openModal()">
                 🛒 طلب الملف
