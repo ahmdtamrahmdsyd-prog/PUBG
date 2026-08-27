@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PUBG × NARUTO</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Tahoma,Arial,sans-serif;
+    color:#fff;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 50% 0%,#850000,#350000 38%,#050505 82%);
+    overflow-x:hidden;
+}
+
+/* إضاءة متحركة */
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:360px;
+    height:360px;
+    border-radius:50%;
+    background:rgba(255,0,0,.17);
+    filter:blur(100px);
+    z-index:-5;
+    animation:lightMove 9s infinite alternate;
+}
+
+body::before{
+    top:-120px;
+    right:-100px;
+}
+
+body::after{
+    bottom:-150px;
+    left:-100px;
+    animation-delay:2s;
+}
+
+@keyframes lightMove{
+    from{transform:translate(0,0) scale(.8)}
+    to{transform:translate(80px,80px) scale(1.2)}
+}
+
+/* نقاط متحركة */
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.particle{
+    position:absolute;
+    bottom:-20px;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#ff3030;
+    box-shadow:0 0 15px #f00;
+    animation:particleUp linear infinite;
+}
+
+@keyframes particleUp{
+    0%{transform:translateY(0);opacity:0}
+    15%{opacity:.8}
+    85%{opacity:.8}
+    100%{transform:translateY(-110vh);opacity:0}
+}
+
+/* شاشة البداية */
+#welcome{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.welcome-box{
+    width:100%;
+    max-width:570px;
+    text-align:center;
+    padding:18px;
+    border-radius:28px;
+    background:rgba(18,0,0,.92);
+    border:1px solid rgba(255,50,50,.3);
+    box-shadow:0 0 70px rgba(255,0,0,.25);
+}
+
+/* الغلاف */
+.cover{
+    height:320px;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    border-radius:23px;
+    margin-bottom:24px;
+
+    background:
+        radial-gradient(circle at 65% 40%,
+        #ffb300 0%,
+        #e13a00 18%,
+        #730000 42%,
+        #160000 80%);
+
+    border:1px solid rgba(255,100,30,.4);
+    box-shadow:
+        inset 0 0 80px rgba(0,0,0,.75),
+        0 0 40px rgba(255,0,0,.25);
+}
+
+/* ناروتو - رسم داخل الكود */
+.naruto{
+    position:absolute;
+    width:180px;
+    height:250px;
+    right:12%;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.head{
+    position:absolute;
+    width:85px;
+    height:90px;
+    left:45px;
+    top:48px;
+    background:#f2a06b;
+    border:3px solid #181818;
+    border-radius:45%;
+    z-index:3;
+}
+
+.hair{
+    position:absolute;
+    width:135px;
+    height:95px;
+    left:20px;
+    top:0;
+    background:#ffd21a;
+    clip-path:polygon(
+        0 70%,10% 25%,25% 55%,31% 0,
+        45% 45%,58% 3%,70% 48%,85% 10%,
+        100% 63%,84% 80%,62% 68%,43% 86%,
+        20% 74%
+    );
+    z-index:5;
+}
+
+.band{
+    position:absolute;
+    width:91px;
+    height:17px;
+    left:42px;
+    top:68px;
+    background:#242424;
+    z-index:7;
+}
+
+.band::after{
+    content:"";
+    position:absolute;
+    left:34px;
+    top:2px;
+    width:22px;
+    height:10px;
+    border:2px solid #aaa;
+}
+
+.eye{
+    position:absolute;
+    top:98px;
+    width:10px;
+    height:5px;
+    background:#111;
+    z-index:8;
+}
+
+.eye1{left:62px}
+.eye2{left:101px}
+
+.body-n{
+    position:absolute;
+    width:120px;
+    height:115px;
+    left:27px;
+    top:130px;
+    background:#ed7118;
+    border:4px solid #222;
+    border-radius:27px 27px 12px 12px;
+}
+
+/* شعار اللعبة */
+.pubg{
+    position:absolute;
+    left:9%;
+    top:40%;
+    font-size:47px;
+    font-weight:900;
+    font-style:italic;
+    color:#fff;
+    z-index:10;
+    text-shadow:
+        4px 4px 0 #000,
+        0 0 18px #f00,
+        0 0 40px #f00;
+}
+
+.collab{
+    position:absolute;
+    bottom:22px;
+    left:50%;
+    transform:translateX(-50%);
+    white-space:nowrap;
+    color:#ffe0a0;
+    font-weight:bold;
+    font-size:18px;
+    z-index:15;
+    text-shadow:0 0 15px #f00;
+}
+
+/* لمعة */
+.shine{
+    position:absolute;
+    width:42%;
+    height:130%;
+    top:-15%;
+    left:-100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.2),
+        transparent
+    );
+    transform:skewX(-20deg);
+    animation:shine 4s infinite;
+    z-index:30;
+}
+
+@keyframes shine{
+    0%{left:-100%}
+    45%,100%{left:140%}
+}
+
+.welcome-box h1{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.welcome-box p{
+    color:#d5baba;
+    line-height:2;
+    margin-bottom:25px;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:bold;
+    color:#fff;
+    border-radius:14px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 35px rgba(255,0,0,.45);
+}
+
+.enter{
+    width:100%;
+    max-width:300px;
+    padding:16px;
+    font-size:18px;
+    background:linear-gradient(135deg,#ff2929,#850000);
+}
+
+/* الموقع */
+#main{
+    display:none;
+    max-width:1050px;
+    margin:auto;
+    padding:18px 15px 60px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:17px 20px;
+    margin-bottom:15px;
+    border-radius:18px;
+    background:rgba(35,0,0,.85);
+    border:1px solid rgba(255,50,50,.22);
+}
+
+.brand{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.status{
+    color:#ff6969;
+    font-size:13px;
+}
+
+.notice{
+    overflow:hidden;
+    background:#650000;
+    border:1px solid rgba(255,50,50,.25);
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.notice-text{
+    white-space:nowrap;
+    padding:12px;
+    color:#ffd0d0;
+    animation:marquee 13s linear infinite;
+}
+
+@keyframes marquee{
+    from{transform:translateX(100%)}
+    to{transform:translateX(-100%)}
+}
+
+/* صورة رئيسية */
+.hero-image{
+    height:430px;
+    border-radius:27px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:25px;
+    background:radial-gradient(circle,#800000,#260000 60%,#080000);
+    border:1px solid rgba(255,50,50,.35);
+    box-shadow:0 0 65px rgba(255,0,0,.25);
+}
+
+.hero-image .cover{
+    width:90%;
+    height:88%;
+    margin:0;
+}
+
+.hero-image .naruto{
+    transform:translateY(-50%) scale(1.25);
+}
+
+.hero-image .pubg{
+    font-size:58px;
+}
+
+.hero-label{
+    position:absolute;
+    bottom:18px;
+    right:20px;
+    background:rgba(0,0,0,.72);
+    padding:10px 15px;
+    border-radius:10px;
+    z-index:40;
+}
+
+/* المقدمة */
+.hero{
+    text-align:center;
+    padding:32px 20px;
+    border-radius:23px;
+    background:linear-gradient(
+        145deg,
+        rgba(100,0,0,.5),
+        rgba(20,0,0,.9)
+    );
+    border:1px solid rgba(255,30,30,.22);
+    margin-bottom:25px;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:14px;
+}
+
+.hero p{
+    color:#d5baba;
+    line-height:2;
+}
+
+/* الأقسام */
+.section{
+    padding:25px;
+    border-radius:22px;
+    background:rgba(20,0,0,.82);
+    border:1px solid rgba(255,40,40,.2);
+    box-shadow:0 0 30px rgba(255,0,0,.08);
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-size:23px;
+    margin-bottom:20px;
+}
+
+.feature{
+    padding:23px;
+    border-radius:18px;
+    background:linear-gradient(
+        145deg,
+        rgba(110,0,0,.3),
+        rgba(35,0,0,.5)
+    );
+    border:1px solid rgba(255,50,50,.17);
+}
+
+.feature-icon{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.feature-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.feature-text{
+    color:#d1b5b5;
+    font-size:15px;
+    line-height:2;
+}
+
+/* السعر */
+.price-box{
+    text-align:center;
+    padding:35px 20px;
+    border-radius:22px;
+    background:linear-gradient(
+        145deg,
+        rgba(120,0,0,.5),
+        rgba(25,0,0,.9)
+    );
+    border:1px solid rgba(255,40,40,.3);
+}
+
+.price-small{
+    color:#c8aaaa;
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:45px;
+    font-weight:bold;
+    color:#ff4545;
+    text-shadow:0 0 22px rgba(255,0,0,.5);
+    margin-bottom:20px;
+}
+
+.buy{
+    width:100%;
+    max-width:450px;
+    padding:16px;
+    font-size:19px;
+    background:linear-gradient(135deg,#ff2929,#920000);
+}
+
+/* الأسئلة */
+.faq{
+    border-top:1px solid rgba(255,50,50,.15);
+}
+
+.question{
+    width:100%;
+    padding:18px 5px;
+    background:none;
+    text-align:right;
+    display:flex;
+    justify-content:space-between;
+    font-size:16px;
+}
+
+.question:hover{
+    transform:none;
+    box-shadow:none;
+}
+
+.answer{
+    display:none;
+    color:#bda5a5;
+    line-height:1.9;
+    padding:0 5px 18px;
+}
+
+.answer.open{
+    display:block;
+}
+
+footer{
+    text-align:center;
+    color:#705b5b;
+    font-size:13px;
+    margin-top:30px;
+}
+
+/* النافذة */
+.modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(8px);
+    z-index:100;
+}
+
+.modal-box{
+    width:100%;
+    max-width:430px;
+    padding:30px 25px;
+    text-align:center;
+    border-radius:23px;
+    background:linear-gradient(145deg,#350000,#100000);
+    border:1px solid rgba(255,50,50,.3);
+    box-shadow:0 0 50px rgba(255,0,0,.3);
+}
+
+.modal-box h3{
+    font-size:23px;
+    margin-bottom:15px;
+}
+
+.modal-box p{
+    color:#c9adad;
+    line-height:1.8;
+    margin-bottom:22px;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:14px;
+    background:linear-gradient(135deg,#ff2929,#920000);
+}
+
+.cancel{
+    background:#300909!important;
+}
+
+/* الهاتف */
+@media(max-width:600px){
+
+    .cover{
+        height:230px;
+    }
+
+    .pubg{
+        font-size:31px;
+        left:6%;
+    }
+
+    .naruto{
+        transform:translateY(-50%) scale(.78);
+        right:0;
+    }
+
+    .hero-image{
+        height:300px;
+    }
+
+    .hero-image .pubg{
+        font-size:38px;
+    }
+
+    .hero-image .naruto{
+        transform:translateY(-50%) scale(.9);
+        right:-5%;
+    }
+
+    .price{
+        font-size:38px;
+    }
+
+    .welcome-box h1{
+        font-size:26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="particles">
+    <span class="particle" style="left:5%;animation-duration:8s"></span>
+    <span class="particle" style="left:15%;animation-duration:11s"></span>
+    <span class="particle" style="left:27%;animation-duration:9s"></span>
+    <span class="particle" style="left:40%;animation-duration:13s"></span>
+    <span class="particle" style="left:55%;animation-duration:10s"></span>
+    <span class="particle" style="left:68%;animation-duration:12s"></span>
+    <span class="particle" style="left:82%;animation-duration:9s"></span>
+    <span class="particle" style="left:94%;animation-duration:11s"></span>
+</div>
+
+
+<!-- البداية -->
+
+<section id="welcome">
+
+    <div class="welcome-box">
+
+        <div class="cover">
+
+            <div class="naruto">
+                <div class="head"></div>
+                <div class="hair"></div>
+                <div class="band"></div>
+                <div class="eye eye1"></div>
+                <div class="eye eye2"></div>
+                <div class="body-n"></div>
+            </div>
+
+            <div class="pubg">
+                PUBG MOBILE
+            </div>
+
+            <div class="collab">
+                NARUTO × PUBG MOBILE
+            </div>
+
+            <div class="shine"></div>
+
+        </div>
+
+        <h1>
+            ملف PUBG المميز
+        </h1>
+
+        <p>
+            استكشف محتويات الملف وتعرّف على التفاصيل
+            قبل طلب الملف.
+        </p>
+
+        <button class="enter" onclick="enterSite()">
+            دخول الموقع
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- الموقع -->
+
+<main id="main">
+
+    <div class="topbar">
+        <div class="brand">PUBG FILE</div>
+        <div class="status">● متاح للطلب</div>
+    </div>
+
+
+    <div class="notice">
+        <div class="notice-text">
+            ✦ الطلب متاح الآن — يمكنك التعرف على التفاصيل ثم التواصل لطلب الملف ✦
+        </div>
+    </div>
+
+
+    <!-- الصورة الرئيسية -->
+
+    <div class="hero-image">
+
+        <div class="cover">
+
+            <div class="naruto">
+                <div class="head"></div>
+                <div class="hair"></div>
+                <div class="band"></div>
+                <div class="eye eye1"></div>
+                <div class="eye eye2"></div>
+                <div class="body-n"></div>
+            </div>
+
+            <div class="pubg">
+                PUBG MOBILE
+            </div>
+
+            <div class="collab">
+                NARUTO × PUBG MOBILE
+            </div>
+
+            <div class="shine"></div>
+
+        </div>
+
+        <div class="hero-label">
+            PUBG MOBILE × Naruto
+        </div>
+
+    </div>
+
+
+    <section class="hero">
+
+        <h2>
+            ملف PUBG المميز
+        </h2>
+
+        <p>
+            عرض منظم لمحتويات الملف والمظاهر والعناصر
+            المتنوعة، مع واجهة سهلة وسريعة الاستخدام.
+        </p>
+
+    </section>
+
+
+    <!-- العناصر المميزة -->
+
+    <section class="section">
+
+        <div class="section-title">
+            ماذا يحتوي الملف؟
+        </div>
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⭐
+            </div>
+
+            <div class="feature-title">
+                عناصر مميزة
+            </div>
+
+            <div class="feature-text">
+                جميع الملابس والمظاهر للطلب والاستفسار عن الملف
+                دوس طلب الملف
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- السعر -->
+
+    <section class="section">
+
+        <div class="price-box">
+
+            <div class="price-small">
+                سعر طلب الملف
+            </div>
+
+            <div class="price">
+                100 جنيه
+            </div>
+
+            <button class="buy" onclick="openModal()">
+                🛒 طلب الملف
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- الأسئلة -->
+
+    <section class="section">
+
+        <div class="section-title">
+            الأسئلة الشائعة
+        </div>
+
+        <div class="faq">
+
+            <button class="question" onclick="toggleFAQ(this)">
+                ما طريقة طلب الملف؟
+                <span>＋</span>
+            </button>
+
+            <div class="answer">
+                اضغط على زر «طلب الملف» ثم انتقل إلى تيليجرام للتواصل.
+            </div>
+
+        </div>
+
+
+        <div class="faq">
+
+            <button class="question" onclick="toggleFAQ(this)">
+                كم سعر الملف؟
+                <span>＋</span>
+            </button>
+
+            <div class="answer">
+                السعر المعروض حاليًا هو 100 جنيه.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        جميع الحقوق محفوظة © 2026
+    </footer>
+
+</main>
+
+
+<!-- نافذة الطلب -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <h3>
+            تأكيد الطلب
+        </h3>
+
+        <p>
+            سيتم فتح تيليجرام للتواصل وطلب الملف.
+            هل تريد المتابعة؟
+        </p>
+
+        <div class="modal-buttons">
+
+            <button onclick="goTelegram()">
+                متابعة
+            </button>
+
+            <button class="cancel" onclick="closeModal()">
+                إلغاء
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function enterSite(){
+
+    document.getElementById("welcome").style.display="none";
+    document.getElementById("main").style.display="block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function toggleFAQ(button){
+
+    const answer=button.nextElementSibling;
+    const icon=button.querySelector("span");
+
+    if(answer.classList.contains("open")){
+
+        answer.classList.remove("open");
+        icon.textContent="＋";
+
+    }else{
+
+        answer.classList.add("open");
+        icon.textContent="－";
+
+    }
+
+}
+
+
+function openModal(){
+
+    document.getElementById("modal").style.display="flex";
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("modal").style.display="none";
+
+}
+
+
+function goTelegram(){
+
+    window.open(
+        "https://t.me/MidoZoneBot",
+        "_blank"
+    );
+
+    closeModal();
+
+}
+
+
+document.getElementById("modal").addEventListener(
+    "click",
+    function(e){
+
+        if(e.target===this){
+            closeModal();
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
