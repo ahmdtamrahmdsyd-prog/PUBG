@@ -25,15 +25,6 @@ content="width=device-width, initial-scale=1.0">
 
         }
 
-
-        if(localStorage.getItem("language")==="en"){
-
-            document.documentElement.lang="en";
-
-            document.documentElement.dir="ltr";
-
-        }
-
     }catch(e){}
 
 })();
@@ -43,48 +34,28 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
-
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
-
 
 :root{
 
     --main1:#850000;
-
     --main2:#350000;
-
     --dark:#050505;
-
     --box:#120000;
-
     --topbar:#230000;
-
     --section:#140000;
-
     --gradient1:#650000;
-
     --gradient2:#350000;
-
     --gradient3:#100000;
-
     --red:#ff2929;
-
     --light:#ff4545;
-
     --text:#d5baba;
-
     --text2:#d1b5b5;
-
     --border:rgba(255,50,50,.25);
-
     --glow:rgba(255,0,0,.25);
 
 }
@@ -93,33 +64,19 @@ content="width=device-width, initial-scale=1.0">
 html.blue-mode{
 
     --main1:#002b85;
-
     --main2:#001a52;
-
     --dark:#030814;
-
     --box:#020d24;
-
     --topbar:#03132f;
-
     --section:#041126;
-
     --gradient1:#04245f;
-
     --gradient2:#020f2d;
-
     --gradient3:#010816;
-
     --red:#238cff;
-
     --light:#4ba5ff;
-
     --text:#b8d1f2;
-
     --text2:#aac6eb;
-
     --border:rgba(50,140,255,.25);
-
     --glow:rgba(0,110,255,.28);
 
 }
@@ -128,9 +85,7 @@ html.blue-mode{
 body{
 
     font-family:Tahoma,Arial,sans-serif;
-
     color:#fff;
-
     min-height:100vh;
 
     background:
@@ -143,34 +98,23 @@ body{
         );
 
     overflow-x:hidden;
-
     transition:background .5s ease;
 
 }
 
 
 body::before,
-
 body::after{
 
     content:"";
-
     position:fixed;
-
     width:360px;
-
     height:360px;
-
     border-radius:50%;
-
     background:var(--glow);
-
     filter:blur(100px);
-
     z-index:-5;
-
     animation:lightMove 9s infinite alternate;
-
     transition:.5s;
 
 }
@@ -179,7 +123,6 @@ body::after{
 body::before{
 
     top:-120px;
-
     right:-100px;
 
 }
@@ -188,9 +131,7 @@ body::before{
 body::after{
 
     bottom:-150px;
-
     left:-100px;
-
     animation-delay:2s;
 
 }
@@ -206,7 +147,6 @@ body::after{
 
     }
 
-
     to{
 
         transform:
@@ -221,13 +161,9 @@ body::after{
 .particles{
 
     position:fixed;
-
     inset:0;
-
     overflow:hidden;
-
     pointer-events:none;
-
     z-index:-1;
 
 }
@@ -236,15 +172,10 @@ body::after{
 .particle{
 
     position:absolute;
-
     bottom:-20px;
-
     width:4px;
-
     height:4px;
-
     border-radius:50%;
-
     background:var(--red);
 
     box-shadow:
@@ -262,13 +193,10 @@ body::after{
 
     0%{
 
-        transform:
-        translateY(0);
-
+        transform:translateY(0);
         opacity:0;
 
     }
-
 
     15%{
 
@@ -276,19 +204,15 @@ body::after{
 
     }
 
-
     85%{
 
         opacity:.8;
 
     }
 
-
     100%{
 
-        transform:
-        translateY(-110vh);
-
+        transform:translateY(-110vh);
         opacity:0;
 
     }
@@ -299,13 +223,9 @@ body::after{
 #welcome{
 
     min-height:100vh;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     padding:18px;
 
 }
@@ -314,13 +234,9 @@ body::after{
 .welcome-box{
 
     width:100%;
-
     max-width:570px;
-
     text-align:center;
-
     padding:18px;
-
     border-radius:28px;
 
     background:
@@ -348,15 +264,10 @@ html.blue-mode .welcome-box{
 .cover{
 
     height:320px;
-
     width:100%;
-
     position:relative;
-
     overflow:hidden;
-
     border-radius:23px;
-
     margin-bottom:24px;
 
     background:
@@ -387,11 +298,8 @@ html.blue-mode .welcome-box{
 .cover img{
 
     display:block;
-
     width:100%;
-
     height:100%;
-
     object-fit:cover;
 
 }
@@ -400,17 +308,11 @@ html.blue-mode .welcome-box{
 button{
 
     border:0;
-
     cursor:pointer;
-
     font-family:inherit;
-
     font-weight:bold;
-
     color:#fff;
-
     border-radius:14px;
-
     transition:.3s;
 
 }
@@ -430,7 +332,6 @@ button:hover{
 .welcome-box h1{
 
     font-size:30px;
-
     margin-bottom:12px;
 
 }
@@ -439,9 +340,7 @@ button:hover{
 .welcome-box p{
 
     color:var(--text);
-
     line-height:2;
-
     margin-bottom:25px;
 
 }
@@ -450,11 +349,8 @@ button:hover{
 .enter{
 
     width:100%;
-
     max-width:300px;
-
     padding:16px;
-
     font-size:18px;
 
     background:
@@ -471,11 +367,8 @@ button:hover{
 #main{
 
     display:none;
-
     max-width:1050px;
-
     margin:auto;
-
     padding:
     18px 15px 60px;
 
@@ -485,17 +378,10 @@ button:hover{
 .topbar{
 
     display:flex;
-
-    justify-content:
-    space-between;
-
+    justify-content:space-between;
     align-items:center;
-
-    padding:
-    14px 16px;
-
+    padding:14px 16px;
     margin-bottom:15px;
-
     border-radius:18px;
 
     background:
@@ -520,7 +406,6 @@ html.blue-mode .topbar{
 .brand{
 
     font-size:21px;
-
     font-weight:bold;
 
 }
@@ -529,9 +414,7 @@ html.blue-mode .topbar{
 .topbar-left{
 
     display:flex;
-
     align-items:center;
-
     gap:10px;
 
 }
@@ -540,32 +423,22 @@ html.blue-mode .topbar{
 .status{
 
     color:var(--light);
-
     font-size:13px;
 
 }
 
 
 .theme-toggle,
-
 .language-toggle{
 
     width:38px;
-
     height:38px;
-
     min-width:38px;
-
     padding:0;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     border-radius:11px;
-
     font-size:16px;
 
     background:
@@ -590,11 +463,9 @@ html.blue-mode .topbar{
 
 
 .theme-toggle:hover,
-
 .language-toggle:hover{
 
-    transform:
-    scale(1.06);
+    transform:scale(1.06);
 
     box-shadow:
     0 0 18px var(--glow);
@@ -605,17 +476,10 @@ html.blue-mode .topbar{
 .notice{
 
     overflow:hidden;
-
-    background:
-    var(--gradient1);
-
-    border:
-    1px solid var(--border);
-
+    background:var(--gradient1);
+    border:1px solid var(--border);
     border-radius:12px;
-
     margin-bottom:20px;
-
     transition:.5s;
 
 }
@@ -624,9 +488,7 @@ html.blue-mode .topbar{
 .notice-text{
 
     white-space:nowrap;
-
     padding:12px;
-
     color:var(--text);
 
     animation:
@@ -639,16 +501,13 @@ html.blue-mode .topbar{
 
     from{
 
-        transform:
-        translateX(100%);
+        transform:translateX(100%);
 
     }
 
-
     to{
 
-        transform:
-        translateX(-100%);
+        transform:translateX(-100%);
 
     }
 
@@ -658,19 +517,12 @@ html.blue-mode .topbar{
 .hero-image{
 
     height:430px;
-
     border-radius:27px;
-
     overflow:hidden;
-
     position:relative;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     margin-bottom:25px;
 
     background:
@@ -694,9 +546,7 @@ html.blue-mode .topbar{
 .hero-image .cover{
 
     width:90%;
-
     height:88%;
-
     margin:0;
 
 }
@@ -705,9 +555,7 @@ html.blue-mode .topbar{
 .hero-label{
 
     position:absolute;
-
     bottom:18px;
-
     right:20px;
 
     background:
@@ -717,7 +565,6 @@ html.blue-mode .topbar{
     10px 15px;
 
     border-radius:10px;
-
     z-index:40;
 
 }
@@ -726,7 +573,6 @@ html.blue-mode .topbar{
 html[dir="ltr"] .hero-label{
 
     right:auto;
-
     left:20px;
 
 }
@@ -735,10 +581,7 @@ html[dir="ltr"] .hero-label{
 .hero{
 
     text-align:center;
-
-    padding:
-    32px 20px;
-
+    padding:32px 20px;
     border-radius:23px;
 
     background:
@@ -773,7 +616,6 @@ html.blue-mode .hero{
 .hero h2{
 
     font-size:30px;
-
     margin-bottom:14px;
 
 }
@@ -782,7 +624,6 @@ html.blue-mode .hero{
 .hero p{
 
     color:var(--text);
-
     line-height:2;
 
 }
@@ -791,7 +632,6 @@ html.blue-mode .hero{
 .section{
 
     padding:25px;
-
     border-radius:22px;
 
     background:
@@ -804,7 +644,6 @@ html.blue-mode .hero{
     0 0 30px var(--glow);
 
     margin-bottom:25px;
-
     transition:.5s;
 
 }
@@ -821,7 +660,6 @@ html.blue-mode .section{
 .section-title{
 
     font-size:23px;
-
     margin-bottom:20px;
 
 }
@@ -830,7 +668,6 @@ html.blue-mode .section{
 .feature{
 
     padding:23px;
-
     border-radius:18px;
 
     background:
@@ -865,7 +702,6 @@ html.blue-mode .feature{
 .feature-icon{
 
     font-size:32px;
-
     margin-bottom:10px;
 
 }
@@ -874,9 +710,7 @@ html.blue-mode .feature{
 .feature-title{
 
     font-size:20px;
-
     font-weight:bold;
-
     margin-bottom:10px;
 
 }
@@ -885,9 +719,7 @@ html.blue-mode .feature{
 .feature-text{
 
     color:var(--text2);
-
     font-size:15px;
-
     line-height:2;
 
 }
@@ -896,10 +728,7 @@ html.blue-mode .feature{
 .price-box{
 
     text-align:center;
-
-    padding:
-    35px 20px;
-
+    padding:35px 20px;
     border-radius:22px;
 
     background:
@@ -934,7 +763,6 @@ html.blue-mode .price-box{
 .price-small{
 
     color:var(--text);
-
     margin-bottom:8px;
 
 }
@@ -943,9 +771,7 @@ html.blue-mode .price-box{
 .price{
 
     font-size:45px;
-
     font-weight:bold;
-
     color:var(--light);
 
     text-shadow:
@@ -954,13 +780,9 @@ html.blue-mode .price-box{
     margin-bottom:28px;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     gap:8px;
-
     height:55px;
 
 }
@@ -972,11 +794,8 @@ html.blue-mode .price-box{
     Arial,sans-serif;
 
     display:flex;
-
     align-items:center;
-
     height:70px;
-
     line-height:55px;
 
 }
@@ -990,26 +809,19 @@ html.blue-mode .price-box{
     font-size:30px;
 
     display:flex;
-
     align-items:center;
-
     height:55px;
-
     line-height:55px;
 
 }
 
 
 .buy,
-
 .preview{
 
     width:100%;
-
     max-width:450px;
-
     padding:16px;
-
     font-size:19px;
 
     background:
@@ -1041,19 +853,11 @@ html.blue-mode .price-box{
 .question{
 
     width:100%;
-
-    padding:
-    18px 5px;
-
+    padding:18px 5px;
     background:none;
-
     text-align:right;
-
     display:flex;
-
-    justify-content:
-    space-between;
-
+    justify-content:space-between;
     font-size:16px;
 
 }
@@ -1069,7 +873,6 @@ html[dir="ltr"] .question{
 .question:hover{
 
     transform:none;
-
     box-shadow:none;
 
 }
@@ -1078,13 +881,9 @@ html[dir="ltr"] .question{
 .answer{
 
     display:none;
-
     color:var(--text2);
-
     line-height:1.9;
-
-    padding:
-    0 5px 18px;
+    padding:0 5px 18px;
 
 }
 
@@ -1099,13 +898,9 @@ html[dir="ltr"] .question{
 footer{
 
     text-align:center;
-
     color:var(--text);
-
     opacity:.6;
-
     font-size:13px;
-
     margin-top:30px;
 
 }
@@ -1116,15 +911,10 @@ footer{
 .modal{
 
     position:fixed;
-
     inset:0;
-
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
 
     background:
@@ -1141,14 +931,9 @@ footer{
 .modal-box{
 
     width:100%;
-
     max-width:430px;
-
-    padding:
-    30px 25px;
-
+    padding:30px 25px;
     text-align:center;
-
     border-radius:23px;
 
     background:
@@ -1171,7 +956,6 @@ footer{
 .modal-box h3{
 
     font-size:23px;
-
     margin-bottom:15px;
 
 }
@@ -1180,9 +964,7 @@ footer{
 .modal-box p{
 
     color:var(--text);
-
     line-height:1.8;
-
     margin-bottom:22px;
 
 }
@@ -1191,7 +973,6 @@ footer{
 .modal-buttons{
 
     display:flex;
-
     gap:10px;
 
 }
@@ -1200,7 +981,6 @@ footer{
 .modal-buttons button{
 
     flex:1;
-
     padding:14px;
 
     background:
@@ -1222,25 +1002,130 @@ footer{
 }
 
 
+/* نافذة القوانين */
+
+.rules-modal{
+
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+
+    background:
+    rgba(0,0,0,.82);
+
+    backdrop-filter:
+    blur(8px);
+
+    z-index:150;
+
+}
+
+
+.rules-box{
+
+    width:100%;
+    max-width:500px;
+    max-height:85vh;
+    overflow-y:auto;
+    padding:30px 25px;
+    text-align:right;
+    border-radius:23px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            var(--gradient2),
+            var(--gradient3)
+        );
+
+    border:
+    1px solid var(--border);
+
+    box-shadow:
+    0 0 50px var(--glow);
+
+}
+
+
+.rules-box h3{
+
+    text-align:center;
+    font-size:24px;
+    margin-bottom:20px;
+    color:var(--light);
+
+}
+
+
+.rule{
+
+    padding:14px;
+    margin-bottom:12px;
+    border-radius:14px;
+
+    background:
+    rgba(0,0,0,.22);
+
+    border:
+    1px solid var(--border);
+
+}
+
+
+.rule-title{
+
+    font-weight:bold;
+    color:#fff;
+    margin-bottom:6px;
+
+}
+
+
+.rule-text{
+
+    color:var(--text2);
+    line-height:1.9;
+    font-size:14px;
+
+}
+
+
+.rules-button{
+
+    width:100%;
+    padding:15px;
+    margin-top:8px;
+    font-size:18px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--main1)
+        );
+
+}
+
+
 /* معرض الصور */
 
 .gallery-modal{
 
     position:fixed;
-
     inset:0;
-
     display:none;
 
     background:
     rgba(0,0,0,.96);
 
     z-index:200;
-
     overflow-y:auto;
-
-    padding:
-    75px 15px 25px;
+    padding:75px 15px 25px;
 
 }
 
@@ -1248,21 +1133,13 @@ footer{
 .gallery-close{
 
     position:fixed;
-
     top:15px;
-
     right:15px;
-
     width:48px;
-
     height:48px;
-
     border-radius:50%;
-
     background:var(--red);
-
     font-size:30px;
-
     z-index:210;
 
 }
@@ -1271,7 +1148,6 @@ footer{
 html[dir="ltr"] .gallery-close{
 
     right:auto;
-
     left:15px;
 
 }
@@ -1280,13 +1156,10 @@ html[dir="ltr"] .gallery-close{
 .gallery-grid{
 
     max-width:1100px;
-
     margin:auto;
-
     display:grid;
 
     grid-template-columns:
-
     repeat(
         auto-fit,
         minmax(160px,1fr)
@@ -1300,13 +1173,9 @@ html[dir="ltr"] .gallery-close{
 .gallery-grid img{
 
     width:100%;
-
     display:block;
-
     aspect-ratio:1/1;
-
     object-fit:cover;
-
     border-radius:16px;
 
     border:
@@ -1325,15 +1194,10 @@ html[dir="ltr"] .gallery-close{
 .image-viewer{
 
     position:fixed;
-
     inset:0;
-
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
     padding:20px;
 
     background:
@@ -1347,11 +1211,8 @@ html[dir="ltr"] .gallery-close{
 .image-viewer img{
 
     max-width:100%;
-
     max-height:90vh;
-
     object-fit:contain;
-
     border-radius:12px;
 
 }
@@ -1360,21 +1221,13 @@ html[dir="ltr"] .gallery-close{
 .image-close{
 
     position:absolute;
-
     top:15px;
-
     right:15px;
-
     width:50px;
-
     height:50px;
-
     border-radius:50%;
-
     background:var(--red);
-
     font-size:32px;
-
     z-index:310;
 
 }
@@ -1383,7 +1236,6 @@ html[dir="ltr"] .gallery-close{
 html[dir="ltr"] .image-close{
 
     right:auto;
-
     left:15px;
 
 }
@@ -1391,13 +1243,11 @@ html[dir="ltr"] .image-close{
 
 @media(max-width:600px){
 
-
     .cover{
 
         height:230px;
 
     }
-
 
     .hero-image{
 
@@ -1405,13 +1255,11 @@ html[dir="ltr"] .image-close{
 
     }
 
-
     .price{
 
         font-size:38px;
 
     }
-
 
     .welcome-box h1{
 
@@ -1419,38 +1267,28 @@ html[dir="ltr"] .image-close{
 
     }
 
-
     .topbar{
 
-        padding:
-        12px 13px;
+        padding:12px 13px;
 
     }
 
-
     .theme-toggle,
-
     .language-toggle{
 
         width:35px;
-
         height:35px;
-
         min-width:35px;
-
         font-size:13px;
-
         border-radius:10px;
 
     }
-
 
     .topbar-left{
 
         gap:7px;
 
     }
-
 
     .gallery-grid{
 
@@ -1463,14 +1301,12 @@ html[dir="ltr"] .image-close{
 
 }
 
-
 </style>
 
 </head>
 
 
 <body>
-
 
 <div class="particles">
 
@@ -1805,7 +1641,6 @@ html[dir="ltr"] .image-close{
 
     <div class="faq">
 
-
         <button
             class="question"
             onclick="toggleFAQ(this)">
@@ -1834,12 +1669,10 @@ html[dir="ltr"] .image-close{
 
         </div>
 
-
     </div>
 
 
     <div class="faq">
-
 
         <button
             class="question"
@@ -1869,9 +1702,7 @@ html[dir="ltr"] .image-close{
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1884,6 +1715,152 @@ html[dir="ltr"] .image-close{
 
 
 </main>
+
+
+
+<!-- نافذة القوانين -->
+
+<div
+    class="rules-modal"
+    id="rulesModal">
+
+    <div class="rules-box">
+
+        <h3 id="rulesTitle">
+
+            📜 قوانين وتعليمات الموقع
+
+        </h3>
+
+
+        <div class="rule">
+
+            <div
+                class="rule-title"
+                id="ruleTitle1">
+
+                1️⃣ شراء الملف
+
+            </div>
+
+            <div
+                class="rule-text"
+                id="ruleText1">
+
+                لشراء الملف اضغط على زر
+                «طلب الملف»، وسيتم نقلك إلى
+                واتساب المطور للتواصل وشراء
+                الملف أو الاستفسار عن أي شيء.
+
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div
+                class="rule-title"
+                id="ruleTitle2">
+
+                2️⃣ سعر الملف
+
+            </div>
+
+            <div
+                class="rule-text"
+                id="ruleText2">
+
+                سعر الملف حاليًا 50 جنيه،
+                وبعد كام يوم سيصبح السعر 80 جنيه.
+                إذا كنت تريد شراء الملف بالسعر الحالي
+                يمكنك طلبه الآن.
+
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div
+                class="rule-title"
+                id="ruleTitle3">
+
+                3️⃣ معاينة الملف
+
+            </div>
+
+            <div
+                class="rule-text"
+                id="ruleText3">
+
+                يمكنك الضغط على زر «معاينة الملف»
+                لمشاهدة محتويات وصور الملف قبل
+                طلبه.
+
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div
+                class="rule-title"
+                id="ruleTitle4">
+
+                4️⃣ الاستفسارات
+
+            </div>
+
+            <div
+                class="rule-text"
+                id="ruleText4">
+
+                لأي استفسار أو للحصول على معلومات
+                إضافية، يمكنك التواصل مع المطور
+                عن طريق واتساب.
+
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div
+                class="rule-title"
+                id="ruleTitle5">
+
+                5️⃣ تنبيه مهم
+
+            </div>
+
+            <div
+                class="rule-text"
+                id="ruleText5">
+
+                يرجى التأكد من تفاصيل الملف
+                والسعر قبل إتمام عملية الشراء.
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="rules-button"
+            onclick="closeRules()"
+            id="rulesButton">
+
+            فهمت ودخول الموقع
+
+        </button>
+
+    </div>
+
+</div>
 
 
 
@@ -2074,6 +2051,49 @@ function toggleFAQ(button){
 
 
 /* =========================
+   نافذة القوانين
+========================= */
+
+function openRules(){
+
+    const rules=
+    document.getElementById(
+        "rulesModal"
+    );
+
+
+    rules.style.display="flex";
+
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+function closeRules(){
+
+    const rules=
+    document.getElementById(
+        "rulesModal"
+    );
+
+
+    rules.style.display="none";
+
+
+    document.body.style.overflow="auto";
+
+
+    localStorage.setItem(
+        "rulesAccepted",
+        "yes"
+    );
+
+}
+
+
+
+/* =========================
    نافذة الطلب
 ========================= */
 
@@ -2257,123 +2277,67 @@ function closeImageViewer(event){
 
 
 /* =========================
-   إنشاء واستدعاء 51 صورة
+   إنشاء واستدعاء الصور
 ========================= */
 
 const galleryImages=[
 
-
     "image1.jpg",
-
     "image2.jpg",
-
     "image3.jpg",
-
     "image4.jpg",
-
     "image5.jpg",
-
     "image6.jpg",
-
     "image7.jpg",
-
     "image8.jpg",
-
     "image9.jpg",
-
     "image10.jpg",
-
     "image11.jpg",
-
     "image12.jpg",
-
     "image13.jpg",
-
     "image14.jpg",
-
     "image15.jpg",
-
     "image16.jpg",
-
     "image17.jpg",
-
     "image18.jpg",
-
     "image19.jpg",
-
     "image20.jpg",
-
     "image21.jpg",
-
     "image22.jpg",
-
     "image23.jpg",
-
     "image24.jpg",
-
     "image25.jpg",
-
     "image26.jpg",
-
     "image27.jpg",
-
     "image28.jpg",
-
     "image29.jpg",
-
     "image30.jpg",
-
     "image31.jpg",
-
     "image32.jpg",
-
     "image33.jpg",
-
     "image34.jpg",
-
     "image35.jpg",
-
     "image36.jpg",
-
     "image37.jpg",
-
     "image38.jpg",
-
     "image39.jpg",
-
     "image40.jpg",
-
     "image41.jpg",
-
     "image42.jpg",
-
     "image43.jpg",
-
     "image44.jpg",
-
     "image45.jpg",
-
     "image46.jpg",
-
     "image47.jpg",
-
     "image48.jpg",
-
-     "image49.jpg",
-
+    "image49.jpg",
     "image50.jpg",
-
     "image51.jpg",
-
     "image52.jpg",
-
     "image53.jpg",
-
     "image54.jpg",
-
     "image55.jpg",
-   
-    "image56.jpg",
+    "image56.jpg"
 
 ];
 
@@ -2386,7 +2350,6 @@ const galleryImages=[
 function loadGallery(){
 
     const gallery=
-
     document.getElementById(
         "galleryGrid"
     );
@@ -2400,7 +2363,6 @@ function loadGallery(){
         function(imageName){
 
             const img=
-
             document.createElement("img");
 
 
@@ -2472,11 +2434,8 @@ function toggleTheme(){
 
 
         localStorage.setItem(
-
             "theme",
-
             "blue"
-
         );
 
     }
@@ -2487,19 +2446,13 @@ function toggleTheme(){
 
 
         localStorage.setItem(
-
             "theme",
-
             "red"
-
         );
 
     }
 
 }
-
-
-
 /* =========================
    النصوص العربية
 ========================= */
@@ -2513,52 +2466,58 @@ function saveArabicTexts(){
     const ids=[
 
         "welcomeTitle",
-
         "welcomeText",
-
         "enterButton",
 
         "statusText",
-
         "noticeText",
 
         "heroTitle",
-
         "heroText",
 
         "contentTitle",
-
         "featureTitle",
-
         "featureText",
 
         "priceTitle",
-
         "currencyText",
 
         "previewButton",
-
         "buyButton",
 
         "faqTitle",
-
         "question1",
-
         "answer1",
-
         "question2",
-
         "answer2",
 
         "footerText",
 
         "modalTitle",
-
         "modalText",
-
         "continueButton",
+        "cancelButton",
 
-        "cancelButton"
+        /* نصوص القوانين */
+
+        "rulesTitle",
+
+        "ruleTitle1",
+        "ruleText1",
+
+        "ruleTitle2",
+        "ruleText2",
+
+        "ruleTitle3",
+        "ruleText3",
+
+        "ruleTitle4",
+        "ruleText4",
+
+        "ruleTitle5",
+        "ruleText5",
+
+        "rulesButton"
 
     ];
 
@@ -2568,14 +2527,12 @@ function saveArabicTexts(){
         function(id){
 
             const element=
-
             document.getElementById(id);
 
 
             if(element){
 
                 arabicTexts[id]=
-
                 element.textContent;
 
             }
@@ -2588,6 +2545,10 @@ function saveArabicTexts(){
 
 
 
+/* =========================
+   استرجاع العربية
+========================= */
+
 function restoreArabicTexts(){
 
     Object.keys(
@@ -2599,14 +2560,12 @@ function restoreArabicTexts(){
         function(id){
 
             const element=
-
             document.getElementById(id);
 
 
             if(element){
 
                 element.textContent=
-
                 arabicTexts[id];
 
             }
@@ -2658,26 +2617,20 @@ function setLanguage(language){
 
 
     const languageButton=
-
     document.getElementById(
         "languageToggle"
     );
 
 
     localStorage.setItem(
-
         "language",
-
         language
-
     );
 
 
     if(language==="en"){
 
-
         html.lang="en";
-
         html.dir="ltr";
 
 
@@ -2827,13 +2780,89 @@ function setLanguage(language){
         .textContent=
         "Cancel";
 
+
+
+        /* =========================
+           قوانين الموقع - English
+        ========================= */
+
+
+        document
+        .getElementById("rulesTitle")
+        .textContent=
+        "📜 Website Rules & Information";
+
+
+        document
+        .getElementById("ruleTitle1")
+        .textContent=
+        "1️⃣ File Purchase";
+
+
+        document
+        .getElementById("ruleText1")
+        .textContent=
+        "To purchase the file, press the Order File button. You will be taken to the developer's WhatsApp to purchase the file or ask any questions.";
+
+
+        document
+        .getElementById("ruleTitle2")
+        .textContent=
+        "2️⃣ File Price";
+
+
+        document
+        .getElementById("ruleText2")
+        .textContent=
+        "The file is currently 50 EGP. After a few days, the price will become 80 EGP. If you want to purchase it at the current price, you can order it now.";
+
+
+        document
+        .getElementById("ruleTitle3")
+        .textContent=
+        "3️⃣ File Preview";
+
+
+        document
+        .getElementById("ruleText3")
+        .textContent=
+        "You can press the Preview File button to view the file contents and images before ordering.";
+
+
+        document
+        .getElementById("ruleTitle4")
+        .textContent=
+        "4️⃣ Inquiries";
+
+
+        document
+        .getElementById("ruleText4")
+        .textContent=
+        "For any questions or additional information, you can contact the developer through WhatsApp.";
+
+
+        document
+        .getElementById("ruleTitle5")
+        .textContent=
+        "5️⃣ Important Notice";
+
+
+        document
+        .getElementById("ruleText5")
+        .textContent=
+        "Please make sure you understand the file details and price before completing your purchase.";
+
+
+        document
+        .getElementById("rulesButton")
+        .textContent=
+        "I Understand & Enter Website";
+
     }
 
     else{
 
-
         html.lang="ar";
-
         html.dir="rtl";
 
 
@@ -2866,23 +2895,19 @@ window.addEventListener(
 
 
         const savedTheme=
-
         localStorage.getItem(
             "theme"
         );
 
 
         const savedLanguage=
-
         localStorage.getItem(
             "language"
         )
-
         || "ar";
 
 
         const themeButton=
-
         document.getElementById(
             "themeToggle"
         );
@@ -2908,6 +2933,11 @@ window.addEventListener(
         }
 
 
+        /*
+           اللغة الافتراضية عربية
+           ولا يوجد كشف تلقائي للغة
+        */
+
         if(
             savedLanguage==="en"
         ){
@@ -2931,9 +2961,55 @@ window.addEventListener(
 
         }
 
+
+        /*
+           نافذة القوانين تظهر مرة واحدة
+           بعد الضغط على دخول الموقع
+        */
+
     }
 
 );
+
+
+
+/* =========================
+   تعديل دخول الموقع
+========================= */
+
+const originalEnterSite = enterSite;
+
+
+enterSite = function(){
+
+    originalEnterSite();
+
+
+    const rulesAccepted=
+    localStorage.getItem(
+        "rulesAccepted"
+    );
+
+
+    if(
+        rulesAccepted!=="yes"
+    ){
+
+        setTimeout(
+
+            function(){
+
+                openRules();
+
+            },
+
+            250
+
+        );
+
+    }
+
+};
 
 
 
@@ -2952,6 +3028,30 @@ document
         if(e.target===this){
 
             closeModal();
+
+        }
+
+    }
+
+);
+
+
+
+/* =========================
+   إغلاق نافذة القوانين
+========================= */
+
+document
+.getElementById("rulesModal")
+.addEventListener(
+
+    "click",
+
+    function(e){
+
+        if(e.target===this){
+
+            closeRules();
 
         }
 
