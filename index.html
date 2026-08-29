@@ -1,227 +1,87 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>PUBG × NARUTO</title>
-
-
-<script>
-
-(function(){
-
-    try{
-
-        if(localStorage.getItem("theme")==="blue"){
-
-            document.documentElement.classList.add("blue-mode");
-
-        }
-
-
-        if(localStorage.getItem("language")==="en"){
-
-            document.documentElement.lang="en";
-
-            document.documentElement.dir="ltr";
-
-        }
-
-    }catch(e){}
-
-})();
-
-</script>
-
+<title>الموقع قيد التطوير</title>
 
 <style>
 
-
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
-
-
-:root{
-
-    --main1:#850000;
-
-    --main2:#350000;
-
-    --dark:#050505;
-
-    --box:#120000;
-
-    --topbar:#230000;
-
-    --section:#140000;
-
-    --gradient1:#650000;
-
-    --gradient2:#350000;
-
-    --gradient3:#100000;
-
-    --red:#ff2929;
-
-    --light:#ff4545;
-
-    --text:#d5baba;
-
-    --text2:#d1b5b5;
-
-    --border:rgba(255,50,50,.25);
-
-    --glow:rgba(255,0,0,.25);
-
-}
-
-
-html.blue-mode{
-
-    --main1:#002b85;
-
-    --main2:#001a52;
-
-    --dark:#030814;
-
-    --box:#020d24;
-
-    --topbar:#03132f;
-
-    --section:#041126;
-
-    --gradient1:#04245f;
-
-    --gradient2:#020f2d;
-
-    --gradient3:#010816;
-
-    --red:#238cff;
-
-    --light:#4ba5ff;
-
-    --text:#b8d1f2;
-
-    --text2:#aac6eb;
-
-    --border:rgba(50,140,255,.25);
-
-    --glow:rgba(0,110,255,.28);
-
-}
-
 
 body{
-
     font-family:Tahoma,Arial,sans-serif;
-
+    min-height:100vh;
     color:#fff;
 
-    min-height:100vh;
-
     background:
-
         radial-gradient(
             circle at 50% 0%,
-            var(--main1),
-            var(--main2) 38%,
-            var(--dark) 82%
+            #850000 0%,
+            #350000 38%,
+            #050505 85%
         );
 
-    overflow-x:hidden;
-
-    transition:background .5s ease;
-
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
 }
 
+/* الإضاءة */
 
 body::before,
-
 body::after{
-
     content:"";
-
     position:fixed;
 
-    width:360px;
-
-    height:360px;
+    width:420px;
+    height:420px;
 
     border-radius:50%;
 
-    background:var(--glow);
+    background:rgba(255,0,0,.16);
 
-    filter:blur(100px);
+    filter:blur(110px);
 
-    z-index:-5;
+    z-index:-2;
 
-    animation:lightMove 9s infinite alternate;
-
-    transition:.5s;
-
+    animation:lightMove 8s infinite alternate;
 }
-
 
 body::before{
-
-    top:-120px;
-
-    right:-100px;
-
+    top:-180px;
+    right:-120px;
 }
-
 
 body::after{
-
-    bottom:-150px;
-
-    left:-100px;
+    bottom:-180px;
+    left:-120px;
 
     animation-delay:2s;
-
 }
-
 
 @keyframes lightMove{
 
     from{
-
-        transform:
-        translate(0,0)
-        scale(.8);
-
+        transform:translate(0,0) scale(.8);
     }
 
-
     to{
-
-        transform:
-        translate(80px,80px)
-        scale(1.2);
-
+        transform:translate(70px,70px) scale(1.2);
     }
 
 }
 
+/* الجزيئات */
 
 .particles{
-
     position:fixed;
-
     inset:0;
 
     overflow:hidden;
@@ -229,2740 +89,476 @@ body::after{
     pointer-events:none;
 
     z-index:-1;
-
 }
 
-
 .particle{
-
     position:absolute;
 
     bottom:-20px;
 
     width:4px;
-
     height:4px;
 
     border-radius:50%;
 
-    background:var(--red);
+    background:#ff3030;
 
     box-shadow:
-    0 0 15px var(--red);
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
 
-    animation:
-    particleUp linear infinite;
-
-    transition:.5s;
-
+    animation:particleUp linear infinite;
 }
-
 
 @keyframes particleUp{
 
     0%{
-
-        transform:
-        translateY(0);
-
+        transform:translateY(0);
         opacity:0;
-
     }
-
 
     15%{
-
         opacity:.8;
-
     }
-
 
     85%{
-
         opacity:.8;
-
     }
-
 
     100%{
-
-        transform:
-        translateY(-110vh);
-
+        transform:translateY(-110vh);
         opacity:0;
-
     }
 
 }
 
+/* الكارت */
 
-#welcome{
+.maintenance{
 
-    min-height:100vh;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:18px;
-
-}
-
-
-.welcome-box{
-
-    width:100%;
+    width:calc(100% - 30px);
 
     max-width:570px;
 
+    padding:45px 28px;
+
     text-align:center;
 
-    padding:18px;
-
-    border-radius:28px;
+    border-radius:30px;
 
     background:
-    rgba(18,0,0,.92);
+        linear-gradient(
+            145deg,
+            rgba(55,0,0,.94),
+            rgba(12,0,0,.97)
+        );
 
-    border:
-    1px solid var(--border);
+    border:1px solid rgba(255,50,50,.28);
 
     box-shadow:
-    0 0 70px var(--glow);
-
-    transition:.5s;
-
-}
-
-
-html.blue-mode .welcome-box{
-
-    background:
-    rgba(2,10,30,.92);
-
-}
-
-
-.cover{
-
-    height:320px;
-
-    width:100%;
+        0 0 80px rgba(255,0,0,.22),
+        inset 0 0 50px rgba(255,0,0,.04);
 
     position:relative;
 
     overflow:hidden;
 
-    border-radius:23px;
+}
 
-    margin-bottom:24px;
+/* خط الإضاءة المتحرك */
+
+.maintenance::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:70%;
+    height:2px;
 
     background:
-
-        radial-gradient(
-            circle at 65% 40%,
-            #ffb300 0%,
-            #e13a00 18%,
-            var(--main1) 42%,
-            var(--dark) 80%
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff3030,
+            transparent
         );
 
-    border:
-    1px solid var(--border);
+    animation:scan 4s infinite;
+
+}
+
+@keyframes scan{
+
+    0%{
+        left:-100%;
+    }
+
+    50%,100%{
+        left:140%;
+    }
+
+}
+
+/* الأيقونة */
+
+.icon{
+
+    width:95px;
+    height:95px;
+
+    margin:0 auto 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:43px;
+
+    background:
+        radial-gradient(
+            circle,
+            #8d0000,
+            #280000
+        );
+
+    border:1px solid rgba(255,70,70,.4);
 
     box-shadow:
+        0 0 30px rgba(255,0,0,.3),
+        inset 0 0 25px rgba(255,0,0,.2);
 
-        inset
-        0 0 80px
-        rgba(0,0,0,.75),
-
-        0 0 40px
-        var(--glow);
+    animation:pulse 2s infinite;
 
 }
 
+@keyframes pulse{
 
-.cover img{
+    0%,100%{
+        transform:scale(1);
+        box-shadow:
+            0 0 30px rgba(255,0,0,.25),
+            inset 0 0 25px rgba(255,0,0,.15);
+    }
 
-    display:block;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
+    50%{
+        transform:scale(1.06);
+        box-shadow:
+            0 0 50px rgba(255,0,0,.45),
+            inset 0 0 35px rgba(255,0,0,.25);
+    }
 
 }
 
+/* العنوان */
+
+h1{
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+    text-shadow:
+        0 0 20px rgba(255,0,0,.35);
+
+}
+
+/* النص */
+
+.description{
+
+    color:#d7baba;
+
+    font-size:16px;
+
+    line-height:2;
+
+    margin-bottom:25px;
+
+}
+
+/* الحالة */
+
+.status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:11px 18px;
+
+    border-radius:30px;
+
+    background:rgba(120,0,0,.35);
+
+    border:1px solid rgba(255,50,50,.2);
+
+    color:#ff8585;
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+}
+
+.status-dot{
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#ff3838;
+
+    box-shadow:0 0 12px #ff0000;
+
+    animation:blink 1.2s infinite;
+
+}
+
+@keyframes blink{
+
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.35;
+    }
+
+}
+
+/* الفاصل */
+
+.line{
+
+    width:80%;
+
+    height:1px;
+
+    margin:5px auto 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,50,50,.35),
+            transparent
+        );
+
+}
+
+/* وقت العودة */
+
+.back{
+
+    color:#a98c8c;
+
+    font-size:13px;
+
+    line-height:1.9;
+
+}
+
+/* زر */
 
 button{
 
+    margin-top:25px;
+
     border:0;
 
-    cursor:pointer;
+    padding:14px 28px;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff2929,
+            #850000
+        );
+
+    color:#fff;
 
     font-family:inherit;
 
     font-weight:bold;
 
-    color:#fff;
+    font-size:15px;
 
-    border-radius:14px;
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 25px rgba(255,0,0,.2);
 
     transition:.3s;
 
 }
 
-
 button:hover{
 
-    transform:
-    translateY(-3px);
+    transform:translateY(-3px);
 
     box-shadow:
-    0 12px 35px var(--glow);
+        0 12px 35px rgba(255,0,0,.4);
 
 }
 
-
-.welcome-box h1{
-
-    font-size:30px;
-
-    margin-bottom:12px;
-
-}
-
-
-.welcome-box p{
-
-    color:var(--text);
-
-    line-height:2;
-
-    margin-bottom:25px;
-
-}
-
-
-.enter{
-
-    width:100%;
-
-    max-width:300px;
-
-    padding:16px;
-
-    font-size:18px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            var(--red),
-            var(--main1)
-        );
-
-}
-
-
-#main{
-
-    display:none;
-
-    max-width:1050px;
-
-    margin:auto;
-
-    padding:
-    18px 15px 60px;
-
-}
-
-
-.topbar{
-
-    display:flex;
-
-    justify-content:
-    space-between;
-
-    align-items:center;
-
-    padding:
-    14px 16px;
-
-    margin-bottom:15px;
-
-    border-radius:18px;
-
-    background:
-    rgba(35,0,0,.85);
-
-    border:
-    1px solid var(--border);
-
-    transition:.5s;
-
-}
-
-
-html.blue-mode .topbar{
-
-    background:
-    rgba(3,18,50,.88);
-
-}
-
-
-.brand{
-
-    font-size:21px;
-
-    font-weight:bold;
-
-}
-
-
-.topbar-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-}
-
-
-.status{
-
-    color:var(--light);
-
-    font-size:13px;
-
-}
-
-
-.theme-toggle,
-
-.language-toggle{
-
-    width:38px;
-
-    height:38px;
-
-    min-width:38px;
-
-    padding:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:11px;
-
-    font-size:16px;
-
-    background:
-    rgba(0,0,0,.25);
-
-    border:
-    1px solid var(--border);
-
-    box-shadow:none;
-
-}
-
-
-.language-toggle{
-
-    font-family:
-    Arial,sans-serif;
-
-    font-size:13px;
-
-}
-
-
-.theme-toggle:hover,
-
-.language-toggle:hover{
-
-    transform:
-    scale(1.06);
-
-    box-shadow:
-    0 0 18px var(--glow);
-
-}
-
-
-.notice{
-
-    overflow:hidden;
-
-    background:
-    var(--gradient1);
-
-    border:
-    1px solid var(--border);
-
-    border-radius:12px;
-
-    margin-bottom:20px;
-
-    transition:.5s;
-
-}
-
-
-.notice-text{
-
-    white-space:nowrap;
-
-    padding:12px;
-
-    color:var(--text);
-
-    animation:
-    marquee 13s linear infinite;
-
-}
-
-
-@keyframes marquee{
-
-    from{
-
-        transform:
-        translateX(100%);
-
-    }
-
-
-    to{
-
-        transform:
-        translateX(-100%);
-
-    }
-
-}
-
-
-.hero-image{
-
-    height:430px;
-
-    border-radius:27px;
-
-    overflow:hidden;
-
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-bottom:25px;
-
-    background:
-
-        radial-gradient(
-            circle,
-            var(--main1),
-            var(--main2) 60%,
-            var(--dark)
-        );
-
-    border:
-    1px solid var(--border);
-
-    box-shadow:
-    0 0 65px var(--glow);
-
-}
-
-
-.hero-image .cover{
-
-    width:90%;
-
-    height:88%;
-
-    margin:0;
-
-}
-
-
-.hero-label{
-
-    position:absolute;
-
-    bottom:18px;
-
-    right:20px;
-
-    background:
-    rgba(0,0,0,.72);
-
-    padding:
-    10px 15px;
-
-    border-radius:10px;
-
-    z-index:40;
-
-}
-
-
-html[dir="ltr"] .hero-label{
-
-    right:auto;
-
-    left:20px;
-
-}
-
-
-.hero{
-
-    text-align:center;
-
-    padding:
-    32px 20px;
-
-    border-radius:23px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(130,0,0,.35),
-            var(--gradient3)
-        );
-
-    border:
-    1px solid var(--border);
-
-    margin-bottom:25px;
-
-}
-
-
-html.blue-mode .hero{
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(0,80,190,.35),
-            var(--gradient3)
-        );
-
-}
-
-
-.hero h2{
-
-    font-size:30px;
-
-    margin-bottom:14px;
-
-}
-
-
-.hero p{
-
-    color:var(--text);
-
-    line-height:2;
-
-}
-
-
-.section{
-
-    padding:25px;
-
-    border-radius:22px;
-
-    background:
-    rgba(20,0,0,.82);
-
-    border:
-    1px solid var(--border);
-
-    box-shadow:
-    0 0 30px var(--glow);
-
-    margin-bottom:25px;
-
-    transition:.5s;
-
-}
-
-
-html.blue-mode .section{
-
-    background:
-    rgba(4,17,38,.88);
-
-}
-
-
-.section-title{
-
-    font-size:23px;
-
-    margin-bottom:20px;
-
-}
-
-
-.feature{
-
-    padding:23px;
-
-    border-radius:18px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(110,0,0,.3),
-            rgba(35,0,0,.5)
-        );
-
-    border:
-    1px solid var(--border);
-
-    transition:.5s;
-
-}
-
-
-html.blue-mode .feature{
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(0,70,180,.32),
-            rgba(0,15,55,.55)
-        );
-
-}
-
-
-.feature-icon{
-
-    font-size:32px;
-
-    margin-bottom:10px;
-
-}
-
-
-.feature-title{
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    margin-bottom:10px;
-
-}
-
-
-.feature-text{
-
-    color:var(--text2);
-
-    font-size:15px;
-
-    line-height:2;
-
-}
-
-
-.price-box{
-
-    text-align:center;
-
-    padding:
-    35px 20px;
-
-    border-radius:22px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(120,0,0,.5),
-            var(--gradient3)
-        );
-
-    border:
-    1px solid var(--border);
-
-    transition:.5s;
-
-}
-
-
-html.blue-mode .price-box{
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(0,70,180,.5),
-            var(--gradient3)
-        );
-
-}
-
-
-.price-small{
-
-    color:var(--text);
-
-    margin-bottom:8px;
-
-}
-
-
-.price{
-
-    font-size:45px;
-
-    font-weight:bold;
-
-    color:var(--light);
-
-    text-shadow:
-    0 0 22px var(--glow);
-
-    margin-bottom:28px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:8px;
-
-    height:55px;
-
-}
-
-
-.price-number{
-
-    font-family:
-    Arial,sans-serif;
-
-    display:flex;
-
-    align-items:center;
-
-    height:70px;
-
-    line-height:55px;
-
-}
-
-
-.price-currency{
-
-    font-family:
-    Tahoma,Arial,sans-serif;
-
-    font-size:30px;
-
-    display:flex;
-
-    align-items:center;
-
-    height:55px;
-
-    line-height:55px;
-
-}
-
-
-.buy,
-
-.preview{
-
-    width:100%;
-
-    max-width:450px;
-
-    padding:16px;
-
-    font-size:19px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            var(--red),
-            var(--main1)
-        );
-
-}
-
-
-.preview{
-
-    margin-bottom:12px;
-
-}
-
-
-.faq{
-
-    border-top:
-    1px solid var(--border);
-
-}
-
-
-.question{
-
-    width:100%;
-
-    padding:
-    18px 5px;
-
-    background:none;
-
-    text-align:right;
-
-    display:flex;
-
-    justify-content:
-    space-between;
-
-    font-size:16px;
-
-}
-
-
-html[dir="ltr"] .question{
-
-    text-align:left;
-
-}
-
-
-.question:hover{
-
-    transform:none;
-
-    box-shadow:none;
-
-}
-
-
-.answer{
-
-    display:none;
-
-    color:var(--text2);
-
-    line-height:1.9;
-
-    padding:
-    0 5px 18px;
-
-}
-
-
-.answer.open{
-
-    display:block;
-
-}
-
+/* الحقوق */
 
 footer{
 
-    text-align:center;
+    margin-top:28px;
 
-    color:var(--text);
+    color:#654e4e;
 
-    opacity:.6;
-
-    font-size:13px;
-
-    margin-top:30px;
+    font-size:12px;
 
 }
 
-
-/* نافذة الطلب */
-
-.modal{
-
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:
-    rgba(0,0,0,.82);
-
-    backdrop-filter:
-    blur(8px);
-
-    z-index:100;
-
-}
-
-
-.modal-box{
-
-    width:100%;
-
-    max-width:430px;
-
-    padding:
-    30px 25px;
-
-    text-align:center;
-
-    border-radius:23px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            var(--gradient2),
-            var(--gradient3)
-        );
-
-    border:
-    1px solid var(--border);
-
-    box-shadow:
-    0 0 50px var(--glow);
-
-}
-
-
-.modal-box h3{
-
-    font-size:23px;
-
-    margin-bottom:15px;
-
-}
-
-
-.modal-box p{
-
-    color:var(--text);
-
-    line-height:1.8;
-
-    margin-bottom:22px;
-
-}
-
-
-.modal-buttons{
-
-    display:flex;
-
-    gap:10px;
-
-}
-
-
-.modal-buttons button{
-
-    flex:1;
-
-    padding:14px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            var(--red),
-            var(--main1)
-        );
-
-}
-
-
-.cancel{
-
-    background:
-    var(--gradient3)!important;
-
-}
-
-
-/* معرض الصور */
-
-.gallery-modal{
-
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    background:
-    rgba(0,0,0,.96);
-
-    z-index:200;
-
-    overflow-y:auto;
-
-    padding:
-    75px 15px 25px;
-
-}
-
-
-.gallery-close{
-
-    position:fixed;
-
-    top:15px;
-
-    right:15px;
-
-    width:48px;
-
-    height:48px;
-
-    border-radius:50%;
-
-    background:var(--red);
-
-    font-size:30px;
-
-    z-index:210;
-
-}
-
-
-html[dir="ltr"] .gallery-close{
-
-    right:auto;
-
-    left:15px;
-
-}
-
-
-.gallery-grid{
-
-    max-width:1100px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-
-    repeat(
-        auto-fit,
-        minmax(160px,1fr)
-    );
-
-    gap:15px;
-
-}
-
-
-.gallery-grid img{
-
-    width:100%;
-
-    display:block;
-
-    aspect-ratio:1/1;
-
-    object-fit:cover;
-
-    border-radius:16px;
-
-    border:
-    1px solid var(--border);
-
-    box-shadow:
-    0 0 25px var(--glow);
-
-    cursor:pointer;
-
-}
-
-
-/* عرض الصورة الكبيرة */
-
-.image-viewer{
-
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    background:
-    rgba(0,0,0,.97);
-
-    z-index:300;
-
-}
-
-
-.image-viewer img{
-
-    max-width:100%;
-
-    max-height:90vh;
-
-    object-fit:contain;
-
-    border-radius:12px;
-
-}
-
-
-.image-close{
-
-    position:absolute;
-
-    top:15px;
-
-    right:15px;
-
-    width:50px;
-
-    height:50px;
-
-    border-radius:50%;
-
-    background:var(--red);
-
-    font-size:32px;
-
-    z-index:310;
-
-}
-
-
-html[dir="ltr"] .image-close{
-
-    right:auto;
-
-    left:15px;
-
-}
-
+/* الهاتف */
 
 @media(max-width:600px){
 
+    .maintenance{
 
-    .cover{
+        padding:38px 20px;
 
-        height:230px;
-
-    }
-
-
-    .hero-image{
-
-        height:300px;
+        border-radius:25px;
 
     }
 
+    .icon{
 
-    .price{
+        width:82px;
+        height:82px;
 
-        font-size:38px;
+        font-size:37px;
 
     }
 
-
-    .welcome-box h1{
+    h1{
 
         font-size:26px;
 
     }
 
+    .description{
 
-    .topbar{
-
-        padding:
-        12px 13px;
-
-    }
-
-
-    .theme-toggle,
-
-    .language-toggle{
-
-        width:35px;
-
-        height:35px;
-
-        min-width:35px;
-
-        font-size:13px;
-
-        border-radius:10px;
-
-    }
-
-
-    .topbar-left{
-
-        gap:7px;
-
-    }
-
-
-    .gallery-grid{
-
-        grid-template-columns:
-        repeat(2,1fr);
-
-        gap:10px;
+        font-size:14px;
 
     }
 
 }
-
 
 </style>
 
 </head>
 
-
 <body>
 
 
+<!-- الجزيئات -->
+
 <div class="particles">
 
-    <span
-        class="particle"
-        style="left:5%;animation-duration:8s">
-    </span>
+    <span class="particle"
+    style="left:5%;animation-duration:8s"></span>
 
-    <span
-        class="particle"
-        style="left:15%;animation-duration:11s">
-    </span>
+    <span class="particle"
+    style="left:15%;animation-duration:11s"></span>
 
-    <span
-        class="particle"
-        style="left:27%;animation-duration:9s">
-    </span>
+    <span class="particle"
+    style="left:27%;animation-duration:9s"></span>
 
-    <span
-        class="particle"
-        style="left:40%;animation-duration:13s">
-    </span>
+    <span class="particle"
+    style="left:40%;animation-duration:13s"></span>
 
-    <span
-        class="particle"
-        style="left:55%;animation-duration:10s">
-    </span>
+    <span class="particle"
+    style="left:55%;animation-duration:10s"></span>
 
-    <span
-        class="particle"
-        style="left:68%;animation-duration:12s">
-    </span>
+    <span class="particle"
+    style="left:68%;animation-duration:12s"></span>
 
-    <span
-        class="particle"
-        style="left:82%;animation-duration:9s">
-    </span>
+    <span class="particle"
+    style="left:82%;animation-duration:9s"></span>
 
-    <span
-        class="particle"
-        style="left:94%;animation-duration:11s">
-    </span>
+    <span class="particle"
+    style="left:94%;animation-duration:11s"></span>
 
 </div>
 
 
-<section id="welcome">
+<!-- صفحة الصيانة -->
 
+<div class="maintenance">
 
-<div class="welcome-box">
-
-
-    <div class="cover">
-
-        <img
-            src="naruto-pubg.jpg"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            alt="PUBG Naruto">
-
+    <div class="icon">
+        🔧
     </div>
 
-
-    <h1 id="welcomeTitle">
-
-        ملف PUBG المميز
-
+    <h1>
+        الموقع قيد التطوير
     </h1>
 
+    <p class="description">
 
-    <p id="welcomeText">
+        نعمل حاليًا على تطوير الموقع وتحسين
+        الأداء وإضافة بعض المميزات الجديدة.
 
-        استكشف محتويات الملف
-        وتعرّف على التفاصيل
-        قبل طلب الملف.
+        <br>
+
+        نعتذر عن الإزعاج، وسنعود للعمل قريبًا.
 
     </p>
 
 
-    <button
-        class="enter"
-        onclick="enterSite()"
-        id="enterButton">
+    <div class="status">
 
-        دخول الموقع
+        <span class="status-dot"></span>
 
-    </button>
-
-
-</div>
-
-
-</section>
-
-
-<main id="main">
-
-
-<div class="topbar">
-
-
-    <div class="brand">
-
-        PUBG FILE
+        جاري العمل على الموقع
 
     </div>
 
 
-    <div class="topbar-left">
+    <div class="line"></div>
 
 
-        <div
-            class="status"
-            id="statusText">
+    <p class="back">
 
-            ● متاح للطلب
+        يرجى المحاولة مرة أخرى لاحقًا.
 
-        </div>
+        <br>
 
-
-        <button
-            class="language-toggle"
-            id="languageToggle"
-            onclick="toggleLanguage()"
-            title="Change Language">
-
-            EN
-
-        </button>
-
-
-        <button
-            class="theme-toggle"
-            id="themeToggle"
-            onclick="toggleTheme()"
-            title="تغيير الوضع">
-
-            🌙
-
-        </button>
-
-
-    </div>
-
-
-</div>
-
-
-<div class="notice">
-
-    <div
-        class="notice-text"
-        id="noticeText">
-
-        ✦ الطلب متاح الآن
-        — يمكنك التعرف على التفاصيل
-        ثم التواصل لطلب الملف ✦
-
-    </div>
-
-</div>
-
-
-<div class="hero-image">
-
-
-    <div class="cover">
-
-        <img
-            src="naruto-pubg.jpg"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            alt="PUBG Naruto">
-
-    </div>
-
-
-    <div class="hero-label">
-
-        PUBG MOBILE × Naruto
-
-    </div>
-
-
-</div>
-
-
-<section class="hero">
-
-
-    <h2 id="heroTitle">
-
-        ملف PUBG المميز
-
-    </h2>
-
-
-    <p id="heroText">
-
-        الملف فيه كل الملابس
-        والأسلحة المميزة
-        والعناصر المختلفة.
+        شكرًا لزيارتك ❤️
 
     </p>
 
 
-</section>
+    <button onclick="location.reload()">
 
-
-<section class="section">
-
-
-    <div
-        class="section-title"
-        id="contentTitle">
-
-        ماذا يحتوي الملف؟
-
-    </div>
-
-
-    <div class="feature">
-
-
-        <div class="feature-icon">
-
-            ⭐
-
-        </div>
-
-
-        <div
-            class="feature-title"
-            id="featureTitle">
-
-            عناصر مميزة
-
-        </div>
-
-
-        <div
-            class="feature-text"
-            id="featureText">
-
-            الملف فيه أسلحة
-            ومسدسات وعناصر كثيرة.
-            للاستفسار أو طلب الملف
-            اضغط على زر طلب الملف.
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-<section class="section">
-
-
-    <div class="price-box">
-
-
-        <div
-            class="price-small"
-            id="priceTitle">
-
-            سعر طلب الملف
-
-        </div>
-
-
-        <div class="price">
-
-
-            <span class="price-number">
-
-                50
-
-            </span>
-
-
-            <span
-                class="price-currency"
-                id="currencyText">
-
-                جنيه
-
-            </span>
-
-
-        </div>
-
-
-        <button
-            class="preview"
-            onclick="openGallery()"
-            id="previewButton">
-
-            🖼️ معاينة الملف
-
-        </button>
-
-
-        <button
-            class="buy"
-            onclick="openModal()"
-            id="buyButton">
-
-            🛒 طلب الملف
-
-        </button>
-
-
-    </div>
-
-
-</section>
-<section class="section">
-
-    <div
-        class="section-title"
-        id="faqTitle">
-
-        الأسئلة الشائعة
-
-    </div>
-
-
-    <div class="faq">
-
-
-        <button
-            class="question"
-            onclick="toggleFAQ(this)">
-
-            <span id="question1">
-
-                ما طريقة طلب الملف؟
-
-            </span>
-
-            <span>
-
-                ＋
-
-            </span>
-
-        </button>
-
-
-        <div
-            class="answer"
-            id="answer1">
-
-            اضغط على زر طلب الملف
-            ثم انتقل إلى واتساب للتواصل.
-
-        </div>
-
-
-    </div>
-
-
-    <div class="faq">
-
-
-        <button
-            class="question"
-            onclick="toggleFAQ(this)">
-
-            <span id="question2">
-
-                كم سعر الملف؟
-
-            </span>
-
-            <span>
-
-                ＋
-
-            </span>
-
-        </button>
-
-
-        <div
-            class="answer"
-            id="answer2">
-
-            السعر المعروض حاليًا
-            هو 50 جنيه.
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-<footer id="footerText">
-
-    جميع الحقوق محفوظة © 2026
-
-</footer>
-
-
-</main>
-
-
-
-<!-- نافذة الطلب -->
-
-<div
-    class="modal"
-    id="modal">
-
-
-    <div class="modal-box">
-
-
-        <h3 id="modalTitle">
-
-            تأكيد الطلب
-
-        </h3>
-
-
-        <p id="modalText">
-
-            سيتم فتح واتساب للتواصل
-            وطلب الملف.
-            هل تريد المتابعة؟
-
-        </p>
-
-
-        <div class="modal-buttons">
-
-
-            <button
-                onclick="goWhatsApp()"
-                id="continueButton">
-
-                متابعة
-
-            </button>
-
-
-            <button
-                class="cancel"
-                onclick="closeModal()"
-                id="cancelButton">
-
-                إلغاء
-
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-
-</div>
-
-
-
-<!-- معرض الصور -->
-
-<div
-    class="gallery-modal"
-    id="galleryModal">
-
-
-    <button
-        class="gallery-close"
-        onclick="closeGallery()">
-
-        ×
+        🔄 إعادة المحاولة
 
     </button>
 
 
-    <div
-        class="gallery-grid"
-        id="galleryGrid">
+    <footer>
 
-    </div>
+        جميع الحقوق محفوظة © 2026
 
-
-</div>
-
-
-
-<!-- عرض الصورة الكبيرة -->
-
-<div
-    class="image-viewer"
-    id="imageViewer"
-    onclick="closeImageViewer(event)">
-
-
-    <button
-        class="image-close"
-        onclick="closeImage()">
-
-        ×
-
-    </button>
-
-
-    <img
-        id="bigImage"
-        src=""
-        alt="Preview Image">
-
+    </footer>
 
 </div>
-
-
-
-<script>
-
-
-/* =========================
-   الدخول للموقع
-========================= */
-
-function enterSite(){
-
-    document
-    .getElementById("welcome")
-    .style
-    .display="none";
-
-
-    document
-    .getElementById("main")
-    .style
-    .display="block";
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-
-/* =========================
-   الأسئلة الشائعة
-========================= */
-
-function toggleFAQ(button){
-
-    const answer=
-    button.nextElementSibling;
-
-
-    const icon=
-    button.lastElementChild;
-
-
-    if(
-        answer.classList
-        .contains("open")
-    ){
-
-        answer.classList
-        .remove("open");
-
-
-        icon.textContent="＋";
-
-    }
-
-    else{
-
-        answer.classList
-        .add("open");
-
-
-        icon.textContent="－";
-
-    }
-
-}
-
-
-
-/* =========================
-   نافذة الطلب
-========================= */
-
-function openModal(){
-
-    document
-    .getElementById("modal")
-    .style
-    .display="flex";
-
-}
-
-
-function closeModal(){
-
-    document
-    .getElementById("modal")
-    .style
-    .display="none";
-
-}
-
-
-
-/* =========================
-   واتساب
-========================= */
-
-function goWhatsApp(){
-
-    const language=
-
-    localStorage
-    .getItem("language")
-    || "ar";
-
-
-    let message;
-
-
-    if(language==="en"){
-
-        message=
-        "Hello, I want to order the PUBG file";
-
-    }
-
-    else{
-
-        message=
-        "السلام عليكم، أريد طلب الملف";
-
-    }
-
-
-    window.open(
-
-        "https://wa.me/201038684515?text="
-
-        +
-
-        encodeURIComponent(message),
-
-        "_blank"
-
-    );
-
-
-    closeModal();
-
-}
-
-
-
-/* =========================
-   فتح معرض الصور
-========================= */
-
-function openGallery(){
-
-    document
-    .getElementById("galleryModal")
-    .style
-    .display="block";
-
-
-    document.body.style.overflow="hidden";
-
-}
-
-
-
-/* =========================
-   غلق معرض الصور
-========================= */
-
-function closeGallery(){
-
-    document
-    .getElementById("galleryModal")
-    .style
-    .display="none";
-
-
-    document.body.style.overflow="auto";
-
-}
-
-
-
-/* =========================
-   فتح الصورة بالحجم الكبير
-========================= */
-
-function openImage(src){
-
-    const viewer=
-
-    document.getElementById(
-        "imageViewer"
-    );
-
-
-    const bigImage=
-
-    document.getElementById(
-        "bigImage"
-    );
-
-
-    bigImage.src=src;
-
-
-    viewer.style.display="flex";
-
-}
-
-
-
-/* =========================
-   غلق الصورة الكبيرة
-========================= */
-
-function closeImage(){
-
-    document
-    .getElementById("imageViewer")
-    .style
-    .display="none";
-
-
-    document
-    .getElementById("bigImage")
-    .src="";
-
-}
-
-
-
-/* =========================
-   غلق الصورة عند الضغط خارجها
-========================= */
-
-function closeImageViewer(event){
-
-    if(
-
-        event.target===
-        document.getElementById(
-            "imageViewer"
-        )
-
-    ){
-
-        closeImage();
-
-    }
-
-}
-
-
-
-/* =========================
-   إنشاء واستدعاء 51 صورة
-========================= */
-
-const galleryImages=[
-
-
-    "image1.jpg",
-
-    "image2.jpg",
-
-    "image3.jpg",
-
-    "image4.jpg",
-
-    "image5.jpg",
-
-    "image6.jpg",
-
-    "image7.jpg",
-
-    "image8.jpg",
-
-    "image9.jpg",
-
-    "image10.jpg",
-
-    "image11.jpg",
-
-    "image12.jpg",
-
-    "image13.jpg",
-
-    "image14.jpg",
-
-    "image15.jpg",
-
-    "image16.jpg",
-
-    "image17.jpg",
-
-    "image18.jpg",
-
-    "image19.jpg",
-
-    "image20.jpg",
-
-    "image21.jpg",
-
-    "image22.jpg",
-
-    "image23.jpg",
-
-    "image24.jpg",
-
-    "image25.jpg",
-
-    "image26.jpg",
-
-    "image27.jpg",
-
-    "image28.jpg",
-
-    "image29.jpg",
-
-    "image30.jpg",
-
-    "image31.jpg",
-
-    "image32.jpg",
-
-    "image33.jpg",
-
-    "image34.jpg",
-
-    "image35.jpg",
-
-    "image36.jpg",
-
-    "image37.jpg",
-
-    "image38.jpg",
-
-    "image39.jpg",
-
-    "image40.jpg",
-
-    "image41.jpg",
-
-    "image42.jpg",
-
-    "image43.jpg",
-
-    "image44.jpg",
-
-    "image45.jpg",
-
-    "image46.jpg",
-
-    "image47.jpg",
-
-    "image48.jpg",
-
-     "image49.jpg",
-
-    "image50.jpg",
-
-    "image51.jpg",
-
-    "image52.jpg",
-
-    "image53.jpg",
-
-    "image54.jpg",
-
-    "image55.jpg",
-   
-    "image56.jpg",
-
-];
-
-
-
-/* =========================
-   تحميل الصور في المعرض
-========================= */
-
-function loadGallery(){
-
-    const gallery=
-
-    document.getElementById(
-        "galleryGrid"
-    );
-
-
-    gallery.innerHTML="";
-
-
-    galleryImages.forEach(
-
-        function(imageName){
-
-            const img=
-
-            document.createElement("img");
-
-
-            img.src=imageName;
-
-
-            img.alt=
-            "PUBG File Image";
-
-
-            img.loading="lazy";
-
-
-            img.onerror=function(){
-
-                this.style.display="none";
-
-            };
-
-
-            img.onclick=function(){
-
-                openImage(
-                    this.src
-                );
-
-            };
-
-
-            gallery.appendChild(img);
-
-        }
-
-    );
-
-}
-
-
-
-/* =========================
-   تغيير الوضع
-========================= */
-
-function toggleTheme(){
-
-    const html=
-    document.documentElement;
-
-
-    const button=
-    document.getElementById(
-        "themeToggle"
-    );
-
-
-    html.classList.toggle(
-        "blue-mode"
-    );
-
-
-    if(
-
-        html.classList
-        .contains("blue-mode")
-
-    ){
-
-        button.textContent="☀️";
-
-
-        localStorage.setItem(
-
-            "theme",
-
-            "blue"
-
-        );
-
-    }
-
-    else{
-
-        button.textContent="🌙";
-
-
-        localStorage.setItem(
-
-            "theme",
-
-            "red"
-
-        );
-
-    }
-
-}
-
-
-
-/* =========================
-   النصوص العربية
-========================= */
-
-let arabicTexts={};
-
-
-
-function saveArabicTexts(){
-
-    const ids=[
-
-        "welcomeTitle",
-
-        "welcomeText",
-
-        "enterButton",
-
-        "statusText",
-
-        "noticeText",
-
-        "heroTitle",
-
-        "heroText",
-
-        "contentTitle",
-
-        "featureTitle",
-
-        "featureText",
-
-        "priceTitle",
-
-        "currencyText",
-
-        "previewButton",
-
-        "buyButton",
-
-        "faqTitle",
-
-        "question1",
-
-        "answer1",
-
-        "question2",
-
-        "answer2",
-
-        "footerText",
-
-        "modalTitle",
-
-        "modalText",
-
-        "continueButton",
-
-        "cancelButton"
-
-    ];
-
-
-    ids.forEach(
-
-        function(id){
-
-            const element=
-
-            document.getElementById(id);
-
-
-            if(element){
-
-                arabicTexts[id]=
-
-                element.textContent;
-
-            }
-
-        }
-
-    );
-
-}
-
-
-
-function restoreArabicTexts(){
-
-    Object.keys(
-        arabicTexts
-    )
-
-    .forEach(
-
-        function(id){
-
-            const element=
-
-            document.getElementById(id);
-
-
-            if(element){
-
-                element.textContent=
-
-                arabicTexts[id];
-
-            }
-
-        }
-
-    );
-
-}
-
-
-
-/* =========================
-   تغيير اللغة
-========================= */
-
-function toggleLanguage(){
-
-    const currentLanguage=
-
-    localStorage
-    .getItem("language")
-
-    || "ar";
-
-
-    if(
-        currentLanguage==="ar"
-    ){
-
-        setLanguage("en");
-
-    }
-
-    else{
-
-        setLanguage("ar");
-
-    }
-
-}
-
-
-
-function setLanguage(language){
-
-    const html=
-    document.documentElement;
-
-
-    const languageButton=
-
-    document.getElementById(
-        "languageToggle"
-    );
-
-
-    localStorage.setItem(
-
-        "language",
-
-        language
-
-    );
-
-
-    if(language==="en"){
-
-
-        html.lang="en";
-
-        html.dir="ltr";
-
-
-        languageButton.textContent="AR";
-
-
-        document
-        .getElementById("welcomeTitle")
-        .textContent=
-        "Premium PUBG File";
-
-
-        document
-        .getElementById("welcomeText")
-        .textContent=
-        "Explore the file contents and discover all the details before placing your order.";
-
-
-        document
-        .getElementById("enterButton")
-        .textContent=
-        "Enter Website";
-
-
-        document
-        .getElementById("statusText")
-        .textContent=
-        "● Available to Order";
-
-
-        document
-        .getElementById("noticeText")
-        .textContent=
-        "✦ Orders are now available — explore the details and contact us to order the file ✦";
-
-
-        document
-        .getElementById("heroTitle")
-        .textContent=
-        "Premium PUBG File";
-
-
-        document
-        .getElementById("heroText")
-        .textContent=
-        "The file contains premium clothes, weapons and various items.";
-
-
-        document
-        .getElementById("contentTitle")
-        .textContent=
-        "What does the file contain?";
-
-
-        document
-        .getElementById("featureTitle")
-        .textContent=
-        "Premium Items";
-
-
-        document
-        .getElementById("featureText")
-        .textContent=
-        "The file contains weapons, pistols and many different items. For inquiries or ordering, press the order button.";
-
-
-        document
-        .getElementById("priceTitle")
-        .textContent=
-        "File Order Price";
-
-
-        document
-        .getElementById("currencyText")
-        .textContent=
-        "EGP";
-
-
-        document
-        .getElementById("previewButton")
-        .textContent=
-        "🖼️ Preview File";
-
-
-        document
-        .getElementById("buyButton")
-        .textContent=
-        "🛒 Order File";
-
-
-        document
-        .getElementById("faqTitle")
-        .textContent=
-        "Frequently Asked Questions";
-
-
-        document
-        .getElementById("question1")
-        .textContent=
-        "How can I order the file?";
-
-
-        document
-        .getElementById("answer1")
-        .textContent=
-        "Press the Order File button, then you will be taken to WhatsApp to contact us.";
-
-
-        document
-        .getElementById("question2")
-        .textContent=
-        "How much does the file cost?";
-
-
-        document
-        .getElementById("answer2")
-        .textContent=
-        "The current displayed price is 50 EGP.";
-
-
-        document
-        .getElementById("footerText")
-        .textContent=
-        "All rights reserved © 2026";
-
-
-        document
-        .getElementById("modalTitle")
-        .textContent=
-        "Confirm Order";
-
-
-        document
-        .getElementById("modalText")
-        .textContent=
-        "WhatsApp will be opened to contact us and order the file. Do you want to continue?";
-
-
-        document
-        .getElementById("continueButton")
-        .textContent=
-        "Continue";
-
-
-        document
-        .getElementById("cancelButton")
-        .textContent=
-        "Cancel";
-
-    }
-
-    else{
-
-
-        html.lang="ar";
-
-        html.dir="rtl";
-
-
-        languageButton.textContent="EN";
-
-
-        restoreArabicTexts();
-
-    }
-
-}
-
-
-
-/* =========================
-   تحميل الصفحة
-========================= */
-
-window.addEventListener(
-
-    "DOMContentLoaded",
-
-    function(){
-
-
-        saveArabicTexts();
-
-
-        loadGallery();
-
-
-        const savedTheme=
-
-        localStorage.getItem(
-            "theme"
-        );
-
-
-        const savedLanguage=
-
-        localStorage.getItem(
-            "language"
-        )
-
-        || "ar";
-
-
-        const themeButton=
-
-        document.getElementById(
-            "themeToggle"
-        );
-
-
-        if(
-            savedTheme==="blue"
-        ){
-
-            document.documentElement
-            .classList
-            .add("blue-mode");
-
-
-            themeButton.textContent="☀️";
-
-        }
-
-        else{
-
-            themeButton.textContent="🌙";
-
-        }
-
-
-        if(
-            savedLanguage==="en"
-        ){
-
-            setLanguage("en");
-
-        }
-
-        else{
-
-            document.documentElement.lang="ar";
-
-            document.documentElement.dir="rtl";
-
-
-            document
-            .getElementById(
-                "languageToggle"
-            )
-            .textContent="EN";
-
-        }
-
-    }
-
-);
-
-
-
-/* =========================
-   إغلاق نافذة الطلب
-========================= */
-
-document
-.getElementById("modal")
-.addEventListener(
-
-    "click",
-
-    function(e){
-
-        if(e.target===this){
-
-            closeModal();
-
-        }
-
-    }
-
-);
-
-
-</script>
 
 
 </body>
-
 </html>
