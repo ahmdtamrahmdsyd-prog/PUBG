@@ -2,7 +2,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PUBG × NARUTO</title><style>
+<title>PUBG × NARUTO</title><script>
+/* تحميل الوضع المحفوظ قبل ظهور الصفحة */
+(function(){
+    try{
+        if(localStorage.getItem("theme")==="blue"){
+            document.documentElement.classList.add("blue-mode");
+        }
+    }catch(e){}
+})();
+</script><style>
 *{
     box-sizing:border-box;
     margin:0;
@@ -27,7 +36,7 @@
     --glow:rgba(255,0,0,.25);
 }
 
-body.blue-mode{
+html.blue-mode{
     --main1:#002b85;
     --main2:#001a52;
     --dark:#030814;
@@ -135,7 +144,7 @@ body::after{
     transition:.5s;
 }
 
-body.blue-mode .welcome-box{
+html.blue-mode .welcome-box{
     background:rgba(2,10,30,.92);
 }
 
@@ -159,17 +168,15 @@ body.blue-mode .welcome-box{
         0 0 40px var(--glow);
 }
 
-.welcome-box h1{
-    font-size:30px;
-    margin-bottom:12px;
+/* تحميل الصورة بسرعة */
+.cover img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.welcome-box p{
-    color:var(--text);
-    line-height:2;
-    margin-bottom:25px;
-}
-
+/* زرار عام */
 button{
     border:0;
     cursor:pointer;
@@ -183,6 +190,17 @@ button{
 button:hover{
     transform:translateY(-3px);
     box-shadow:0 12px 35px var(--glow);
+}
+
+.welcome-box h1{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.welcome-box p{
+    color:var(--text);
+    line-height:2;
+    margin-bottom:25px;
 }
 
 .enter{
@@ -213,7 +231,7 @@ button:hover{
     transition:.5s;
 }
 
-body.blue-mode .topbar{
+html.blue-mode .topbar{
     background:rgba(3,18,50,.88);
 }
 
@@ -233,7 +251,6 @@ body.blue-mode .topbar{
     font-size:13px;
 }
 
-/* زر الليل والنهار الجديد */
 .theme-toggle{
     width:38px;
     height:38px;
@@ -254,7 +271,6 @@ body.blue-mode .topbar{
     box-shadow:0 0 18px var(--glow);
 }
 
-/* شريط التنبيه */
 .notice{
     overflow:hidden;
     background:var(--gradient1);
@@ -276,7 +292,6 @@ body.blue-mode .topbar{
     to{transform:translateX(-100%)}
 }
 
-/* الصورة الرئيسية */
 .hero-image{
     height:430px;
     border-radius:27px;
@@ -307,7 +322,6 @@ body.blue-mode .topbar{
     z-index:40;
 }
 
-/* المقدمة */
 .hero{
     text-align:center;
     padding:32px 20px;
@@ -321,7 +335,7 @@ body.blue-mode .topbar{
     margin-bottom:25px;
 }
 
-body.blue-mode .hero{
+html.blue-mode .hero{
     background:linear-gradient(
         145deg,
         rgba(0,80,190,.35),
@@ -339,7 +353,6 @@ body.blue-mode .hero{
     line-height:2;
 }
 
-/* الأقسام */
 .section{
     padding:25px;
     border-radius:22px;
@@ -350,7 +363,7 @@ body.blue-mode .hero{
     transition:.5s;
 }
 
-body.blue-mode .section{
+html.blue-mode .section{
     background:rgba(4,17,38,.88);
 }
 
@@ -371,7 +384,7 @@ body.blue-mode .section{
     transition:.5s;
 }
 
-body.blue-mode .feature{
+html.blue-mode .feature{
     background:linear-gradient(
         145deg,
         rgba(0,70,180,.32),
@@ -396,7 +409,6 @@ body.blue-mode .feature{
     line-height:2;
 }
 
-/* السعر */
 .price-box{
     text-align:center;
     padding:35px 20px;
@@ -410,7 +422,7 @@ body.blue-mode .feature{
     transition:.5s;
 }
 
-body.blue-mode .price-box{
+html.blue-mode .price-box{
     background:linear-gradient(
         145deg,
         rgba(0,70,180,.5),
@@ -461,7 +473,6 @@ body.blue-mode .price-box{
     background:linear-gradient(135deg,var(--red),var(--main1));
 }
 
-/* الأسئلة */
 .faq{
     border-top:1px solid var(--border);
 }
@@ -500,7 +511,6 @@ footer{
     margin-top:30px;
 }
 
-/* نافذة الطلب */
 .modal{
     position:fixed;
     inset:0;
@@ -596,7 +606,7 @@ footer{
 </div><section id="welcome"><div class="welcome-box">
 
     <div class="cover">
-        <img src="naruto-pubg.jpg" style="width:100%;height:100%;object-fit:cover;">
+        <img src="naruto-pubg.jpg" loading="eager" fetchpriority="high" decoding="async" alt="PUBG Naruto">
     </div>
 
     <h1>ملف PUBG المميز</h1>
@@ -617,11 +627,13 @@ footer{
     <div class="brand">PUBG FILE</div>
 
     <div class="topbar-left">
+
         <div class="status">● متاح للطلب</div>
 
         <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="تغيير الوضع">
             🌙
         </button>
+
     </div>
 
 </div>
@@ -635,7 +647,7 @@ footer{
 <div class="hero-image">
 
     <div class="cover">
-        <img src="naruto-pubg.jpg" style="width:100%;height:100%;object-fit:cover;">
+        <img src="naruto-pubg.jpg" loading="eager" fetchpriority="high" decoding="async" alt="PUBG Naruto">
     </div>
 
     <div class="hero-label">
@@ -811,15 +823,14 @@ function goWhatsApp(){
 
 }
 
-/* تغيير الوضع */
 function toggleTheme(){
 
-    const body=document.body;
+    const html=document.documentElement;
     const button=document.getElementById("themeToggle");
 
-    body.classList.toggle("blue-mode");
+    html.classList.toggle("blue-mode");
 
-    if(body.classList.contains("blue-mode")){
+    if(html.classList.contains("blue-mode")){
 
         button.textContent="☀️";
         localStorage.setItem("theme","blue");
@@ -833,7 +844,6 @@ function toggleTheme(){
 
 }
 
-/* حفظ آخر وضع */
 window.addEventListener("DOMContentLoaded",function(){
 
     const savedTheme=localStorage.getItem("theme");
@@ -841,8 +851,12 @@ window.addEventListener("DOMContentLoaded",function(){
 
     if(savedTheme==="blue"){
 
-        document.body.classList.add("blue-mode");
+        document.documentElement.classList.add("blue-mode");
         button.textContent="☀️";
+
+    }else{
+
+        button.textContent="🌙";
 
     }
 
