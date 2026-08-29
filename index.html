@@ -3,11 +3,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PUBG × NARUTO</title><script>
-/* تحميل الوضع المحفوظ قبل ظهور الصفحة */
+/* تحميل الوضع واللغة المحفوظين قبل ظهور الصفحة */
 (function(){
     try{
         if(localStorage.getItem("theme")==="blue"){
             document.documentElement.classList.add("blue-mode");
+        }
+
+        if(localStorage.getItem("language")==="en"){
+            document.documentElement.lang="en";
+            document.documentElement.dir="ltr";
         }
     }catch(e){}
 })();
@@ -168,7 +173,6 @@ html.blue-mode .welcome-box{
         0 0 40px var(--glow);
 }
 
-/* تحميل الصورة بسرعة */
 .cover img{
     display:block;
     width:100%;
@@ -176,7 +180,6 @@ html.blue-mode .welcome-box{
     object-fit:cover;
 }
 
-/* زرار عام */
 button{
     border:0;
     cursor:pointer;
@@ -251,7 +254,8 @@ html.blue-mode .topbar{
     font-size:13px;
 }
 
-.theme-toggle{
+.theme-toggle,
+.language-toggle{
     width:38px;
     height:38px;
     min-width:38px;
@@ -260,13 +264,19 @@ html.blue-mode .topbar{
     align-items:center;
     justify-content:center;
     border-radius:11px;
-    font-size:18px;
+    font-size:16px;
     background:rgba(0,0,0,.25);
     border:1px solid var(--border);
     box-shadow:none;
 }
 
-.theme-toggle:hover{
+.language-toggle{
+    font-family:Arial,sans-serif;
+    font-size:13px;
+}
+
+.theme-toggle:hover,
+.language-toggle:hover{
     transform:scale(1.06);
     box-shadow:0 0 18px var(--glow);
 }
@@ -320,6 +330,11 @@ html.blue-mode .topbar{
     padding:10px 15px;
     border-radius:10px;
     z-index:40;
+}
+
+html[dir="ltr"] .hero-label{
+    right:auto;
+    left:20px;
 }
 
 .hero{
@@ -487,6 +502,10 @@ html.blue-mode .price-box{
     font-size:16px;
 }
 
+html[dir="ltr"] .question{
+    text-align:left;
+}
+
 .question:hover{
     transform:none;
     box-shadow:none;
@@ -582,11 +601,12 @@ footer{
         padding:12px 13px;
     }
 
-    .theme-toggle{
+    .theme-toggle,
+    .language-toggle{
         width:35px;
         height:35px;
         min-width:35px;
-        font-size:16px;
+        font-size:13px;
         border-radius:10px;
     }
 
@@ -609,14 +629,13 @@ footer{
         <img src="naruto-pubg.jpg" loading="eager" fetchpriority="high" decoding="async" alt="PUBG Naruto">
     </div>
 
-    <h1>ملف PUBG المميز</h1>
+    <h1 id="welcomeTitle">ملف PUBG المميز</h1>
 
-    <p>
-        استكشف محتويات الملف وتعرّف على التفاصيل
-        قبل طلب الملف.
+    <p id="welcomeText">
+        استكشف محتويات الملف وتعرّف على التفاصيل قبل طلب الملف.
     </p>
 
-    <button class="enter" onclick="enterSite()">
+    <button class="enter" onclick="enterSite()" id="enterButton">
         دخول الموقع
     </button>
 
@@ -628,7 +647,11 @@ footer{
 
     <div class="topbar-left">
 
-        <div class="status">● متاح للطلب</div>
+        <div class="status" id="statusText">● متاح للطلب</div>
+
+        <button class="language-toggle" id="languageToggle" onclick="toggleLanguage()" title="Change Language">
+            EN
+        </button>
 
         <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="تغيير الوضع">
             🌙
@@ -639,7 +662,7 @@ footer{
 </div>
 
 <div class="notice">
-    <div class="notice-text">
+    <div class="notice-text" id="noticeText">
         ✦ الطلب متاح الآن — يمكنك التعرف على التفاصيل ثم التواصل لطلب الملف ✦
     </div>
 </div>
@@ -658,18 +681,17 @@ footer{
 
 <section class="hero">
 
-    <h2>ملف PUBG المميز</h2>
+    <h2 id="heroTitle">ملف PUBG المميز</h2>
 
-    <p>
-        عرض منظم لمحتويات الملف والمظاهر والعناصر
-        المتنوعة، مع واجهة سهلة وسريعة الاستخدام.
+    <p id="heroText">
+        عرض منظم لمحتويات الملف والمظاهر والعناصر المتنوعة، مع واجهة سهلة وسريعة الاستخدام.
     </p>
 
 </section>
 
 <section class="section">
 
-    <div class="section-title">
+    <div class="section-title" id="contentTitle">
         ماذا يحتوي الملف؟
     </div>
 
@@ -677,11 +699,11 @@ footer{
 
         <div class="feature-icon">⭐</div>
 
-        <div class="feature-title">
+        <div class="feature-title" id="featureTitle">
             عناصر مميزة
         </div>
 
-        <div class="feature-text">
+        <div class="feature-text" id="featureText">
             الملف فيه اسلحه مسك ومسدسات مسك وفي كل حاجه تتخيلها الاستفسار او طلب الملف دوس طلب الملف
         </div>
 
@@ -693,85 +715,100 @@ footer{
 
     <div class="price-box">
 
-        <div class="price-small">
+        <div class="price-small" id="priceTitle">
             سعر طلب الملف
         </div>
 
         <div class="price">
             <span class="price-number">50</span>
-            <span class="price-currency">جنيه</span>
+            <span class="price-currency" id="currencyText">جنيه</span>
         </div>
 
-        <button class="buy" onclick="openModal()">
+        <button class="buy" onclick="openModal()" id="buyButton">
             🛒 طلب الملف
         </button>
 
     </div>
 
 </section>
+    <!-- الأسئلة -->
 
-<section class="section">
+    <section class="section">
 
-    <div class="section-title">
-        الأسئلة الشائعة
-    </div>
-
-    <div class="faq">
-
-        <button class="question" onclick="toggleFAQ(this)">
-            ما طريقة طلب الملف؟
-            <span>＋</span>
-        </button>
-
-        <div class="answer">
-            اضغط على زر «طلب الملف» ثم انتقل إلى وتساب للتواصل.
+        <div class="section-title" id="faqTitle">
+            الأسئلة الشائعة
         </div>
 
-    </div>
+        <div class="faq">
 
-    <div class="faq">
+            <button class="question" onclick="toggleFAQ(this)">
+                <span id="question1">ما طريقة طلب الملف؟</span>
+                <span>＋</span>
+            </button>
 
-        <button class="question" onclick="toggleFAQ(this)">
-            كم سعر الملف؟
-            <span>＋</span>
-        </button>
+            <div class="answer" id="answer1">
+                اضغط على زر «طلب الملف» ثم انتقل إلى واتساب للتواصل.
+            </div>
 
-        <div class="answer">
-            السعر المعروض حاليًا هو 50 جنيه.
         </div>
 
-    </div>
+        <div class="faq">
 
-</section>
+            <button class="question" onclick="toggleFAQ(this)">
+                <span id="question2">كم سعر الملف؟</span>
+                <span>＋</span>
+            </button>
 
-<footer>
-    جميع الحقوق محفوظة © 2026
-</footer>
+            <div class="answer" id="answer2">
+                السعر المعروض حاليًا هو 50 جنيه.
+            </div>
 
-</main><div class="modal" id="modal"><div class="modal-box">
+        </div>
 
-    <h3>تأكيد الطلب</h3>
+    </section>
 
-    <p>
-        سيتم فتح واتساب للتواصل وطلب الملف.
-        هل تريد المتابعة؟
-    </p>
+    <footer id="footerText">
+        جميع الحقوق محفوظة © 2026
+    </footer>
 
-    <div class="modal-buttons">
+</main>
 
-        <button onclick="goWhatsApp()">
-            متابعة
-        </button>
 
-        <button class="cancel" onclick="closeModal()">
-            إلغاء
-        </button>
+<!-- نافذة الطلب -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <h3 id="modalTitle">
+            تأكيد الطلب
+        </h3>
+
+        <p id="modalText">
+            سيتم فتح واتساب للتواصل وطلب الملف.
+            هل تريد المتابعة؟
+        </p>
+
+        <div class="modal-buttons">
+
+            <button onclick="goWhatsApp()" id="continueButton">
+                متابعة
+            </button>
+
+            <button class="cancel" onclick="closeModal()" id="cancelButton">
+                إلغاء
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
-</div><script>
+
+<script>
+
+/* الدخول للموقع */
 
 function enterSite(){
 
@@ -785,10 +822,13 @@ function enterSite(){
 
 }
 
+
+/* الأسئلة الشائعة */
+
 function toggleFAQ(button){
 
     const answer=button.nextElementSibling;
-    const icon=button.querySelector("span");
+    const icon=button.lastElementChild;
 
     if(answer.classList.contains("open")){
 
@@ -804,6 +844,9 @@ function toggleFAQ(button){
 
 }
 
+
+/* نافذة الطلب */
+
 function openModal(){
     document.getElementById("modal").style.display="flex";
 }
@@ -812,16 +855,32 @@ function closeModal(){
     document.getElementById("modal").style.display="none";
 }
 
+
+/* واتساب */
+
 function goWhatsApp(){
 
+    const language=localStorage.getItem("language") || "ar";
+
+    let message;
+
+    if(language==="en"){
+        message="Hello, I want to order the PUBG file";
+    }else{
+        message="السلام عليكم، أريد طلب الملف";
+    }
+
     window.open(
-        "https://wa.me/201038684515?text=السلام عليكم، أريد طلب الملف",
+        "https://wa.me/201038684515?text=" + encodeURIComponent(message),
         "_blank"
     );
 
     closeModal();
 
 }
+
+
+/* تغيير الوضع ليل ونهار */
 
 function toggleTheme(){
 
@@ -844,23 +903,217 @@ function toggleTheme(){
 
 }
 
+
+/* تغيير اللغة */
+
+function toggleLanguage(){
+
+    const currentLanguage=localStorage.getItem("language") || "ar";
+
+    if(currentLanguage==="ar"){
+
+        setLanguage("en");
+
+    }else{
+
+        setLanguage("ar");
+
+    }
+
+}
+
+
+/* تطبيق اللغة */
+
+function setLanguage(language){
+
+    const html=document.documentElement;
+    const languageButton=document.getElementById("languageToggle");
+
+    localStorage.setItem("language",language);
+
+    if(language==="en"){
+
+        html.lang="en";
+        html.dir="ltr";
+
+        languageButton.textContent="AR";
+        languageButton.title="تغيير اللغة إلى العربية";
+
+        document.getElementById("welcomeTitle").textContent="Premium PUBG File";
+
+        document.getElementById("welcomeText").textContent=
+        "Explore the file contents and discover all the details before placing your order.";
+
+        document.getElementById("enterButton").textContent="Enter Website";
+
+        document.getElementById("statusText").textContent="● Available to Order";
+
+        document.getElementById("noticeText").textContent=
+        "✦ Orders are now available — explore the details and contact us to order the file ✦";
+
+        document.getElementById("heroTitle").textContent=
+        "Premium PUBG File";
+
+        document.getElementById("heroText").textContent=
+        "An organized display of the file contents, skins and various items with a fast and easy-to-use interface.";
+
+        document.getElementById("contentTitle").textContent=
+        "What does the file contain?";
+
+        document.getElementById("featureTitle").textContent=
+        "Premium Items";
+
+        document.getElementById("featureText").textContent=
+        "The file contains rare weapons, rare pistols and many other items. For inquiries or ordering, press the order button.";
+
+        document.getElementById("priceTitle").textContent=
+        "File Order Price";
+
+        document.getElementById("currencyText").textContent=
+        "EGP";
+
+        document.getElementById("buyButton").textContent=
+        "🛒 Order File";
+
+        document.getElementById("faqTitle").textContent=
+        "Frequently Asked Questions";
+
+        document.getElementById("question1").textContent=
+        "How can I order the file?";
+
+        document.getElementById("answer1").textContent=
+        "Press the Order File button, then you will be taken to WhatsApp to contact us.";
+
+        document.getElementById("question2").textContent=
+        "How much does the file cost?";
+
+        document.getElementById("answer2").textContent=
+        "The current displayed price is 50 EGP.";
+
+        document.getElementById("footerText").textContent=
+        "All rights reserved © 2026";
+
+        document.getElementById("modalTitle").textContent=
+        "Confirm Order";
+
+        document.getElementById("modalText").textContent=
+        "WhatsApp will be opened to contact us and order the file. Do you want to continue?";
+
+        document.getElementById("continueButton").textContent=
+        "Continue";
+
+        document.getElementById("cancelButton").textContent=
+        "Cancel";
+
+    }else{
+
+        html.lang="ar";
+        html.dir="rtl";
+
+        languageButton.textContent="EN";
+        languageButton.title="Change Language";
+
+        document.getElementById("welcomeTitle").textContent=
+        "ملف PUBG المميز";
+
+        document.getElementById("welcomeText").textContent=
+        "استكشف محتويات الملف وتعرّف على التفاصيل قبل طلب الملف.";
+
+        document.getElementById("enterButton").textContent=
+        "دخول الموقع";
+
+        document.getElementById("statusText").textContent=
+        "● متاح للطلب";
+
+        document.getElementById("noticeText").textContent=
+        "✦ الطلب متاح الآن — يمكنك التعرف على التفاصيل ثم التواصل لطلب الملف ✦";
+
+        document.getElementById("heroTitle").textContent=
+        "ملف PUBG المميز";
+
+        document.getElementById("heroText").textContent=
+        "عرض منظم لمحتويات الملف والمظاهر والعناصر المتنوعة، مع واجهة سهلة وسريعة الاستخدام.";
+
+        document.getElementById("contentTitle").textContent=
+        "ماذا يحتوي الملف؟";
+
+        document.getElementById("featureTitle").textContent=
+        "عناصر مميزة";
+
+        document.getElementById("featureText").textContent=
+        "الملف فيه اسلحه مسك ومسدسات مسك وفي كل حاجه تتخيلها الاستفسار او طلب الملف دوس طلب الملف";
+
+        document.getElementById("priceTitle").textContent=
+        "سعر طلب الملف";
+
+        document.getElementById("currencyText").textContent=
+        "جنيه";
+
+        document.getElementById("buyButton").textContent=
+        "🛒 طلب الملف";
+
+        document.getElementById("faqTitle").textContent=
+        "الأسئلة الشائعة";
+
+        document.getElementById("question1").textContent=
+        "ما طريقة طلب الملف؟";
+
+        document.getElementById("answer1").textContent=
+        "اضغط على زر «طلب الملف» ثم انتقل إلى واتساب للتواصل.";
+
+        document.getElementById("question2").textContent=
+        "كم سعر الملف؟";
+
+        document.getElementById("answer2").textContent=
+        "السعر المعروض حاليًا هو 50 جنيه.";
+
+        document.getElementById("footerText").textContent=
+        "جميع الحقوق محفوظة © 2026";
+
+        document.getElementById("modalTitle").textContent=
+        "تأكيد الطلب";
+
+        document.getElementById("modalText").textContent=
+        "سيتم فتح واتساب للتواصل وطلب الملف. هل تريد المتابعة؟";
+
+        document.getElementById("continueButton").textContent=
+        "متابعة";
+
+        document.getElementById("cancelButton").textContent=
+        "إلغاء";
+
+    }
+
+}
+
+
+/* تحميل الوضع واللغة المحفوظين */
+
 window.addEventListener("DOMContentLoaded",function(){
 
     const savedTheme=localStorage.getItem("theme");
-    const button=document.getElementById("themeToggle");
+    const savedLanguage=localStorage.getItem("language") || "ar";
+
+    const themeButton=document.getElementById("themeToggle");
 
     if(savedTheme==="blue"){
 
         document.documentElement.classList.add("blue-mode");
-        button.textContent="☀️";
+        themeButton.textContent="☀️";
 
     }else{
 
-        button.textContent="🌙";
+        themeButton.textContent="🌙";
 
     }
 
+    setLanguage(savedLanguage);
+
 });
+
+
+/* إغلاق النافذة عند الضغط خارجها */
 
 document.getElementById("modal").addEventListener(
     "click",
@@ -876,5 +1129,5 @@ document.getElementById("modal").addEventListener(
 </script>
 
 </body>
-
 </html>
+ 
