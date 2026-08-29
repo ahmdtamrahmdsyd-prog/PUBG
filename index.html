@@ -25,6 +25,15 @@ content="width=device-width, initial-scale=1.0">
 
         }
 
+
+        if(localStorage.getItem("language")==="en"){
+
+            document.documentElement.lang="en";
+
+            document.documentElement.dir="ltr";
+
+        }
+
     }catch(e){}
 
 })();
@@ -34,28 +43,48 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
+
 *{
+
     box-sizing:border-box;
+
     margin:0;
+
     padding:0;
+
 }
+
 
 :root{
 
     --main1:#850000;
+
     --main2:#350000;
+
     --dark:#050505;
+
     --box:#120000;
+
     --topbar:#230000;
+
     --section:#140000;
+
     --gradient1:#650000;
+
     --gradient2:#350000;
+
     --gradient3:#100000;
+
     --red:#ff2929;
+
     --light:#ff4545;
+
     --text:#d5baba;
+
     --text2:#d1b5b5;
+
     --border:rgba(255,50,50,.25);
+
     --glow:rgba(255,0,0,.25);
 
 }
@@ -64,19 +93,33 @@ content="width=device-width, initial-scale=1.0">
 html.blue-mode{
 
     --main1:#002b85;
+
     --main2:#001a52;
+
     --dark:#030814;
+
     --box:#020d24;
+
     --topbar:#03132f;
+
     --section:#041126;
+
     --gradient1:#04245f;
+
     --gradient2:#020f2d;
+
     --gradient3:#010816;
+
     --red:#238cff;
+
     --light:#4ba5ff;
+
     --text:#b8d1f2;
+
     --text2:#aac6eb;
+
     --border:rgba(50,140,255,.25);
+
     --glow:rgba(0,110,255,.28);
 
 }
@@ -85,7 +128,9 @@ html.blue-mode{
 body{
 
     font-family:Tahoma,Arial,sans-serif;
+
     color:#fff;
+
     min-height:100vh;
 
     background:
@@ -98,23 +143,34 @@ body{
         );
 
     overflow-x:hidden;
+
     transition:background .5s ease;
 
 }
 
 
 body::before,
+
 body::after{
 
     content:"";
+
     position:fixed;
+
     width:360px;
+
     height:360px;
+
     border-radius:50%;
+
     background:var(--glow);
+
     filter:blur(100px);
+
     z-index:-5;
+
     animation:lightMove 9s infinite alternate;
+
     transition:.5s;
 
 }
@@ -123,6 +179,7 @@ body::after{
 body::before{
 
     top:-120px;
+
     right:-100px;
 
 }
@@ -131,7 +188,9 @@ body::before{
 body::after{
 
     bottom:-150px;
+
     left:-100px;
+
     animation-delay:2s;
 
 }
@@ -161,9 +220,13 @@ body::after{
 .particles{
 
     position:fixed;
+
     inset:0;
+
     overflow:hidden;
+
     pointer-events:none;
+
     z-index:-1;
 
 }
@@ -172,10 +235,15 @@ body::after{
 .particle{
 
     position:absolute;
+
     bottom:-20px;
+
     width:4px;
+
     height:4px;
+
     border-radius:50%;
+
     background:var(--red);
 
     box-shadow:
@@ -193,7 +261,9 @@ body::after{
 
     0%{
 
-        transform:translateY(0);
+        transform:
+        translateY(0);
+
         opacity:0;
 
     }
@@ -212,7 +282,9 @@ body::after{
 
     100%{
 
-        transform:translateY(-110vh);
+        transform:
+        translateY(-110vh);
+
         opacity:0;
 
     }
@@ -223,9 +295,13 @@ body::after{
 #welcome{
 
     min-height:100vh;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     padding:18px;
 
 }
@@ -234,9 +310,13 @@ body::after{
 .welcome-box{
 
     width:100%;
+
     max-width:570px;
+
     text-align:center;
+
     padding:18px;
+
     border-radius:28px;
 
     background:
@@ -264,10 +344,15 @@ html.blue-mode .welcome-box{
 .cover{
 
     height:320px;
+
     width:100%;
+
     position:relative;
+
     overflow:hidden;
+
     border-radius:23px;
+
     margin-bottom:24px;
 
     background:
@@ -298,8 +383,11 @@ html.blue-mode .welcome-box{
 .cover img{
 
     display:block;
+
     width:100%;
+
     height:100%;
+
     object-fit:cover;
 
 }
@@ -308,11 +396,17 @@ html.blue-mode .welcome-box{
 button{
 
     border:0;
+
     cursor:pointer;
+
     font-family:inherit;
+
     font-weight:bold;
+
     color:#fff;
+
     border-radius:14px;
+
     transition:.3s;
 
 }
@@ -332,6 +426,7 @@ button:hover{
 .welcome-box h1{
 
     font-size:30px;
+
     margin-bottom:12px;
 
 }
@@ -340,7 +435,9 @@ button:hover{
 .welcome-box p{
 
     color:var(--text);
+
     line-height:2;
+
     margin-bottom:25px;
 
 }
@@ -349,8 +446,11 @@ button:hover{
 .enter{
 
     width:100%;
+
     max-width:300px;
+
     padding:16px;
+
     font-size:18px;
 
     background:
@@ -367,8 +467,11 @@ button:hover{
 #main{
 
     display:none;
+
     max-width:1050px;
+
     margin:auto;
+
     padding:
     18px 15px 60px;
 
@@ -378,10 +481,17 @@ button:hover{
 .topbar{
 
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+    space-between;
+
     align-items:center;
-    padding:14px 16px;
+
+    padding:
+    14px 16px;
+
     margin-bottom:15px;
+
     border-radius:18px;
 
     background:
@@ -406,6 +516,7 @@ html.blue-mode .topbar{
 .brand{
 
     font-size:21px;
+
     font-weight:bold;
 
 }
@@ -414,7 +525,9 @@ html.blue-mode .topbar{
 .topbar-left{
 
     display:flex;
+
     align-items:center;
+
     gap:10px;
 
 }
@@ -423,22 +536,32 @@ html.blue-mode .topbar{
 .status{
 
     color:var(--light);
+
     font-size:13px;
 
 }
 
 
 .theme-toggle,
+
 .language-toggle{
 
     width:38px;
+
     height:38px;
+
     min-width:38px;
+
     padding:0;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     border-radius:11px;
+
     font-size:16px;
 
     background:
@@ -463,9 +586,11 @@ html.blue-mode .topbar{
 
 
 .theme-toggle:hover,
+
 .language-toggle:hover{
 
-    transform:scale(1.06);
+    transform:
+    scale(1.06);
 
     box-shadow:
     0 0 18px var(--glow);
@@ -476,10 +601,17 @@ html.blue-mode .topbar{
 .notice{
 
     overflow:hidden;
-    background:var(--gradient1);
-    border:1px solid var(--border);
+
+    background:
+    var(--gradient1);
+
+    border:
+    1px solid var(--border);
+
     border-radius:12px;
+
     margin-bottom:20px;
+
     transition:.5s;
 
 }
@@ -488,7 +620,9 @@ html.blue-mode .topbar{
 .notice-text{
 
     white-space:nowrap;
+
     padding:12px;
+
     color:var(--text);
 
     animation:
@@ -501,13 +635,15 @@ html.blue-mode .topbar{
 
     from{
 
-        transform:translateX(100%);
+        transform:
+        translateX(100%);
 
     }
 
     to{
 
-        transform:translateX(-100%);
+        transform:
+        translateX(-100%);
 
     }
 
@@ -517,12 +653,19 @@ html.blue-mode .topbar{
 .hero-image{
 
     height:430px;
+
     border-radius:27px;
+
     overflow:hidden;
+
     position:relative;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     margin-bottom:25px;
 
     background:
@@ -546,7 +689,9 @@ html.blue-mode .topbar{
 .hero-image .cover{
 
     width:90%;
+
     height:88%;
+
     margin:0;
 
 }
@@ -555,7 +700,9 @@ html.blue-mode .topbar{
 .hero-label{
 
     position:absolute;
+
     bottom:18px;
+
     right:20px;
 
     background:
@@ -565,6 +712,7 @@ html.blue-mode .topbar{
     10px 15px;
 
     border-radius:10px;
+
     z-index:40;
 
 }
@@ -573,6 +721,7 @@ html.blue-mode .topbar{
 html[dir="ltr"] .hero-label{
 
     right:auto;
+
     left:20px;
 
 }
@@ -581,7 +730,10 @@ html[dir="ltr"] .hero-label{
 .hero{
 
     text-align:center;
-    padding:32px 20px;
+
+    padding:
+    32px 20px;
+
     border-radius:23px;
 
     background:
@@ -616,6 +768,7 @@ html.blue-mode .hero{
 .hero h2{
 
     font-size:30px;
+
     margin-bottom:14px;
 
 }
@@ -624,6 +777,7 @@ html.blue-mode .hero{
 .hero p{
 
     color:var(--text);
+
     line-height:2;
 
 }
@@ -632,6 +786,7 @@ html.blue-mode .hero{
 .section{
 
     padding:25px;
+
     border-radius:22px;
 
     background:
@@ -644,6 +799,7 @@ html.blue-mode .hero{
     0 0 30px var(--glow);
 
     margin-bottom:25px;
+
     transition:.5s;
 
 }
@@ -660,6 +816,7 @@ html.blue-mode .section{
 .section-title{
 
     font-size:23px;
+
     margin-bottom:20px;
 
 }
@@ -668,6 +825,7 @@ html.blue-mode .section{
 .feature{
 
     padding:23px;
+
     border-radius:18px;
 
     background:
@@ -702,6 +860,7 @@ html.blue-mode .feature{
 .feature-icon{
 
     font-size:32px;
+
     margin-bottom:10px;
 
 }
@@ -710,7 +869,9 @@ html.blue-mode .feature{
 .feature-title{
 
     font-size:20px;
+
     font-weight:bold;
+
     margin-bottom:10px;
 
 }
@@ -719,7 +880,9 @@ html.blue-mode .feature{
 .feature-text{
 
     color:var(--text2);
+
     font-size:15px;
+
     line-height:2;
 
 }
@@ -728,7 +891,10 @@ html.blue-mode .feature{
 .price-box{
 
     text-align:center;
-    padding:35px 20px;
+
+    padding:
+    35px 20px;
+
     border-radius:22px;
 
     background:
@@ -763,6 +929,7 @@ html.blue-mode .price-box{
 .price-small{
 
     color:var(--text);
+
     margin-bottom:8px;
 
 }
@@ -771,7 +938,9 @@ html.blue-mode .price-box{
 .price{
 
     font-size:45px;
+
     font-weight:bold;
+
     color:var(--light);
 
     text-shadow:
@@ -780,9 +949,13 @@ html.blue-mode .price-box{
     margin-bottom:28px;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     gap:8px;
+
     height:55px;
 
 }
@@ -794,8 +967,11 @@ html.blue-mode .price-box{
     Arial,sans-serif;
 
     display:flex;
+
     align-items:center;
+
     height:70px;
+
     line-height:55px;
 
 }
@@ -809,19 +985,26 @@ html.blue-mode .price-box{
     font-size:30px;
 
     display:flex;
+
     align-items:center;
+
     height:55px;
+
     line-height:55px;
 
 }
 
 
 .buy,
+
 .preview{
 
     width:100%;
+
     max-width:450px;
+
     padding:16px;
+
     font-size:19px;
 
     background:
@@ -853,11 +1036,19 @@ html.blue-mode .price-box{
 .question{
 
     width:100%;
-    padding:18px 5px;
+
+    padding:
+    18px 5px;
+
     background:none;
+
     text-align:right;
+
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+    space-between;
+
     font-size:16px;
 
 }
@@ -873,6 +1064,7 @@ html[dir="ltr"] .question{
 .question:hover{
 
     transform:none;
+
     box-shadow:none;
 
 }
@@ -881,9 +1073,13 @@ html[dir="ltr"] .question{
 .answer{
 
     display:none;
+
     color:var(--text2);
+
     line-height:1.9;
-    padding:0 5px 18px;
+
+    padding:
+    0 5px 18px;
 
 }
 
@@ -898,9 +1094,13 @@ html[dir="ltr"] .question{
 footer{
 
     text-align:center;
+
     color:var(--text);
+
     opacity:.6;
+
     font-size:13px;
+
     margin-top:30px;
 
 }
@@ -911,10 +1111,15 @@ footer{
 .modal{
 
     position:fixed;
+
     inset:0;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
 
     background:
@@ -931,9 +1136,14 @@ footer{
 .modal-box{
 
     width:100%;
+
     max-width:430px;
-    padding:30px 25px;
+
+    padding:
+    30px 25px;
+
     text-align:center;
+
     border-radius:23px;
 
     background:
@@ -956,6 +1166,7 @@ footer{
 .modal-box h3{
 
     font-size:23px;
+
     margin-bottom:15px;
 
 }
@@ -964,7 +1175,9 @@ footer{
 .modal-box p{
 
     color:var(--text);
+
     line-height:1.8;
+
     margin-bottom:22px;
 
 }
@@ -973,6 +1186,7 @@ footer{
 .modal-buttons{
 
     display:flex;
+
     gap:10px;
 
 }
@@ -981,6 +1195,7 @@ footer{
 .modal-buttons button{
 
     flex:1;
+
     padding:14px;
 
     background:
@@ -1002,24 +1217,31 @@ footer{
 }
 
 
-/* نافذة القوانين */
+/* =========================
+   نافذة القوانين
+========================= */
 
 .rules-modal{
 
     position:fixed;
+
     inset:0;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
 
     background:
-    rgba(0,0,0,.82);
+    rgba(0,0,0,.88);
 
     backdrop-filter:
     blur(8px);
 
-    z-index:150;
+    z-index:500;
 
 }
 
@@ -1027,11 +1249,17 @@ footer{
 .rules-box{
 
     width:100%;
+
     max-width:500px;
-    max-height:85vh;
+
+    max-height:90vh;
+
     overflow-y:auto;
-    padding:30px 25px;
+
+    padding:25px 22px;
+
     text-align:right;
+
     border-radius:23px;
 
     background:
@@ -1046,29 +1274,91 @@ footer{
     1px solid var(--border);
 
     box-shadow:
-    0 0 50px var(--glow);
+    0 0 55px var(--glow);
 
 }
 
 
-.rules-box h3{
+.rules-header{
 
-    text-align:center;
-    font-size:24px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
     margin-bottom:20px;
-    color:var(--light);
+
+}
+
+
+.rules-title{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    flex:1;
+
+}
+
+
+.rules-language-toggle{
+
+    width:38px;
+
+    height:38px;
+
+    min-width:38px;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:11px;
+
+    font-family:Arial,sans-serif;
+
+    font-size:13px;
+
+    background:
+    rgba(0,0,0,.25);
+
+    border:
+    1px solid var(--border);
+
+    box-shadow:none;
+
+}
+
+
+.rules-language-toggle:hover{
+
+    transform:
+    scale(1.06);
+
+    box-shadow:
+    0 0 18px var(--glow);
 
 }
 
 
 .rule{
 
-    padding:14px;
+    padding:15px;
+
     margin-bottom:12px;
-    border-radius:14px;
+
+    border-radius:15px;
 
     background:
-    rgba(0,0,0,.22);
+    rgba(0,0,0,.20);
 
     border:
     1px solid var(--border);
@@ -1078,28 +1368,35 @@ footer{
 
 .rule-title{
 
+    font-size:17px;
+
     font-weight:bold;
-    color:#fff;
-    margin-bottom:6px;
+
+    margin-bottom:7px;
 
 }
 
 
 .rule-text{
 
-    color:var(--text2);
-    line-height:1.9;
+    color:var(--text);
+
     font-size:14px;
+
+    line-height:1.9;
 
 }
 
 
-.rules-button{
+.rules-continue{
 
     width:100%;
+
     padding:15px;
+
     margin-top:8px;
-    font-size:18px;
+
+    font-size:17px;
 
     background:
 
@@ -1117,15 +1414,20 @@ footer{
 .gallery-modal{
 
     position:fixed;
+
     inset:0;
+
     display:none;
 
     background:
     rgba(0,0,0,.96);
 
     z-index:200;
+
     overflow-y:auto;
-    padding:75px 15px 25px;
+
+    padding:
+    75px 15px 25px;
 
 }
 
@@ -1133,13 +1435,21 @@ footer{
 .gallery-close{
 
     position:fixed;
+
     top:15px;
+
     right:15px;
+
     width:48px;
+
     height:48px;
+
     border-radius:50%;
+
     background:var(--red);
+
     font-size:30px;
+
     z-index:210;
 
 }
@@ -1148,6 +1458,7 @@ footer{
 html[dir="ltr"] .gallery-close{
 
     right:auto;
+
     left:15px;
 
 }
@@ -1156,10 +1467,13 @@ html[dir="ltr"] .gallery-close{
 .gallery-grid{
 
     max-width:1100px;
+
     margin:auto;
+
     display:grid;
 
     grid-template-columns:
+
     repeat(
         auto-fit,
         minmax(160px,1fr)
@@ -1173,9 +1487,13 @@ html[dir="ltr"] .gallery-close{
 .gallery-grid img{
 
     width:100%;
+
     display:block;
+
     aspect-ratio:1/1;
+
     object-fit:cover;
+
     border-radius:16px;
 
     border:
@@ -1194,10 +1512,15 @@ html[dir="ltr"] .gallery-close{
 .image-viewer{
 
     position:fixed;
+
     inset:0;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
 
     background:
@@ -1211,8 +1534,11 @@ html[dir="ltr"] .gallery-close{
 .image-viewer img{
 
     max-width:100%;
+
     max-height:90vh;
+
     object-fit:contain;
+
     border-radius:12px;
 
 }
@@ -1221,13 +1547,21 @@ html[dir="ltr"] .gallery-close{
 .image-close{
 
     position:absolute;
+
     top:15px;
+
     right:15px;
+
     width:50px;
+
     height:50px;
+
     border-radius:50%;
+
     background:var(--red);
+
     font-size:32px;
+
     z-index:310;
 
 }
@@ -1236,6 +1570,7 @@ html[dir="ltr"] .gallery-close{
 html[dir="ltr"] .image-close{
 
     right:auto;
+
     left:15px;
 
 }
@@ -1249,11 +1584,13 @@ html[dir="ltr"] .image-close{
 
     }
 
+
     .hero-image{
 
         height:300px;
 
     }
+
 
     .price{
 
@@ -1261,34 +1598,47 @@ html[dir="ltr"] .image-close{
 
     }
 
+
     .welcome-box h1{
 
         font-size:26px;
 
     }
 
+
     .topbar{
 
-        padding:12px 13px;
+        padding:
+        12px 13px;
 
     }
 
+
     .theme-toggle,
-    .language-toggle{
+
+    .language-toggle,
+
+    .rules-language-toggle{
 
         width:35px;
+
         height:35px;
+
         min-width:35px;
+
         font-size:13px;
+
         border-radius:10px;
 
     }
+
 
     .topbar-left{
 
         gap:7px;
 
     }
+
 
     .gallery-grid{
 
@@ -1300,6 +1650,7 @@ html[dir="ltr"] .image-close{
     }
 
 }
+
 
 </style>
 
@@ -1508,18 +1859,13 @@ html[dir="ltr"] .image-close{
 
     <p id="heroText">
 
-        الملف فيه كل الملابس
-        والأسلحة المميزة
-        والعناصر المختلفة.
+        الملف في كل حاجه مسك لبس مسك ومسدسات في حاجات كثيره قوي بس مش معروضه في معاينه الملف 🔥
 
     </p>
 
 
 </section>
-
-
 <section class="section">
-
 
     <div
         class="section-title"
@@ -1531,7 +1877,6 @@ html[dir="ltr"] .image-close{
 
 
     <div class="feature">
-
 
         <div class="feature-icon">
 
@@ -1552,26 +1897,18 @@ html[dir="ltr"] .image-close{
         <div
             class="feature-text"
             id="featureText">
-
-            الملف فيه أسلحة
-            ومسدسات وعناصر كثيرة.
-            للاستفسار أو طلب الملف
-            اضغط على زر طلب الملف.
+ادخل اشتري الملف وشوف بنفسك الملف فيه كل حاجه تتخيلها كل حاجه مسك وحاجات كثيره اوي سعر حاليا 50 جنيه اشتري قبل ما يغلى ل 80 💥
 
         </div>
 
-
     </div>
-
 
 </section>
 
 
 <section class="section">
 
-
     <div class="price-box">
-
 
         <div
             class="price-small"
@@ -1583,7 +1920,6 @@ html[dir="ltr"] .image-close{
 
 
         <div class="price">
-
 
             <span class="price-number">
 
@@ -1599,7 +1935,6 @@ html[dir="ltr"] .image-close{
                 جنيه
 
             </span>
-
 
         </div>
 
@@ -1623,11 +1958,11 @@ html[dir="ltr"] .image-close{
 
         </button>
 
-
     </div>
 
-
 </section>
+
+
 <section class="section">
 
     <div
@@ -1717,162 +2052,15 @@ html[dir="ltr"] .image-close{
 </main>
 
 
-
-<!-- نافذة القوانين -->
-
-<div
-    class="rules-modal"
-    id="rulesModal">
-
-    <div class="rules-box">
-
-        <h3 id="rulesTitle">
-
-            📜 قوانين وتعليمات الموقع
-
-        </h3>
-
-
-        <div class="rule">
-
-            <div
-                class="rule-title"
-                id="ruleTitle1">
-
-                1️⃣ شراء الملف
-
-            </div>
-
-            <div
-                class="rule-text"
-                id="ruleText1">
-
-                لشراء الملف اضغط على زر
-                «طلب الملف»، وسيتم نقلك إلى
-                واتساب المطور للتواصل وشراء
-                الملف أو الاستفسار عن أي شيء.
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div
-                class="rule-title"
-                id="ruleTitle2">
-
-                2️⃣ سعر الملف
-
-            </div>
-
-            <div
-                class="rule-text"
-                id="ruleText2">
-
-                سعر الملف حاليًا 50 جنيه،
-                وبعد كام يوم سيصبح السعر 80 جنيه.
-                إذا كنت تريد شراء الملف بالسعر الحالي
-                يمكنك طلبه الآن.
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div
-                class="rule-title"
-                id="ruleTitle3">
-
-                3️⃣ معاينة الملف
-
-            </div>
-
-            <div
-                class="rule-text"
-                id="ruleText3">
-
-                يمكنك الضغط على زر «معاينة الملف»
-                لمشاهدة محتويات وصور الملف قبل
-                طلبه.
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div
-                class="rule-title"
-                id="ruleTitle4">
-
-                4️⃣ الاستفسارات
-
-            </div>
-
-            <div
-                class="rule-text"
-                id="ruleText4">
-
-                لأي استفسار أو للحصول على معلومات
-                إضافية، يمكنك التواصل مع المطور
-                عن طريق واتساب.
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div
-                class="rule-title"
-                id="ruleTitle5">
-
-                5️⃣ تنبيه مهم
-
-            </div>
-
-            <div
-                class="rule-text"
-                id="ruleText5">
-
-                يرجى التأكد من تفاصيل الملف
-                والسعر قبل إتمام عملية الشراء.
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="rules-button"
-            onclick="closeRules()"
-            id="rulesButton">
-
-            فهمت ودخول الموقع
-
-        </button>
-
-    </div>
-
-</div>
-
-
-
-<!-- نافذة الطلب -->
+<!-- =========================
+     نافذة الطلب
+========================= -->
 
 <div
     class="modal"
     id="modal">
 
-
     <div class="modal-box">
-
 
         <h3 id="modalTitle">
 
@@ -1892,7 +2080,6 @@ html[dir="ltr"] .image-close{
 
         <div class="modal-buttons">
 
-
             <button
                 onclick="goWhatsApp()"
                 id="continueButton">
@@ -1911,23 +2098,255 @@ html[dir="ltr"] .image-close{
 
             </button>
 
-
         </div>
 
-
     </div>
-
 
 </div>
 
 
+<!-- =========================
+     نافذة القوانين
+========================= -->
 
-<!-- معرض الصور -->
+<div
+    class="rules-modal"
+    id="rulesModal">
+
+    <div class="rules-box">
+
+
+        <div class="rules-header">
+
+            <div
+                class="rules-title"
+                id="rulesTitle">
+
+                📜 قوانين وتعليمات الموقع
+
+            </div>
+
+
+            <!-- نفس شكل زر اللغة الموجود بالموقع -->
+
+            <button
+                class="rules-language-toggle"
+                id="rulesLanguageToggle"
+                onclick="toggleRulesLanguage()"
+                title="ترجمة القوانين">
+
+                EN
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================
+             القوانين العربية
+        ====================== -->
+
+        <div id="rulesArabic">
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    1️⃣ شراء الملف
+
+                </div>
+
+                <div class="rule-text">
+عايز تشتري الملف؟ دوس على «طلب الملف» وهتتودّى واتساب المطوّر، اطلب الملف أو استفسر عن أي حاجة قبل شراء الملف 😍
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    2️⃣ سعر الملف
+
+                </div>
+
+                <div class="rule-text">
+
+     سعر الملف 50 جنيه وهيزيد بعد كام يوم الى 80 جنيه الحق واشتري الملف الملف فيه كل حاجه
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    3️⃣ معاينة الملف
+
+                </div>
+
+                <div class="rule-text">
+تقدر تدوس على زر معاينه الملف عشان تشوف جميع صور اللبس المسك والاسلحه المسك ✨
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    4️⃣ التواصل والاستفسار
+
+                </div>
+
+                <div class="rule-text">
+
+   لو عايز تستفسر عن اي حاجه او تشتري الملف دوس طلب ملف وتواصل مع المطور 👌
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    5️⃣ تنبيه مهم
+
+                </div>
+
+                <div class="rule-text">
+سيتم تعديل الموقع بالكامل قريبا مع اضافات مميزات جديده 🔥
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             القوانين الإنجليزية
+        ====================== -->
+
+        <div
+            id="rulesEnglish"
+            style="display:none; direction:ltr; text-align:left;">
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    1️⃣ File Purchase
+
+                </div>
+
+                <div class="rule-text">
+
+Want to buy the file? Tap “Request File” and you’ll be taken to the developer’s WhatsApp. Request the file or ask about anything before purchasing the file. 😍
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    2️⃣ File Price
+
+                </div>
+
+                <div class="rule-text">
+
+ The file costs 50 EGP, and the price will increase to 80 EGP in a few days. Hurry up and buy the file—the file has everything. 🔥
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    3️⃣ File Preview
+
+                </div>
+
+                <div class="rule-text">
+
+You can click the “File Preview” button to view all the clothing and weapon images in the file. ✨
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    4️⃣ Contact & Questions
+
+                </div>
+
+                <div class="rule-text">
+If you want to ask about anything or buy the file, click “Request File” and contact the developer. 👌
+
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-title">
+
+                    5️⃣ Important Notice
+
+                </div>
+
+                <div class="rule-text">
+
+The website will be completely updated soon with new features. 🔥
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="rules-continue"
+            id="rulesContinueButton"
+            onclick="acceptRules()">
+
+            فهمت ودخول الموقع
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     معرض الصور
+========================= -->
 
 <div
     class="gallery-modal"
     id="galleryModal">
-
 
     <button
         class="gallery-close"
@@ -1944,18 +2363,17 @@ html[dir="ltr"] .image-close{
 
     </div>
 
-
 </div>
 
 
-
-<!-- عرض الصورة الكبيرة -->
+<!-- =========================
+     عرض الصورة الكبيرة
+========================= -->
 
 <div
     class="image-viewer"
     id="imageViewer"
     onclick="closeImageViewer(event)">
-
 
     <button
         class="image-close"
@@ -1971,9 +2389,7 @@ html[dir="ltr"] .image-close{
         src=""
         alt="Preview Image">
 
-
 </div>
-
 
 
 <script>
@@ -1990,6 +2406,69 @@ function enterSite(){
     .style
     .display="none";
 
+
+    /*
+       القوانين تظهر مرة واحدة فقط
+       لكل متصفح.
+    */
+
+    const rulesAccepted =
+        localStorage.getItem(
+            "rulesAccepted"
+        );
+
+
+    if(rulesAccepted !== "true"){
+
+        document
+        .getElementById("rulesModal")
+        .style
+        .display="flex";
+
+    }
+
+    else{
+
+        showMainSite();
+
+    }
+
+}
+
+
+/* =========================
+   قبول القوانين
+========================= */
+
+function acceptRules(){
+
+    /*
+       حفظ الموافقة في المتصفح
+       حتى لا تظهر النافذة مرة أخرى.
+    */
+
+    localStorage.setItem(
+        "rulesAccepted",
+        "true"
+    );
+
+
+    document
+    .getElementById("rulesModal")
+    .style
+    .display="none";
+
+
+    showMainSite();
+
+}
+
+
+/* =========================
+   إظهار الموقع
+========================= */
+
+function showMainSite(){
 
     document
     .getElementById("main")
@@ -2008,6 +2487,109 @@ function enterSite(){
 }
 
 
+/* =========================
+   ترجمة القوانين فقط
+   الزر الصغير EN / AR
+========================= */
+
+let rulesLanguage="ar";
+
+
+function toggleRulesLanguage(){
+
+    if(rulesLanguage==="ar"){
+
+        setRulesLanguage("en");
+
+    }
+
+    else{
+
+        setRulesLanguage("ar");
+
+    }
+
+}
+
+
+function setRulesLanguage(language){
+
+    const arabic =
+        document.getElementById(
+            "rulesArabic"
+        );
+
+
+    const english =
+        document.getElementById(
+            "rulesEnglish"
+        );
+
+
+    const button =
+        document.getElementById(
+            "rulesLanguageToggle"
+        );
+
+
+    const title =
+        document.getElementById(
+            "rulesTitle"
+        );
+
+
+    const continueButton =
+        document.getElementById(
+            "rulesContinueButton"
+        );
+
+
+    if(language==="en"){
+
+        rulesLanguage="en";
+
+
+        arabic.style.display="none";
+
+        english.style.display="block";
+
+
+        button.textContent="AR";
+
+
+        title.textContent=
+            "📜 Website Rules & Instructions";
+
+
+        continueButton.textContent=
+            "I Understand & Enter Website";
+
+    }
+
+    else{
+
+        rulesLanguage="ar";
+
+
+        english.style.display="none";
+
+        arabic.style.display="block";
+
+
+        button.textContent="EN";
+
+
+        title.textContent=
+            "📜 قوانين وتعليمات الموقع";
+
+
+        continueButton.textContent=
+            "فهمت ودخول الموقع";
+
+    }
+
+}
+
 
 /* =========================
    الأسئلة الشائعة
@@ -2015,12 +2597,12 @@ function enterSite(){
 
 function toggleFAQ(button){
 
-    const answer=
-    button.nextElementSibling;
+    const answer =
+        button.nextElementSibling;
 
 
-    const icon=
-    button.lastElementChild;
+    const icon =
+        button.lastElementChild;
 
 
     if(
@@ -2049,50 +2631,6 @@ function toggleFAQ(button){
 }
 
 
-
-/* =========================
-   نافذة القوانين
-========================= */
-
-function openRules(){
-
-    const rules=
-    document.getElementById(
-        "rulesModal"
-    );
-
-
-    rules.style.display="flex";
-
-
-    document.body.style.overflow="hidden";
-
-}
-
-
-function closeRules(){
-
-    const rules=
-    document.getElementById(
-        "rulesModal"
-    );
-
-
-    rules.style.display="none";
-
-
-    document.body.style.overflow="auto";
-
-
-    localStorage.setItem(
-        "rulesAccepted",
-        "yes"
-    );
-
-}
-
-
-
 /* =========================
    نافذة الطلب
 ========================= */
@@ -2117,18 +2655,16 @@ function closeModal(){
 }
 
 
-
 /* =========================
    واتساب
 ========================= */
 
 function goWhatsApp(){
 
-    const language=
-
-    localStorage
-    .getItem("language")
-    || "ar";
+    const language =
+        localStorage
+        .getItem("language")
+        || "ar";
 
 
     let message;
@@ -2136,14 +2672,14 @@ function goWhatsApp(){
 
     if(language==="en"){
 
-        message=
+        message =
         "Hello, I want to order the PUBG file";
 
     }
 
     else{
 
-        message=
+        message =
         "السلام عليكم، أريد طلب الملف";
 
     }
@@ -2152,9 +2688,7 @@ function goWhatsApp(){
     window.open(
 
         "https://wa.me/201038684515?text="
-
         +
-
         encodeURIComponent(message),
 
         "_blank"
@@ -2165,7 +2699,6 @@ function goWhatsApp(){
     closeModal();
 
 }
-
 
 
 /* =========================
@@ -2185,7 +2718,6 @@ function openGallery(){
 }
 
 
-
 /* =========================
    غلق معرض الصور
 ========================= */
@@ -2203,25 +2735,22 @@ function closeGallery(){
 }
 
 
-
 /* =========================
    فتح الصورة بالحجم الكبير
 ========================= */
 
 function openImage(src){
 
-    const viewer=
+    const viewer =
+        document.getElementById(
+            "imageViewer"
+        );
 
-    document.getElementById(
-        "imageViewer"
-    );
 
-
-    const bigImage=
-
-    document.getElementById(
-        "bigImage"
-    );
+    const bigImage =
+        document.getElementById(
+            "bigImage"
+        );
 
 
     bigImage.src=src;
@@ -2230,7 +2759,6 @@ function openImage(src){
     viewer.style.display="flex";
 
 }
-
 
 
 /* =========================
@@ -2250,7 +2778,6 @@ function closeImage(){
     .src="";
 
 }
-
 
 
 /* =========================
@@ -2273,9 +2800,6 @@ function closeImageViewer(event){
     }
 
 }
-
-
-
 /* =========================
    إنشاء واستدعاء الصور
 ========================= */
@@ -2342,17 +2866,16 @@ const galleryImages=[
 ];
 
 
-
 /* =========================
    تحميل الصور في المعرض
 ========================= */
 
 function loadGallery(){
 
-    const gallery=
-    document.getElementById(
-        "galleryGrid"
-    );
+    const gallery =
+        document.getElementById(
+            "galleryGrid"
+        );
 
 
     gallery.innerHTML="";
@@ -2362,15 +2885,15 @@ function loadGallery(){
 
         function(imageName){
 
-            const img=
-            document.createElement("img");
+            const img =
+                document.createElement("img");
 
 
             img.src=imageName;
 
 
             img.alt=
-            "PUBG File Image";
+                "PUBG File Image";
 
 
             img.loading="lazy";
@@ -2401,21 +2924,20 @@ function loadGallery(){
 }
 
 
-
 /* =========================
    تغيير الوضع
 ========================= */
 
 function toggleTheme(){
 
-    const html=
-    document.documentElement;
+    const html =
+        document.documentElement;
 
 
-    const button=
-    document.getElementById(
-        "themeToggle"
-    );
+    const button =
+        document.getElementById(
+            "themeToggle"
+        );
 
 
     html.classList.toggle(
@@ -2424,10 +2946,8 @@ function toggleTheme(){
 
 
     if(
-
         html.classList
         .contains("blue-mode")
-
     ){
 
         button.textContent="☀️";
@@ -2453,12 +2973,13 @@ function toggleTheme(){
     }
 
 }
+
+
 /* =========================
    النصوص العربية
 ========================= */
 
 let arabicTexts={};
-
 
 
 function saveArabicTexts(){
@@ -2468,56 +2989,27 @@ function saveArabicTexts(){
         "welcomeTitle",
         "welcomeText",
         "enterButton",
-
         "statusText",
         "noticeText",
-
         "heroTitle",
         "heroText",
-
         "contentTitle",
         "featureTitle",
         "featureText",
-
         "priceTitle",
         "currencyText",
-
         "previewButton",
         "buyButton",
-
         "faqTitle",
         "question1",
         "answer1",
         "question2",
         "answer2",
-
         "footerText",
-
         "modalTitle",
         "modalText",
         "continueButton",
-        "cancelButton",
-
-        /* نصوص القوانين */
-
-        "rulesTitle",
-
-        "ruleTitle1",
-        "ruleText1",
-
-        "ruleTitle2",
-        "ruleText2",
-
-        "ruleTitle3",
-        "ruleText3",
-
-        "ruleTitle4",
-        "ruleText4",
-
-        "ruleTitle5",
-        "ruleText5",
-
-        "rulesButton"
+        "cancelButton"
 
     ];
 
@@ -2526,14 +3018,14 @@ function saveArabicTexts(){
 
         function(id){
 
-            const element=
-            document.getElementById(id);
+            const element =
+                document.getElementById(id);
 
 
             if(element){
 
                 arabicTexts[id]=
-                element.textContent;
+                    element.textContent;
 
             }
 
@@ -2543,11 +3035,6 @@ function saveArabicTexts(){
 
 }
 
-
-
-/* =========================
-   استرجاع العربية
-========================= */
 
 function restoreArabicTexts(){
 
@@ -2559,14 +3046,14 @@ function restoreArabicTexts(){
 
         function(id){
 
-            const element=
-            document.getElementById(id);
+            const element =
+                document.getElementById(id);
 
 
             if(element){
 
                 element.textContent=
-                arabicTexts[id];
+                    arabicTexts[id];
 
             }
 
@@ -2577,19 +3064,15 @@ function restoreArabicTexts(){
 }
 
 
-
 /* =========================
-   تغيير اللغة
+   تغيير لغة الموقع
 ========================= */
 
 function toggleLanguage(){
 
-    const currentLanguage=
-
-    localStorage
-    .getItem("language")
-
-    || "ar";
+    const currentLanguage =
+        localStorage.getItem("language")
+        || "ar";
 
 
     if(
@@ -2609,17 +3092,16 @@ function toggleLanguage(){
 }
 
 
-
 function setLanguage(language){
 
-    const html=
-    document.documentElement;
+    const html =
+        document.documentElement;
 
 
-    const languageButton=
-    document.getElementById(
-        "languageToggle"
-    );
+    const languageButton =
+        document.getElementById(
+            "languageToggle"
+        );
 
 
     localStorage.setItem(
@@ -2631,238 +3113,163 @@ function setLanguage(language){
     if(language==="en"){
 
         html.lang="en";
+
         html.dir="ltr";
 
 
         languageButton.textContent="AR";
 
 
-        document
-        .getElementById("welcomeTitle")
-        .textContent=
-        "Premium PUBG File";
+        document.getElementById(
+            "welcomeTitle"
+        ).textContent=
+            "Premium PUBG File";
 
 
-        document
-        .getElementById("welcomeText")
-        .textContent=
-        "Explore the file contents and discover all the details before placing your order.";
+        document.getElementById(
+            "welcomeText"
+        ).textContent=
+            "Explore the file contents and discover all the details before placing your order.";
 
 
-        document
-        .getElementById("enterButton")
-        .textContent=
-        "Enter Website";
+        document.getElementById(
+            "enterButton"
+        ).textContent=
+            "Enter Website";
 
 
-        document
-        .getElementById("statusText")
-        .textContent=
-        "● Available to Order";
+        document.getElementById(
+            "statusText"
+        ).textContent=
+            "● Available to Order";
 
 
-        document
-        .getElementById("noticeText")
-        .textContent=
-        "✦ Orders are now available — explore the details and contact us to order the file ✦";
+        document.getElementById(
+            "noticeText"
+        ).textContent=
+            "✦ Orders are now available — explore the details and contact us to order the file ✦";
 
 
-        document
-        .getElementById("heroTitle")
-        .textContent=
-        "Premium PUBG File";
+        document.getElementById(
+            "heroTitle"
+        ).textContent=
+            "Premium PUBG File";
 
 
-        document
-        .getElementById("heroText")
-        .textContent=
-        "The file contains premium clothes, weapons and various items.";
+        document.getElementById(
+            "heroText"
+        ).textContent=
+        
+"The file contains everything—clothing, weapons and pistols. There are many more items that are not shown in the file preview. 🔥";
 
 
-        document
-        .getElementById("contentTitle")
-        .textContent=
-        "What does the file contain?";
+document.getElementById(
+    "contentTitle"
+).textContent=
+    "What does the file contain?";
 
 
-        document
-        .getElementById("featureTitle")
-        .textContent=
-        "Premium Items";
+        document.getElementById(
+            "featureTitle"
+        ).textContent=
+            "Premium Items";
 
 
-        document
-        .getElementById("featureText")
-        .textContent=
-        "The file contains weapons, pistols and many different items. For inquiries or ordering, press the order button.";
+        document.getElementById(
+            "featureText"
+        ).textContent=
 
+"The file has everything you can imagine, including weapons and many other items. The current price is 50 EGP, so buy it before the price goes up to 80 EGP. 💥";
 
-        document
-        .getElementById("priceTitle")
-        .textContent=
-        "File Order Price";
+        document.getElementById(
+            "priceTitle"
+        ).textContent=
+            "File Order Price";
 
 
-        document
-        .getElementById("currencyText")
-        .textContent=
-        "EGP";
+        document.getElementById(
+            "currencyText"
+        ).textContent=
+            "EGP";
 
 
-        document
-        .getElementById("previewButton")
-        .textContent=
-        "🖼️ Preview File";
+        document.getElementById(
+            "previewButton"
+        ).textContent=
+            "🖼️ Preview File";
 
 
-        document
-        .getElementById("buyButton")
-        .textContent=
-        "🛒 Order File";
+        document.getElementById(
+            "buyButton"
+        ).textContent=
+            "🛒 Order File";
 
 
-        document
-        .getElementById("faqTitle")
-        .textContent=
-        "Frequently Asked Questions";
+        document.getElementById(
+            "faqTitle"
+        ).textContent=
+            "Frequently Asked Questions";
 
 
-        document
-        .getElementById("question1")
-        .textContent=
-        "How can I order the file?";
+        document.getElementById(
+            "question1"
+        ).textContent=
+            "How can I order the file?";
 
 
-        document
-        .getElementById("answer1")
-        .textContent=
-        "Press the Order File button, then you will be taken to WhatsApp to contact us.";
+        document.getElementById(
+            "answer1"
+        ).textContent=
+            "Press the Order File button, then you will be taken to WhatsApp to contact us.";
 
 
-        document
-        .getElementById("question2")
-        .textContent=
-        "How much does the file cost?";
+        document.getElementById(
+            "question2"
+        ).textContent=
+            "How much does the file cost?";
 
 
-        document
-        .getElementById("answer2")
-        .textContent=
-        "The current displayed price is 50 EGP.";
+        document.getElementById(
+            "answer2"
+        ).textContent=
+            "The current displayed price is 50 EGP.";
 
 
-        document
-        .getElementById("footerText")
-        .textContent=
-        "All rights reserved © 2026";
+        document.getElementById(
+            "footerText"
+        ).textContent=
+            "All rights reserved © 2026";
 
 
-        document
-        .getElementById("modalTitle")
-        .textContent=
-        "Confirm Order";
+        document.getElementById(
+            "modalTitle"
+        ).textContent=
+            "Confirm Order";
 
 
-        document
-        .getElementById("modalText")
-        .textContent=
-        "WhatsApp will be opened to contact us and order the file. Do you want to continue?";
+        document.getElementById(
+            "modalText"
+        ).textContent=
+            "WhatsApp will be opened to contact us and order the file. Do you want to continue?";
 
 
-        document
-        .getElementById("continueButton")
-        .textContent=
-        "Continue";
+        document.getElementById(
+            "continueButton"
+        ).textContent=
+            "Continue";
 
 
-        document
-        .getElementById("cancelButton")
-        .textContent=
-        "Cancel";
-
-
-
-        /* =========================
-           قوانين الموقع - English
-        ========================= */
-
-
-        document
-        .getElementById("rulesTitle")
-        .textContent=
-        "📜 Website Rules & Information";
-
-
-        document
-        .getElementById("ruleTitle1")
-        .textContent=
-        "1️⃣ File Purchase";
-
-
-        document
-        .getElementById("ruleText1")
-        .textContent=
-        "To purchase the file, press the Order File button. You will be taken to the developer's WhatsApp to purchase the file or ask any questions.";
-
-
-        document
-        .getElementById("ruleTitle2")
-        .textContent=
-        "2️⃣ File Price";
-
-
-        document
-        .getElementById("ruleText2")
-        .textContent=
-        "The file is currently 50 EGP. After a few days, the price will become 80 EGP. If you want to purchase it at the current price, you can order it now.";
-
-
-        document
-        .getElementById("ruleTitle3")
-        .textContent=
-        "3️⃣ File Preview";
-
-
-        document
-        .getElementById("ruleText3")
-        .textContent=
-        "You can press the Preview File button to view the file contents and images before ordering.";
-
-
-        document
-        .getElementById("ruleTitle4")
-        .textContent=
-        "4️⃣ Inquiries";
-
-
-        document
-        .getElementById("ruleText4")
-        .textContent=
-        "For any questions or additional information, you can contact the developer through WhatsApp.";
-
-
-        document
-        .getElementById("ruleTitle5")
-        .textContent=
-        "5️⃣ Important Notice";
-
-
-        document
-        .getElementById("ruleText5")
-        .textContent=
-        "Please make sure you understand the file details and price before completing your purchase.";
-
-
-        document
-        .getElementById("rulesButton")
-        .textContent=
-        "I Understand & Enter Website";
+        document.getElementById(
+            "cancelButton"
+        ).textContent=
+            "Cancel";
 
     }
 
     else{
 
         html.lang="ar";
+
         html.dir="rtl";
 
 
@@ -2876,7 +3283,6 @@ function setLanguage(language){
 }
 
 
-
 /* =========================
    تحميل الصفحة
 ========================= */
@@ -2887,30 +3293,29 @@ window.addEventListener(
 
     function(){
 
-
         saveArabicTexts();
 
 
         loadGallery();
 
 
-        const savedTheme=
-        localStorage.getItem(
-            "theme"
-        );
+        const savedTheme =
+            localStorage.getItem(
+                "theme"
+            );
 
 
-        const savedLanguage=
-        localStorage.getItem(
-            "language"
-        )
-        || "ar";
+        const savedLanguage =
+            localStorage.getItem(
+                "language"
+            )
+            || "ar";
 
 
-        const themeButton=
-        document.getElementById(
-            "themeToggle"
-        );
+        const themeButton =
+            document.getElementById(
+                "themeToggle"
+            );
 
 
         if(
@@ -2933,11 +3338,6 @@ window.addEventListener(
         }
 
 
-        /*
-           اللغة الافتراضية عربية
-           ولا يوجد كشف تلقائي للغة
-        */
-
         if(
             savedLanguage==="en"
         ){
@@ -2953,64 +3353,40 @@ window.addEventListener(
             document.documentElement.dir="rtl";
 
 
-            document
-            .getElementById(
+            document.getElementById(
                 "languageToggle"
-            )
-            .textContent="EN";
+            ).textContent="EN";
 
         }
 
 
         /*
-           نافذة القوانين تظهر مرة واحدة
-           بعد الضغط على دخول الموقع
+           القوانين عربية افتراضيًا
+           ولا تتأثر بلغة الموقع الأساسية.
         */
+
+        setRulesLanguage("ar");
+
+
+        /*
+           التأكد من عدم إظهار القوانين
+           تلقائيًا قبل الضغط على دخول الموقع.
+        */
+
+        document
+        .getElementById("rulesModal")
+        .style
+        .display="none";
+
+
+        document
+        .getElementById("main")
+        .style
+        .display="none";
 
     }
 
 );
-
-
-
-/* =========================
-   تعديل دخول الموقع
-========================= */
-
-const originalEnterSite = enterSite;
-
-
-enterSite = function(){
-
-    originalEnterSite();
-
-
-    const rulesAccepted=
-    localStorage.getItem(
-        "rulesAccepted"
-    );
-
-
-    if(
-        rulesAccepted!=="yes"
-    ){
-
-        setTimeout(
-
-            function(){
-
-                openRules();
-
-            },
-
-            250
-
-        );
-
-    }
-
-};
-
 
 
 /* =========================
@@ -3036,7 +3412,6 @@ document
 );
 
 
-
 /* =========================
    إغلاق نافذة القوانين
 ========================= */
@@ -3049,9 +3424,15 @@ document
 
     function(e){
 
+        /*
+           لا يتم إغلاق القوانين بالضغط
+           خارج النافذة، لازم المستخدم
+           يضغط زر "فهمت ودخول الموقع".
+        */
+
         if(e.target===this){
 
-            closeRules();
+            return;
 
         }
 
@@ -3059,9 +3440,7 @@ document
 
 );
 
-
 </script>
-
 
 </body>
 
