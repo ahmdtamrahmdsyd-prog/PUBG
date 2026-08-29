@@ -1,15 +1,48 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PUBG × NARUTO</title>
-
-<style>
+<title>PUBG × NARUTO</title><style>
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
+}
+
+:root{
+    --main1:#850000;
+    --main2:#350000;
+    --dark:#050505;
+    --box:#120000;
+    --topbar:#230000;
+    --section:#140000;
+    --gradient1:#650000;
+    --gradient2:#350000;
+    --gradient3:#100000;
+    --red:#ff2929;
+    --light:#ff4545;
+    --text:#d5baba;
+    --text2:#d1b5b5;
+    --border:rgba(255,50,50,.25);
+    --glow:rgba(255,0,0,.25);
+}
+
+body.blue-mode{
+    --main1:#002b85;
+    --main2:#001a52;
+    --dark:#030814;
+    --box:#020d24;
+    --topbar:#03132f;
+    --section:#041126;
+    --gradient1:#04245f;
+    --gradient2:#020f2d;
+    --gradient3:#010816;
+    --red:#238cff;
+    --light:#4ba5ff;
+    --text:#b8d1f2;
+    --text2:#aac6eb;
+    --border:rgba(50,140,255,.25);
+    --glow:rgba(0,110,255,.28);
 }
 
 body{
@@ -17,11 +50,12 @@ body{
     color:#fff;
     min-height:100vh;
     background:
-        radial-gradient(circle at 50% 0%,#850000,#350000 38%,#050505 82%);
+        radial-gradient(circle at 50% 0%,var(--main1),var(--main2) 38%,var(--dark) 82%);
     overflow-x:hidden;
+    transition:background .5s ease;
 }
 
-/* إضاءة متحركة */
+/* الإضاءة المتحركة */
 body::before,
 body::after{
     content:"";
@@ -29,10 +63,11 @@ body::after{
     width:360px;
     height:360px;
     border-radius:50%;
-    background:rgba(255,0,0,.17);
+    background:var(--glow);
     filter:blur(100px);
     z-index:-5;
     animation:lightMove 9s infinite alternate;
+    transition:.5s;
 }
 
 body::before{
@@ -66,9 +101,10 @@ body::after{
     width:4px;
     height:4px;
     border-radius:50%;
-    background:#ff3030;
-    box-shadow:0 0 15px #f00;
+    background:var(--red);
+    box-shadow:0 0 15px var(--red);
     animation:particleUp linear infinite;
+    transition:.5s;
 }
 
 @keyframes particleUp{
@@ -94,8 +130,13 @@ body::after{
     padding:18px;
     border-radius:28px;
     background:rgba(18,0,0,.92);
-    border:1px solid rgba(255,50,50,.3);
-    box-shadow:0 0 70px rgba(255,0,0,.25);
+    border:1px solid var(--border);
+    box-shadow:0 0 70px var(--glow);
+    transition:.5s;
+}
+
+body.blue-mode .welcome-box{
+    background:rgba(2,10,30,.92);
 }
 
 /* الغلاف */
@@ -106,151 +147,16 @@ body::after{
     overflow:hidden;
     border-radius:23px;
     margin-bottom:24px;
-
     background:
         radial-gradient(circle at 65% 40%,
         #ffb300 0%,
         #e13a00 18%,
-        #730000 42%,
-        #160000 80%);
-
-    border:1px solid rgba(255,100,30,.4);
+        var(--main1) 42%,
+        var(--dark) 80%);
+    border:1px solid var(--border);
     box-shadow:
         inset 0 0 80px rgba(0,0,0,.75),
-        0 0 40px rgba(255,0,0,.25);
-}
-
-/* ناروتو - رسم داخل الكود */
-.naruto{
-    position:absolute;
-    width:180px;
-    height:250px;
-    right:12%;
-    top:50%;
-    transform:translateY(-50%);
-}
-
-.head{
-    position:absolute;
-    width:85px;
-    height:90px;
-    left:45px;
-    top:48px;
-    background:#f2a06b;
-    border:3px solid #181818;
-    border-radius:45%;
-    z-index:3;
-}
-
-.hair{
-    position:absolute;
-    width:135px;
-    height:95px;
-    left:20px;
-    top:0;
-    background:#ffd21a;
-    clip-path:polygon(
-        0 70%,10% 25%,25% 55%,31% 0,
-        45% 45%,58% 3%,70% 48%,85% 10%,
-        100% 63%,84% 80%,62% 68%,43% 86%,
-        20% 74%
-    );
-    z-index:5;
-}
-
-.band{
-    position:absolute;
-    width:91px;
-    height:17px;
-    left:42px;
-    top:68px;
-    background:#242424;
-    z-index:7;
-}
-
-.band::after{
-    content:"";
-    position:absolute;
-    left:34px;
-    top:2px;
-    width:22px;
-    height:10px;
-    border:2px solid #aaa;
-}
-
-.eye{
-    position:absolute;
-    top:98px;
-    width:10px;
-    height:5px;
-    background:#111;
-    z-index:8;
-}
-
-.eye1{left:62px}
-.eye2{left:101px}
-
-.body-n{
-    position:absolute;
-    width:120px;
-    height:115px;
-    left:27px;
-    top:130px;
-    background:#ed7118;
-    border:4px solid #222;
-    border-radius:27px 27px 12px 12px;
-}
-
-/* شعار اللعبة */
-.pubg{
-    position:absolute;
-    left:9%;
-    top:40%;
-    font-size:47px;
-    font-weight:900;
-    font-style:italic;
-    color:#fff;
-    z-index:10;
-    text-shadow:
-        4px 4px 0 #000,
-        0 0 18px #f00,
-        0 0 40px #f00;
-}
-
-.collab{
-    position:absolute;
-    bottom:22px;
-    left:50%;
-    transform:translateX(-50%);
-    white-space:nowrap;
-    color:#ffe0a0;
-    font-weight:bold;
-    font-size:18px;
-    z-index:15;
-    text-shadow:0 0 15px #f00;
-}
-
-/* لمعة */
-.shine{
-    position:absolute;
-    width:42%;
-    height:130%;
-    top:-15%;
-    left:-100%;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.2),
-        transparent
-    );
-    transform:skewX(-20deg);
-    animation:shine 4s infinite;
-    z-index:30;
-}
-
-@keyframes shine{
-    0%{left:-100%}
-    45%,100%{left:140%}
+        0 0 40px var(--glow);
 }
 
 .welcome-box h1{
@@ -259,7 +165,7 @@ body::after{
 }
 
 .welcome-box p{
-    color:#d5baba;
+    color:var(--text);
     line-height:2;
     margin-bottom:25px;
 }
@@ -276,7 +182,7 @@ button{
 
 button:hover{
     transform:translateY(-3px);
-    box-shadow:0 12px 35px rgba(255,0,0,.45);
+    box-shadow:0 12px 35px var(--glow);
 }
 
 .enter{
@@ -284,7 +190,7 @@ button:hover{
     max-width:300px;
     padding:16px;
     font-size:18px;
-    background:linear-gradient(135deg,#ff2929,#850000);
+    background:linear-gradient(135deg,var(--red),var(--main1));
 }
 
 /* الموقع */
@@ -299,11 +205,16 @@ button:hover{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:17px 20px;
+    padding:14px 16px;
     margin-bottom:15px;
     border-radius:18px;
     background:rgba(35,0,0,.85);
-    border:1px solid rgba(255,50,50,.22);
+    border:1px solid var(--border);
+    transition:.5s;
+}
+
+body.blue-mode .topbar{
+    background:rgba(3,18,50,.88);
 }
 
 .brand{
@@ -311,23 +222,52 @@ button:hover{
     font-weight:bold;
 }
 
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
 .status{
-    color:#ff6969;
+    color:var(--light);
     font-size:13px;
 }
 
+/* زر الليل والنهار الجديد */
+.theme-toggle{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:11px;
+    font-size:18px;
+    background:rgba(0,0,0,.25);
+    border:1px solid var(--border);
+    box-shadow:none;
+}
+
+.theme-toggle:hover{
+    transform:scale(1.06);
+    box-shadow:0 0 18px var(--glow);
+}
+
+/* شريط التنبيه */
 .notice{
     overflow:hidden;
-    background:#650000;
-    border:1px solid rgba(255,50,50,.25);
+    background:var(--gradient1);
+    border:1px solid var(--border);
     border-radius:12px;
     margin-bottom:20px;
+    transition:.5s;
 }
 
 .notice-text{
     white-space:nowrap;
     padding:12px;
-    color:#ffd0d0;
+    color:var(--text);
     animation:marquee 13s linear infinite;
 }
 
@@ -336,7 +276,7 @@ button:hover{
     to{transform:translateX(-100%)}
 }
 
-/* صورة رئيسية */
+/* الصورة الرئيسية */
 .hero-image{
     height:430px;
     border-radius:27px;
@@ -346,23 +286,15 @@ button:hover{
     align-items:center;
     justify-content:center;
     margin-bottom:25px;
-    background:radial-gradient(circle,#800000,#260000 60%,#080000);
-    border:1px solid rgba(255,50,50,.35);
-    box-shadow:0 0 65px rgba(255,0,0,.25);
+    background:radial-gradient(circle,var(--main1),var(--main2) 60%,var(--dark));
+    border:1px solid var(--border);
+    box-shadow:0 0 65px var(--glow);
 }
 
 .hero-image .cover{
     width:90%;
     height:88%;
     margin:0;
-}
-
-.hero-image .naruto{
-    transform:translateY(-50%) scale(1.25);
-}
-
-.hero-image .pubg{
-    font-size:58px;
 }
 
 .hero-label{
@@ -382,11 +314,19 @@ button:hover{
     border-radius:23px;
     background:linear-gradient(
         145deg,
-        rgba(100,0,0,.5),
-        rgba(20,0,0,.9)
+        rgba(130,0,0,.35),
+        var(--gradient3)
     );
-    border:1px solid rgba(255,30,30,.22);
+    border:1px solid var(--border);
     margin-bottom:25px;
+}
+
+body.blue-mode .hero{
+    background:linear-gradient(
+        145deg,
+        rgba(0,80,190,.35),
+        var(--gradient3)
+    );
 }
 
 .hero h2{
@@ -395,7 +335,7 @@ button:hover{
 }
 
 .hero p{
-    color:#d5baba;
+    color:var(--text);
     line-height:2;
 }
 
@@ -404,9 +344,14 @@ button:hover{
     padding:25px;
     border-radius:22px;
     background:rgba(20,0,0,.82);
-    border:1px solid rgba(255,40,40,.2);
-    box-shadow:0 0 30px rgba(255,0,0,.08);
+    border:1px solid var(--border);
+    box-shadow:0 0 30px var(--glow);
     margin-bottom:25px;
+    transition:.5s;
+}
+
+body.blue-mode .section{
+    background:rgba(4,17,38,.88);
 }
 
 .section-title{
@@ -422,7 +367,16 @@ button:hover{
         rgba(110,0,0,.3),
         rgba(35,0,0,.5)
     );
-    border:1px solid rgba(255,50,50,.17);
+    border:1px solid var(--border);
+    transition:.5s;
+}
+
+body.blue-mode .feature{
+    background:linear-gradient(
+        145deg,
+        rgba(0,70,180,.32),
+        rgba(0,15,55,.55)
+    );
 }
 
 .feature-icon{
@@ -437,7 +391,7 @@ button:hover{
 }
 
 .feature-text{
-    color:#d1b5b5;
+    color:var(--text2);
     font-size:15px;
     line-height:2;
 }
@@ -450,23 +404,31 @@ button:hover{
     background:linear-gradient(
         145deg,
         rgba(120,0,0,.5),
-        rgba(25,0,0,.9)
+        var(--gradient3)
     );
-    border:1px solid rgba(255,40,40,.3);
+    border:1px solid var(--border);
+    transition:.5s;
+}
+
+body.blue-mode .price-box{
+    background:linear-gradient(
+        145deg,
+        rgba(0,70,180,.5),
+        var(--gradient3)
+    );
 }
 
 .price-small{
-    color:#c8aaaa;
+    color:var(--text);
     margin-bottom:8px;
 }
 
 .price{
     font-size:45px;
     font-weight:bold;
-    color:#ff4545;
-    text-shadow:0 0 22px rgba(255,0,0,.5);
+    color:var(--light);
+    text-shadow:0 0 22px var(--glow);
     margin-bottom:28px;
-
     display:flex;
     justify-content:center;
     align-items:center;
@@ -496,12 +458,12 @@ button:hover{
     max-width:450px;
     padding:16px;
     font-size:19px;
-    background:linear-gradient(135deg,#ff2929,#920000);
+    background:linear-gradient(135deg,var(--red),var(--main1));
 }
 
 /* الأسئلة */
 .faq{
-    border-top:1px solid rgba(255,50,50,.15);
+    border-top:1px solid var(--border);
 }
 
 .question{
@@ -521,7 +483,7 @@ button:hover{
 
 .answer{
     display:none;
-    color:#bda5a5;
+    color:var(--text2);
     line-height:1.9;
     padding:0 5px 18px;
 }
@@ -532,12 +494,13 @@ button:hover{
 
 footer{
     text-align:center;
-    color:#705b5b;
+    color:var(--text);
+    opacity:.6;
     font-size:13px;
     margin-top:30px;
 }
 
-/* النافذة */
+/* نافذة الطلب */
 .modal{
     position:fixed;
     inset:0;
@@ -556,9 +519,9 @@ footer{
     padding:30px 25px;
     text-align:center;
     border-radius:23px;
-    background:linear-gradient(145deg,#350000,#100000);
-    border:1px solid rgba(255,50,50,.3);
-    box-shadow:0 0 50px rgba(255,0,0,.3);
+    background:linear-gradient(145deg,var(--gradient2),var(--gradient3));
+    border:1px solid var(--border);
+    box-shadow:0 0 50px var(--glow);
 }
 
 .modal-box h3{
@@ -567,7 +530,7 @@ footer{
 }
 
 .modal-box p{
-    color:#c9adad;
+    color:var(--text);
     line-height:1.8;
     margin-bottom:22px;
 }
@@ -580,41 +543,21 @@ footer{
 .modal-buttons button{
     flex:1;
     padding:14px;
-    background:linear-gradient(135deg,#ff2929,#920000);
+    background:linear-gradient(135deg,var(--red),var(--main1));
 }
 
 .cancel{
-    background:#300909!important;
+    background:var(--gradient3)!important;
 }
 
-/* الهاتف */
 @media(max-width:600px){
 
     .cover{
         height:230px;
     }
 
-    .pubg{
-        font-size:31px;
-        left:6%;
-    }
-
-    .naruto{
-        transform:translateY(-50%) scale(.78);
-        right:0;
-    }
-
     .hero-image{
         height:300px;
-    }
-
-    .hero-image .pubg{
-        font-size:38px;
-    }
-
-    .hero-image .naruto{
-        transform:translateY(-50%) scale(.9);
-        right:-5%;
     }
 
     .price{
@@ -624,13 +567,24 @@ footer{
     .welcome-box h1{
         font-size:26px;
     }
+
+    .topbar{
+        padding:12px 13px;
+    }
+
+    .theme-toggle{
+        width:35px;
+        height:35px;
+        min-width:35px;
+        font-size:16px;
+        border-radius:10px;
+    }
+
+    .topbar-left{
+        gap:7px;
+    }
 }
-</style>
-</head>
-
-<body>
-
-<div class="particles">
+</style></head><body><div class="particles">
     <span class="particle" style="left:5%;animation-duration:8s"></span>
     <span class="particle" style="left:15%;animation-duration:11s"></span>
     <span class="particle" style="left:27%;animation-duration:9s"></span>
@@ -639,219 +593,173 @@ footer{
     <span class="particle" style="left:68%;animation-duration:12s"></span>
     <span class="particle" style="left:82%;animation-duration:9s"></span>
     <span class="particle" style="left:94%;animation-duration:11s"></span>
+</div><section id="welcome"><div class="welcome-box">
+
+    <div class="cover">
+        <img src="naruto-pubg.jpg" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+
+    <h1>ملف PUBG المميز</h1>
+
+    <p>
+        استكشف محتويات الملف وتعرّف على التفاصيل
+        قبل طلب الملف.
+    </p>
+
+    <button class="enter" onclick="enterSite()">
+        دخول الموقع
+    </button>
+
 </div>
 
+</section><main id="main"><div class="topbar">
 
-<!-- البداية -->
+    <div class="brand">PUBG FILE</div>
 
-<section id="welcome">
+    <div class="topbar-left">
+        <div class="status">● متاح للطلب</div>
 
-    <div class="welcome-box">
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="تغيير الوضع">
+            🌙
+        </button>
+    </div>
 
-        <div class="cover">
+</div>
 
-     <img src="naruto-pubg.jpg"
-style="width:100%;height:100%;object-fit:cover;">
+<div class="notice">
+    <div class="notice-text">
+        ✦ الطلب متاح الآن — يمكنك التعرف على التفاصيل ثم التواصل لطلب الملف ✦
+    </div>
+</div>
 
+<div class="hero-image">
+
+    <div class="cover">
+        <img src="naruto-pubg.jpg" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+
+    <div class="hero-label">
+        PUBG MOBILE × Naruto
+    </div>
+
+</div>
+
+<section class="hero">
+
+    <h2>ملف PUBG المميز</h2>
+
+    <p>
+        عرض منظم لمحتويات الملف والمظاهر والعناصر
+        المتنوعة، مع واجهة سهلة وسريعة الاستخدام.
+    </p>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        ماذا يحتوي الملف؟
+    </div>
+
+    <div class="feature">
+
+        <div class="feature-icon">⭐</div>
+
+        <div class="feature-title">
+            عناصر مميزة
         </div>
 
-        <h1>
-            ملف PUBG المميز
-        </h1>
+        <div class="feature-text">
+            الملف فيه اسلحه مسك ومسدسات مسك وفي كل حاجه تتخيلها الاستفسار او طلب الملف دوس طلب الملف
+        </div>
 
-        <p>
-            استكشف محتويات الملف وتعرّف على التفاصيل
-            قبل طلب الملف.
-        </p>
+    </div>
 
-        <button class="enter" onclick="enterSite()">
-            دخول الموقع
+</section>
+
+<section class="section">
+
+    <div class="price-box">
+
+        <div class="price-small">
+            سعر طلب الملف
+        </div>
+
+        <div class="price">
+            <span class="price-number">50</span>
+            <span class="price-currency">جنيه</span>
+        </div>
+
+        <button class="buy" onclick="openModal()">
+            🛒 طلب الملف
         </button>
 
     </div>
 
 </section>
 
+<section class="section">
 
-<!-- الموقع -->
-
-<main id="main">
-
-    <div class="topbar">
-        <div class="brand">PUBG FILE</div>
-        <div class="status">● متاح للطلب</div>
+    <div class="section-title">
+        الأسئلة الشائعة
     </div>
 
+    <div class="faq">
 
-    <div class="notice">
-        <div class="notice-text">
-            ✦ الطلب متاح الآن — يمكنك التعرف على التفاصيل ثم التواصل لطلب الملف ✦
-        </div>
-    </div>
+        <button class="question" onclick="toggleFAQ(this)">
+            ما طريقة طلب الملف؟
+            <span>＋</span>
+        </button>
 
-
-    <!-- الصورة الرئيسية -->
-
-    <div class="hero-image">
-
-        <div class="cover">
-
- <img src="naruto-pubg.jpg"
-style="width:100%;height:100%;object-fit:cover;">
- 
-        </div>
-
-        <div class="hero-label">
-            PUBG MOBILE × Naruto
+        <div class="answer">
+            اضغط على زر «طلب الملف» ثم انتقل إلى وتساب للتواصل.
         </div>
 
     </div>
 
+    <div class="faq">
 
-    <section class="hero">
+        <button class="question" onclick="toggleFAQ(this)">
+            كم سعر الملف؟
+            <span>＋</span>
+        </button>
 
-        <h2>
-            ملف PUBG المميز
-        </h2>
-
-        <p>
-            عرض منظم لمحتويات الملف والمظاهر والعناصر
-            المتنوعة، مع واجهة سهلة وسريعة الاستخدام.
-        </p>
-
-    </section>
-
-
-    <!-- العناصر المميزة -->
-
-    <section class="section">
-
-        <div class="section-title">
-            ماذا يحتوي الملف؟
+        <div class="answer">
+            السعر المعروض حاليًا هو 50 جنيه.
         </div>
 
-        <div class="feature">
+    </div>
 
-            <div class="feature-icon">
-                ⭐
-            </div>
+</section>
 
-            <div class="feature-title">
-                عناصر مميزة
-            </div>
+<footer>
+    جميع الحقوق محفوظة © 2026
+</footer>
 
-            <div class="feature-text">
-              الملف فيه اسلحه مسك ومسدسات مسك وفي كل حاجه تتخيلها الاستفسار او طلب الملف دوس طلب الملف
-            </div>
+</main><div class="modal" id="modal"><div class="modal-box">
 
-        </div>
+    <h3>تأكيد الطلب</h3>
 
-    </section>
+    <p>
+        سيتم فتح واتساب للتواصل وطلب الملف.
+        هل تريد المتابعة؟
+    </p>
 
+    <div class="modal-buttons">
 
-    <!-- السعر -->
+        <button onclick="goWhatsApp()">
+            متابعة
+        </button>
 
-    <section class="section">
+        <button class="cancel" onclick="closeModal()">
+            إلغاء
+        </button>
 
-        <div class="price-box">
-
-            <div class="price-small">
-                سعر طلب الملف
-            </div>
-            
- <div class="price">
-    <span class="price-number">50</span>
-    <span class="price-currency">جنيه</span>
-</div>
-
-            <button class="buy" onclick="openModal()">
-                🛒 طلب الملف
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- الأسئلة -->
-
-    <section class="section">
-
-        <div class="section-title">
-            الأسئلة الشائعة
-        </div>
-
-        <div class="faq">
-
-            <button class="question" onclick="toggleFAQ(this)">
-                ما طريقة طلب الملف؟
-                <span>＋</span>
-            </button>
-
-            <div class="answer">
-                اضغط على زر «طلب الملف» ثم انتقل إلى وتساب للتواصل.
-            </div>
-
-        </div>
-
-
-        <div class="faq">
-
-            <button class="question" onclick="toggleFAQ(this)">
-                كم سعر الملف؟
-                <span>＋</span>
-            </button>
-
-            <div class="answer">
-                السعر المعروض حاليًا هو 50 جنيه.
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <footer>
-        جميع الحقوق محفوظة © 2026
-    </footer>
-
-</main>
-
-
-<!-- نافذة الطلب -->
-
-<div class="modal" id="modal">
-
-    <div class="modal-box">
-
-        <h3>
-            تأكيد الطلب
-        </h3>
-
-        <p>سيتم فتح واتساب للتواصل
-        
-         وطلب الملف.
-هل تريد المتابعة؟
-        </p>
-
-   <div class="modal-buttons">
-
-    <button onclick="goWhatsApp()">
-        متابعة
-    </button>
-
-    <button class="cancel" onclick="closeModal()">
-        إلغاء
-    </button>
-
-</div>
-   
     </div>
 
 </div>
 
-
-<script>
+</div><script>
 
 function enterSite(){
 
@@ -864,7 +772,6 @@ function enterSite(){
     });
 
 }
-
 
 function toggleFAQ(button){
 
@@ -885,20 +792,13 @@ function toggleFAQ(button){
 
 }
 
-
 function openModal(){
-
     document.getElementById("modal").style.display="flex";
-
 }
-
 
 function closeModal(){
-
     document.getElementById("modal").style.display="none";
-
 }
-
 
 function goWhatsApp(){
 
@@ -911,6 +811,42 @@ function goWhatsApp(){
 
 }
 
+/* تغيير الوضع */
+function toggleTheme(){
+
+    const body=document.body;
+    const button=document.getElementById("themeToggle");
+
+    body.classList.toggle("blue-mode");
+
+    if(body.classList.contains("blue-mode")){
+
+        button.textContent="☀️";
+        localStorage.setItem("theme","blue");
+
+    }else{
+
+        button.textContent="🌙";
+        localStorage.setItem("theme","red");
+
+    }
+
+}
+
+/* حفظ آخر وضع */
+window.addEventListener("DOMContentLoaded",function(){
+
+    const savedTheme=localStorage.getItem("theme");
+    const button=document.getElementById("themeToggle");
+
+    if(savedTheme==="blue"){
+
+        document.body.classList.add("blue-mode");
+        button.textContent="☀️";
+
+    }
+
+});
 
 document.getElementById("modal").addEventListener(
     "click",
@@ -926,7 +862,5 @@ document.getElementById("modal").addEventListener(
 </script>
 
 </body>
+
 </html>
-
-
- 
