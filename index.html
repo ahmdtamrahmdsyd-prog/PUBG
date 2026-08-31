@@ -2528,7 +2528,16 @@ The website will be completely updated soon with new features. 🔥
    الدخول للموقع
 ========================= */
 
-function enterSite(){
+async function enterSite(){
+
+    // التحقق من الإنترنت الحقيقي قبل الدخول وتشغيل الأغنية
+    if (typeof window.hasRealInternet === "function") {
+        const connected = await window.hasRealInternet();
+        if (!connected) {
+            window.showOffline();
+            return;
+        }
+    }
 
     // تشغيل موسيقى الموقع عند الضغط على دخول الموقع
     const siteMusic = document.getElementById("siteMusic");
@@ -3649,7 +3658,7 @@ document
     <div class="offline-box">
         <div class="offline-icon">📡</div>
         <h1>لا يوجد اتصال بالإنترنت</h1>
-        <p>يبدو أن اتصالك بالإنترنت انقطع.<br>سيتم استعادة الموقع تلقائيًا عند عودة الاتصال.</p>
+        <p>اتصال البيانات أو الواي فاي موجود، لكن لا يوجد إنترنت فعلي.<br>عند عودة الإنترنت يمكنك الدخول مرة أخرى.</p>
         <div class="offline-status">🔴 غير متصل بالإنترنت</div>
         <div class="offline-loading"></div>
     </div>
@@ -3657,18 +3666,114 @@ document
 
 <script>
 (function () {
+
     const offlineScreen = document.getElementById("offlineScreen");
+    const welcome = document.getElementById("welcome");
+    const main = document.getElementById("main");
+    const rulesModal = document.getElementById("rulesModal");
+    let insideSite = false;
+    let checking = false;
+
     function showOffline() {
-        offlineScreen.classList.add("show");
+        const music = document.getElementById("siteMusic");
+
+        if (music) {
+            music.pause();
+            music.currentTime = 0;
+        }
+
+        if (main) main.style.display = "none";
+        if (rulesModal) rulesModal.style.display = "none";
+        if (welcome) welcome.style.display = "flex";
+        if (offlineScreen) offlineScreen.classList.add("show");
+
         document.body.style.overflow = "hidden";
     }
-    function hideOffline() {
-        offlineScreen.classList.remove("show");
+
+    function showLogin() {
+        if (main) main.style.display = "none";
+        if (rulesModal) rulesModal.style.display = "none";
+        if (welcome) welcome.style.display = "flex";
+        if (offlineScreen) offlineScreen.classList.remove("show");
         document.body.style.overflow = "";
     }
-    window.addEventListener("offline", showOffline);
-    window.addEventListener("online", hideOffline);
-    if (!navigator.onLine) showOffline();
+
+    /*
+     * فحص الإنترنت الحقيقي.
+     * navigator.onLine وحده لا يكفي؛ لذلك نحاول الوصول
+     * إلى خادم إنترنت فعلي بدون الاعتماد على ملفات الموقع.
+     */
+    async function hasRealInternet() {
+        if (!navigator.onLine) return false;
+
+        const tests = [
+            "https://www.gstatic.com/generate_204",
+            "https://connectivitycheck.gstatic.com/generate_204"
+        ];
+
+        for (const url of tests) {
+            try {
+                await fetch(url + "?t=" + Date.now(), {
+                    method: "GET",
+                    mode: "no-cors",
+                    cache: "no-store"
+                });
+                return true;
+            } catch (e) {}
+        }
+
+        return false;
+    }
+
+    window.hasRealInternet = hasRealInternet;
+    window.showOffline = showOffline;
+
+    async function checkConnection() {
+        if (checking) return;
+        checking = true;
+
+        const connected = await hasRealInternet();
+        checking = false;
+
+        if (!connected) {
+            if (insideSite) showOffline();
+            return;
+        }
+
+        if (offlineScreen && offlineScreen.classList.contains("show")) {
+            showLogin();
+        }
+    }
+
+    /* فحص دوري للاتصال الحقيقي كل 5 ثوانٍ. */
+    setInterval(checkConnection, 5000);
+
+    /* انقطاع الشبكة الذي يكتشفه الجهاز. */
+    window.addEventListener("offline", function () {
+        if (insideSite) showOffline();
+    });
+
+    /* رجوع الشبكة: نتحقق من الإنترنت الحقيقي ولا ندخل تلقائيًا. */
+    window.addEventListener("online", function () {
+        checkConnection();
+    });
+
+    /*
+     * نعرف أن المستخدم دخل الموقع بعد نجاح الفحص.
+     * هذا المستمع يعمل في مرحلة الالتقاط قبل onclick الأصلي.
+     */
+    const enterButton = document.getElementById("enterButton");
+    if (enterButton) {
+        enterButton.addEventListener("click", function () {
+            insideSite = true;
+        }, true);
+    }
+
+    /* لا نعرض شاشة الانقطاع عند فتح الصفحة إلا إذا كان الإنترنت فعلاً غير متاح. */
+    window.addEventListener("DOMContentLoaded", function () {
+        checkConnection();
+    });
+
 })();
 </script>
 
