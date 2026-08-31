@@ -3723,6 +3723,107 @@ document
     }
 
 })();
+
+<!-- ===== Smart Internet Interaction ===== -->
+<script>
+(function () {
+
+    let internetDelay = 0;
+
+    function detectInternetSpeed() {
+
+        const connection =
+            navigator.connection ||
+            navigator.mozConnection ||
+            navigator.webkitConnection;
+
+        if (!connection) {
+            internetDelay = 0;
+            return;
+        }
+
+        const speed = connection.effectiveType;
+
+        if (speed === "slow-2g") {
+            internetDelay = 1800;
+        }
+        else if (speed === "2g") {
+            internetDelay = 1200;
+        }
+        else if (speed === "3g") {
+            internetDelay = 500;
+        }
+        else if (speed === "4g") {
+            internetDelay = 0;
+        }
+        else {
+            internetDelay = 0;
+        }
+    }
+
+    detectInternetSpeed();
+
+    const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+
+    if (connection) {
+        connection.addEventListener("change", detectInternetSpeed);
+    }
+
+    /*
+      أي زر أو رابط عليه:
+      class="smart-button"
+      سيستجيب حسب سرعة الإنترنت
+    */
+
+    document.addEventListener("click", function (event) {
+
+        const button = event.target.closest(".smart-button");
+
+        if (!button) return;
+
+        // منع الضغط المتكرر
+        if (button.dataset.loading === "true") {
+            event.preventDefault();
+            return;
+        }
+
+        if (internetDelay <= 0) return;
+
+        event.preventDefault();
+
+        button.dataset.loading = "true";
+
+        const oldText = button.innerHTML;
+
+        button.innerHTML = "⏳ جاري التحميل...";
+
+        setTimeout(function () {
+
+            button.innerHTML = oldText;
+            button.dataset.loading = "false";
+
+            // تنفيذ الرابط بعد التأخير
+            const link = button.getAttribute("href");
+
+            if (link) {
+                window.location.href = link;
+            }
+
+            // تنفيذ onclick الموجود
+            if (typeof button._smartAction === "function") {
+                button._smartAction();
+            }
+
+        }, internetDelay);
+
+    });
+
+})();
+</script>
+
 </script>
 
 </html>
