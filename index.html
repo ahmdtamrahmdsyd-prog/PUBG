@@ -119,6 +119,48 @@ content="width=device-width, initial-scale=1.0">
 
 }
 
+.hero h2{
+
+filter:drop-shadow(0 0 8px rgba(255,200,0,.5));
+
+    background:linear-gradient(
+        90deg,
+        #ffcc00,
+        #ff5500,
+        #ff0000,
+        #ffcc00
+    );
+
+    background-size:300% 100%;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:titleMove 4s linear infinite;
+}
+
+@keyframes titleMove{
+    0%{
+        background-position:0% 50%;
+    }
+
+    100%{
+        background-position:300% 50%;
+    }
+}
+
+.hero-image img{
+animation:zoomEffect 8s infinite alternate;
+}
+
+@keyframes zoomEffect{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.08);
+}
+}
 
 html.blue-mode{
 
