@@ -3573,4 +3573,156 @@ document
 
 </body>
 
+<!-- ===== Offline Screen ===== -->
+<style>
+    #offlineScreen {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background:
+            radial-gradient(circle at center, rgba(180, 0, 0, 0.15), transparent 45%),
+            #090909;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+
+    #offlineScreen.show {
+        display: flex;
+    }
+
+    .offline-box {
+        width: min(420px, 90%);
+        padding: 35px 25px;
+        border: 1px solid rgba(255, 0, 0, 0.35);
+        border-radius: 20px;
+        background: rgba(25, 0, 0, 0.75);
+        box-shadow: 0 0 35px rgba(180, 0, 0, 0.25);
+        animation: offlineAppear .3s ease;
+    }
+
+    .offline-icon {
+        width: 90px;
+        height: 90px;
+        margin: auto;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 45px;
+        background: rgba(180, 0, 0, 0.12);
+        border: 2px solid #8b0000;
+        box-shadow: 0 0 25px rgba(180, 0, 0, 0.35);
+    }
+
+    .offline-box h1 {
+        margin: 22px 0 10px;
+        font-size: 27px;
+    }
+
+    .offline-box p {
+        margin: 0;
+        color: #bbb;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .offline-status {
+        margin-top: 22px;
+        display: inline-block;
+        padding: 9px 18px;
+        border-radius: 30px;
+        background: rgba(180, 0, 0, 0.15);
+        color: #ff6b6b;
+        font-size: 14px;
+    }
+
+    .offline-loading {
+        margin: 20px auto 0;
+        width: 25px;
+        height: 25px;
+        border: 3px solid rgba(255,255,255,.15);
+        border-top-color: #b00000;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes offlineAppear {
+        from {
+            opacity: 0;
+            transform: scale(.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
+<div id="offlineScreen">
+    <div class="offline-box">
+
+        <div class="offline-icon">
+            📡
+        </div>
+
+        <h1>لا يوجد اتصال بالإنترنت</h1>
+
+        <p>
+            يبدو أن اتصالك بالإنترنت انقطع.<br>
+            سيتم استعادة الموقع تلقائيًا عند عودة الاتصال.
+        </p>
+
+        <div class="offline-status">
+            🔴 غير متصل بالإنترنت
+        </div>
+
+        <div class="offline-loading"></div>
+
+    </div>
+</div>
+
+<script>
+(function () {
+
+    const offlineScreen = document.getElementById("offlineScreen");
+
+    function showOffline() {
+        offlineScreen.classList.add("show");
+        document.body.style.overflow = "hidden";
+    }
+
+    function hideOffline() {
+        offlineScreen.classList.remove("show");
+        document.body.style.overflow = "";
+    }
+
+    // عند انقطاع الإنترنت
+    window.addEventListener("offline", function () {
+        showOffline();
+    });
+
+    // عند رجوع الإنترنت
+    window.addEventListener("online", function () {
+        hideOffline();
+    });
+
+    // فحص حالة الإنترنت عند فتح الموقع
+    if (!navigator.onLine) {
+        showOffline();
+    }
+
+})();
+</script>
+
 </html>
