@@ -2541,13 +2541,13 @@ The website will be completely updated soon with new features. 🔥
 
 async function enterSite(){
 
-    // التحقق من الإنترنت الحقيقي قبل الدخول وتشغيل الأغنية
-    if (typeof window.hasRealInternet === "function") {
-        const connected = await window.hasRealInternet();
-        if (!connected) {
+    // الدخول لا ينتظر فحص الإنترنت حتى مع الشبكة الضعيفة.
+    // إذا كان الجهاز يعلن أنه بلا شبكة أصلًا، نمنع الدخول فقط في هذه الحالة.
+    if (navigator.onLine === false) {
+        if (typeof window.showOffline === "function") {
             window.showOffline();
-            return;
         }
+        return;
     }
 
     // تشغيل موسيقى الموقع عند الضغط على دخول الموقع
@@ -3774,30 +3774,52 @@ document
     }
 
     /*
-     * فحص الإنترنت الحقيقي.
-     * navigator.onLine وحده لا يكفي؛ لذلك نحاول الوصول
-     * إلى خادم إنترنت فعلي بدون الاعتماد على ملفات الموقع.
+     * فحص الاتصال الحقيقي في الخلفية فقط.
+     * لا نوقف الموقع بسبب بطء الإنترنت: نجاح أي نقطة اتصال يكفي،
+     * ولا نعرض واجهة الانقطاع إلا بعد فشل عدة محاولات متتالية.
      */
-    async function hasRealInternet() {
-        if (!navigator.onLine) return false;
+    let failedChecks = 0;
 
-        const tests = [
-            "https://www.gstatic.com/generate_204",
-            "https://connectivitycheck.gstatic.com/generate_204"
+    async function hasRealInternet() {
+        // إذا الجهاز نفسه يقول إنه غير متصل، فالإنترنت غير متاح.
+        if (navigator.onLine === false) return false;
+
+        const stamp = Date.now();
+
+        // نختبر اتصالًا حقيقيًا سريعًا. نجاح أي اختبار يعني أن الإنترنت موجود،
+        // حتى لو كانت السرعة ضعيفة جدًا. عدم النجاح لا يعني انقطاعًا من أول مرة؛
+        // checkConnection يحتاج عدة محاولات متتالية قبل إظهار واجهة الانقطاع.
+        const endpoints = [
+            window.location.href.split('#')[0].split('?')[0] + '?connection_test=' + stamp,
+            'https://www.gstatic.com/generate_204?check=' + stamp,
+            'https://www.google.com/generate_204?check=' + stamp
         ];
 
-        for (const url of tests) {
-            try {
-                await fetch(url + "?t=" + Date.now(), {
-                    method: "GET",
-                    mode: "no-cors",
-                    cache: "no-store"
-                });
-                return true;
-            } catch (e) {}
-        }
+        const tests = endpoints.map(function (url, index) {
+            const controller = new AbortController();
+            const timer = setTimeout(function () {
+                controller.abort();
+            }, index === 0 ? 2500 : 3500);
 
-        return false;
+            return fetch(url, {
+                method: 'GET',
+                mode: index === 0 ? 'same-origin' : 'no-cors',
+                cache: 'no-store',
+                credentials: index === 0 ? 'same-origin' : 'omit',
+                signal: controller.signal
+            }).then(function (response) {
+                clearTimeout(timer);
+                // الاختبار الخارجي no-cors يعطي opaque response؛ وصول الطلب
+                // بنجاح يكفي لإثبات وجود اتصال بالشبكة.
+                return index === 0 ? response.ok : true;
+            }).catch(function () {
+                clearTimeout(timer);
+                return false;
+            });
+        });
+
+        const results = await Promise.all(tests);
+        return results.some(function (result) { return result === true; });
     }
 
     window.hasRealInternet = hasRealInternet;
@@ -3811,32 +3833,43 @@ document
         checking = false;
 
         if (!connected) {
-            if (insideSite) showOffline();
+            failedChecks++;
+
+            // لا نعتبر النت الضعيف انقطاعًا من أول محاولة.
+            // نحتاج 3 فحوص فاشلة متتالية.
+            if (failedChecks < 3) return;
+
+            if (insideSite) {
+                showOffline();
+            }
             return;
         }
+
+        failedChecks = 0;
 
         if (offlineScreen && offlineScreen.classList.contains("show")) {
             showLogin();
         }
     }
 
-    /* فحص دوري للاتصال الحقيقي كل 5 ثوانٍ. */
-    setInterval(checkConnection, 5000);
+    // الفحص في الخلفية فقط أثناء وجود المستخدم داخل الموقع.
+    // لا يوجد فحص عند فتح صفحة الدخول حتى لا يؤخر الدخول أو يمنعه مع النت الضعيف.
+    setInterval(function () {
+        if (insideSite) checkConnection();
+    }, 1500);
 
-    /* انقطاع الشبكة الذي يكتشفه الجهاز. */
     window.addEventListener("offline", function () {
+        failedChecks = 3;
         if (insideSite) showOffline();
     });
 
-    /* رجوع الشبكة: نتحقق من الإنترنت الحقيقي ولا ندخل تلقائيًا. */
     window.addEventListener("online", function () {
-        checkConnection();
+        failedChecks = 0;
+        if (insideSite) checkConnection();
     });
 
-    /*
-     * نعرف أن المستخدم دخل الموقع بعد نجاح الفحص.
-     * هذا المستمع يعمل في مرحلة الالتقاط قبل onclick الأصلي.
-     */
+    /* بعد الضغط على دخول نعتبر المستخدم داخل الموقع فورًا،
+       ثم يتم فحص الإنترنت في الخلفية دون تأخير الدخول. */
     const enterButton = document.getElementById("enterButton");
     if (enterButton) {
         enterButton.addEventListener("click", function () {
@@ -3844,7 +3877,6 @@ document
         }, true);
     }
 
-    /* لا نعرض شاشة الانقطاع عند فتح الصفحة إلا إذا كان الإنترنت فعلاً غير متاح. */
     window.addEventListener("DOMContentLoaded", function () {
         checkConnection();
     });
