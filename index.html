@@ -1930,6 +1930,17 @@ html[dir="ltr"] .image-close{
         </button>
 
 
+        <button
+            class="theme-toggle"
+            id="musicToggle"
+            onclick="toggleMusic()"
+            title="تشغيل الموسيقى">
+
+            🔊
+
+        </button>
+
+
     </div>
 
 
@@ -3124,6 +3135,51 @@ function toggleTheme(){
 
 
 /* =========================
+   تشغيل / إيقاف موسيقى الموقع
+========================= */
+
+function toggleMusic(){
+
+    const music =
+        document.getElementById("siteMusic");
+
+    const button =
+        document.getElementById("musicToggle");
+
+    if(!music || !button){
+        return;
+    }
+
+    if(music.muted){
+
+        music.muted=false;
+
+        localStorage.setItem(
+            "musicMuted",
+            "false"
+        );
+
+        button.textContent="🔊";
+        button.title="إيقاف الموسيقى";
+
+    }
+    else{
+
+        music.muted=true;
+
+        localStorage.setItem(
+            "musicMuted",
+            "true"
+        );
+
+        button.textContent="🔇";
+        button.title="تشغيل الموسيقى";
+
+    }
+}
+
+
+/* =========================
    النصوص العربية
 ========================= */
 
@@ -3451,6 +3507,25 @@ window.addEventListener(
             localStorage.getItem(
                 "theme"
             );
+
+        const savedMusicMuted =
+            localStorage.getItem(
+                "musicMuted"
+            ) === "true";
+
+        const music =
+            document.getElementById("siteMusic");
+
+        const musicButton =
+            document.getElementById("musicToggle");
+
+        if(music && musicButton){
+            music.muted=savedMusicMuted;
+            musicButton.textContent=
+                savedMusicMuted ? "🔇" : "🔊";
+            musicButton.title=
+                savedMusicMuted ? "تشغيل الموسيقى" : "إيقاف الموسيقى";
+        }
 
 
         const savedLanguage =
@@ -3798,6 +3873,7 @@ document
         });
     }
 })();
+</script>
 
 <script src="update-check.js"></script>
 
